@@ -6,7 +6,7 @@ namespace Olympiad__project_code
     {
         static void Main(string[] args)
         {
-            rfyui;
+            kjjj;
         }
     }
 }
