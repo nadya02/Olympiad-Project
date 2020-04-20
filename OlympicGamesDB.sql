@@ -33,7 +33,7 @@ create table Competitors
 	FullName varchar(30) not null,
 	BirthDate date not null,
 	Age int not null, 
-	Gender enum ('man','women')not null;//?
+	Gender char not null,
 	Weight int not null,
 	Town_id int , foreign key(Town_id) references Towns(id),
 	Coach_id int , foreign key(Coach_id) references Coaches(id),	
