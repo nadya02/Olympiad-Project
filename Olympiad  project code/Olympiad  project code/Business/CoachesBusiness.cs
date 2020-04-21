@@ -10,6 +10,7 @@ namespace Olympiad__project_code.Business
     {
         private OlympicGamesDBContext olympicGamesDBContext;
 
+
         public List<Coaches> GetAllCoaches()
         {
             using (olympicGamesDBContext = new OlympicGamesDBContext())

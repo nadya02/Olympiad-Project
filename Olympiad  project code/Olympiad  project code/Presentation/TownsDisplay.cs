@@ -10,7 +10,7 @@ namespace Olympiad__project_code.Presentation
     {
         private TownsBusiness townsBusiness = new TownsBusiness();
         private CountriesBusiness countriesBusiness = new CountriesBusiness();
-
+        private SportsBusiness sportsBusiness = new SportsBusiness();
         public void GetAllTowns()
         {
             Console.WriteLine("Towns: ");
@@ -29,20 +29,20 @@ namespace Olympiad__project_code.Presentation
                 foreach (var item in towns)
                 {
                     var country = countriesBusiness.GetCountryById(item.CountryId);
-                    Console.Writeline($"{item.Id}     {item.Name}     {country.Name}");
+                    Console.WriteLine($"{item.Id}     {item.Name}     {country.Name}");
                 }
             }
 
         }
         public void GetSportById()
         {
-            Console.Line("Enter Sport Id to fetch:");
+            Console.WriteLine("Enter Sport Id to fetch:");
             int id = int.Parse(Console.ReadLine());
             Sports sport = sportsBusiness.GetSportById(id);
             if (sport != null)
             {
                 Console.WriteLine(new string('-', 40));
-                Console.Writeline($"{sport.Id}     {sport.Name}");
+                Console.WriteLine($"{sport.Id}     {sport.Name}");
                 Console.WriteLine(new string('-', 40));
             }
 
@@ -76,11 +76,11 @@ namespace Olympiad__project_code.Presentation
             }
         }
 
-            public void DeleteTownById()
-            {
-                Console.Write("Enter id:");
-                int id = int.Parse(Console.ReadLine());
-                townsBusiness.Delete(id);
-            }
+        public void DeleteTownById()
+        {
+            Console.Write("Enter id:");
+            int id = int.Parse(Console.ReadLine());
+            townsBusiness.Delete(id);
+        }
     }
 }

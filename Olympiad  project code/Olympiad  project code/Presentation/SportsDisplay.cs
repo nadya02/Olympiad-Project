@@ -35,13 +35,13 @@ namespace Olympiad__project_code.Presentation
         }
         public void GetSportById()
         {
-            Console.Line("Enter Sport Id to fetch:");
+            Console.WriteLine("Enter Sport Id to fetch:");
             int id = int.Parse(Console.ReadLine());
             Sports sport = sportsBusiness.GetSportById(id);
             if (sport != null)
             {
                 Console.WriteLine(new string('-', 40));
-                Console.Writeline($"{sport.Id}     {sport.Name}");
+                Console.WriteLine($"{sport.Id}     {sport.Name}");
                 Console.WriteLine(new string('-', 40));
             }
 

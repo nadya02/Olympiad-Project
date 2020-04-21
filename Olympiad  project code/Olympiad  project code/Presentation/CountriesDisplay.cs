@@ -15,7 +15,7 @@ namespace Olympiad__project_code.Presentation
             Console.WriteLine("Countries: ");
             List<Countries> countries = countriesBusiness.GetAllCountries();
 
-            if(countries.Count == 0)
+            if (countries.Count == 0)
             {
                 Console.WriteLine("There are no countries in the table. ");
             }
@@ -35,16 +35,16 @@ namespace Olympiad__project_code.Presentation
         }
         public void GetCountryById()
         {
-            Console.Line("Enter Country Id to fetch:");
+            Console.WriteLine("Enter Country Id to fetch:");
             int id = int.Parse(Console.ReadLine());
             Countries country = countriesBusiness.GetCountryById(id);
-            if(country != null)
+            if (country != null)
             {
                 Console.WriteLine(new string('-', 40));
-                Console.Writeline($"{country.Id}     {country.Name}");
+                Console.WriteLine($"{country.Id}     {country.Name}");
                 Console.WriteLine(new string('-', 40));
             }
-           
+
         }
     }
 }
