@@ -1,0 +1,6 @@
+Goto window+R and type services.msc and press enter.
+
+Then start SQL server manually if not automatically started.
+
+Then you try to login, it must be works.
+
