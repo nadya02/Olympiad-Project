@@ -38,11 +38,11 @@ namespace Olympiad__project_code.Presentation
         {
             Console.WriteLine("Enter Town Id to fetch:");
             int id = int.Parse(Console.ReadLine());
-            Towns town = sportsBusiness.GetTownById(id);
+            Towns town = townsBusiness.GetTownById(id);
             if (town != null)
             {
                 Console.WriteLine(new string('-', 40));
-                Console.WriteLine($"{sport.Id}     {town.Name}");
+                Console.WriteLine($"{town.Id}     {town.Name}");
                 Console.WriteLine(new string('-', 40));
             }
 
