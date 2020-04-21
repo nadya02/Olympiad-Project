@@ -14,7 +14,7 @@ namespace Olympiad__project_code.Models
         public string Name { get; set; }
         public int CountryId { get; set; }
 
-        public virtual Countries IdNavigation { get; set; }
+        public virtual Countries Country { get; set; }
         public virtual ICollection<Competitors> Competitors { get; set; }
     }
 }

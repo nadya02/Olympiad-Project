@@ -12,7 +12,9 @@ namespace Olympiad__project_code.Models
 
         public int Id { get; set; }
         public string Name { get; set; }
+        public int SportId { get; set; }
 
+        public virtual Sports Sport { get; set; }
         public virtual ICollection<Competitors> Competitors { get; set; }
     }
 }

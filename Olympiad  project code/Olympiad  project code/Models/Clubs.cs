@@ -3,16 +3,16 @@ using System.Collections.Generic;
 
 namespace Olympiad__project_code.Models
 {
-    public partial class Countries
+    public partial class Clubs
     {
-        public Countries()
+        public Clubs()
         {
-            Towns = new HashSet<Towns>();
+            Competitors = new HashSet<Competitors>();
         }
 
         public int Id { get; set; }
         public string Name { get; set; }
 
-        public virtual ICollection<Towns> Towns { get; set; }
+        public virtual ICollection<Competitors> Competitors { get; set; }
     }
 }

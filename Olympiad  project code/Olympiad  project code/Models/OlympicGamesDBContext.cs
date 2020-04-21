@@ -15,6 +15,7 @@ namespace Olympiad__project_code.Models
         {
         }
 
+        public virtual DbSet<Clubs> Clubs { get; set; }
         public virtual DbSet<Coaches> Coaches { get; set; }
         public virtual DbSet<Competitors> Competitors { get; set; }
         public virtual DbSet<Countries> Countries { get; set; }
@@ -26,80 +27,105 @@ namespace Olympiad__project_code.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Server=.\\SQLExpress;Database=OlympicGamesDB;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer("Server = DESKTOP-1817IFM\\SQLEXPRESS; Database= OlympicGamesDB; Integrated Security=True;");
             }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Clubs>(entity =>
+            {
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.Name)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+            });
+
             modelBuilder.Entity<Coaches>(entity =>
             {
                 entity.Property(e => e.Id).HasColumnName("id");
 
                 entity.Property(e => e.Name)
                     .IsRequired()
-                    .HasMaxLength(1)
+                    .HasMaxLength(50)
                     .IsUnicode(false);
+
+                entity.HasOne(d => d.Sport)
+                    .WithMany(p => p.Coaches)
+                    .HasForeignKey(d => d.SportId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__Coaches__SportId__5FB337D6");
             });
 
             modelBuilder.Entity<Competitors>(entity =>
             {
                 entity.HasIndex(e => e.Id)
-                    .HasName("UQ__Competit__3213E83E3481C9B6")
+                    .HasName("UQ__Competit__3213E83EE8CA782C")
                     .IsUnique();
 
                 entity.Property(e => e.Id).HasColumnName("id");
 
-                entity.Property(e => e.BirthDate).HasColumnType("date");
-
-                entity.Property(e => e.CoachId).HasColumnName("Coach_id");
-
-                entity.Property(e => e.FullName)
+                entity.Property(e => e.BirthDate)
                     .IsRequired()
                     .HasMaxLength(30)
                     .IsUnicode(false);
 
-                entity.Property(e => e.SportId).HasColumnName("Sport_id");
+                entity.Property(e => e.FullName)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
 
-                entity.Property(e => e.TownId).HasColumnName("Town_id");
+                entity.Property(e => e.Gender)
+                    .IsRequired()
+                    .HasMaxLength(30)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Weight)
+                    .IsRequired()
+                    .HasMaxLength(10)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.Club)
+                    .WithMany(p => p.Competitors)
+                    .HasForeignKey(d => d.ClubId)
+                    .HasConstraintName("FK__Competito__ClubI__0F624AF8");
 
                 entity.HasOne(d => d.Coach)
                     .WithMany(p => p.Competitors)
                     .HasForeignKey(d => d.CoachId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Competito__Coach__32E0915F");
+                    .HasConstraintName("FK__Competito__Coach__10566F31");
 
                 entity.HasOne(d => d.Sport)
                     .WithMany(p => p.Competitors)
                     .HasForeignKey(d => d.SportId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Competito__Sport__31EC6D26");
+                    .HasConstraintName("FK__Competito__Sport__114A936A");
 
                 entity.HasOne(d => d.Town)
                     .WithMany(p => p.Competitors)
                     .HasForeignKey(d => d.TownId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Competito__Town___30F848ED");
+                    .HasConstraintName("FK__Competito__TownI__0E6E26BF");
             });
 
             modelBuilder.Entity<Countries>(entity =>
             {
                 entity.HasIndex(e => e.Id)
-                    .HasName("UQ__Countrie__3213E83E1CF707FD")
+                    .HasName("UQ__Countrie__3213E83E4C90BE17")
                     .IsUnique();
 
                 entity.Property(e => e.Id).HasColumnName("id");
 
                 entity.Property(e => e.Name)
                     .IsRequired()
-                    .HasMaxLength(1)
+                    .HasMaxLength(50)
                     .IsUnicode(false);
             });
 
             modelBuilder.Entity<Sports>(entity =>
             {
                 entity.HasIndex(e => e.Id)
-                    .HasName("UQ__Sports__3213E83EFD775500")
+                    .HasName("UQ__Sports__3213E83E4B45F587")
                     .IsUnique();
 
                 entity.Property(e => e.Id).HasColumnName("id");
@@ -113,23 +139,21 @@ namespace Olympiad__project_code.Models
             modelBuilder.Entity<Towns>(entity =>
             {
                 entity.HasIndex(e => e.Id)
-                    .HasName("UQ__Towns__3213E83EC478D2CC")
+                    .HasName("UQ__Towns__3213E83E336D18CD")
                     .IsUnique();
 
-                entity.Property(e => e.Id)
-                    .HasColumnName("id")
-                    .ValueGeneratedOnAdd();
+                entity.Property(e => e.Id).HasColumnName("id");
 
                 entity.Property(e => e.Name)
                     .IsRequired()
-                    .HasMaxLength(1)
+                    .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.IdNavigation)
-                    .WithOne(p => p.Towns)
-                    .HasForeignKey<Towns>(d => d.Id)
+                entity.HasOne(d => d.Country)
+                    .WithMany(p => p.Towns)
+                    .HasForeignKey(d => d.CountryId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Towns__id__286302EC");
+                    .HasConstraintName("FK__Towns__CountryId__5CD6CB2B");
             });
 
             OnModelCreatingPartial(modelBuilder);
