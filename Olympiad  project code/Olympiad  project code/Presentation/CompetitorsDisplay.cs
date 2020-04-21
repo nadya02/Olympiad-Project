@@ -95,37 +95,51 @@ namespace Olympiad__project_code.Presentation
             coachesBusiness.AddCoach(coach);
         }
 
-        public void UpdateCoach()
+        public void UpdateCompetitor()
         {
             Console.WriteLine("Enter ID to update: ");
             int id = int.Parse(Console.ReadLine());
-            Coaches coach = coachesBusiness.GetCoachById(id);
-            if (coach == null)
+            Competitors competitor = competitorsBusiness.GetCompetitorById(id);
+            if (competitor == null)
             {
-                Console.WriteLine($"There is no club with ID = {id} in the table!");
+                Console.WriteLine($"There is no competitor with ID = {id} in the table!");
             }
             else
             {
-                Console.WriteLine("Enter Coach Name: ");
-                coach.Name = Console.ReadLine();
+                Console.WriteLine("Enter Competitor Name: ");
+                competitor.FullName = Console.ReadLine();
+                Console.WriteLine("Enter Competitor Birth Date: ");
+                competitor.BirthDate = Console.ReadLine();
+                Console.WriteLine("Enter Competitor Age: ");
+                competitor.Age = Console.ReadLine();
+                Console.WriteLine("Enter Competitor Gender: ");
+                competitor.Gender = Console.ReadLine();
+                Console.WriteLine("Enter Competitor Weight: ");
+                competitor.Weight = Console.ReadLine();
+                Console.WriteLine("Enter Competitor Town Id: ");
+                competitor.Town = Console.ReadLine();
+                Console.WriteLine("Enter Competitor Club Id: ");
+                competitor.ClubId = Console.ReadLine();
+                Console.WriteLine("Enter Competitor Coach Id: ");
+                competitor.CoachId = Console.ReadLine();                
                 Console.WriteLine("Enter SportID: ");//направи метод в SportBusiness -> GetSportByName
-                coach.SportId = int.Parse(Console.ReadLine());
-                coachesBusiness.UpdateCoach(coach);
+                competitor.SportId = int.Parse(Console.ReadLine());
+                competitorsBusiness.UpdateCompetitor(competitor);
             }
         }
 
-        public void DeleteClubById()
+        public void DeleteCompetitorById()
         {
             Console.WriteLine("Enter ID to delete: ");
             int id = int.Parse(Console.ReadLine());
-            Coaches coach = coachesBusiness.GetCoachById(id);
-            if (coachesBusiness.GetCoachById(id) == null)
+            Competitors competitor = competitorsBusiness.GetCompetitorById(id);
+            if (competitorsBusiness.GetCompetitorById(id) == null)
             {
-                Console.WriteLine($"There is no club with ID = {id} in the table!");
+                Console.WriteLine($"There is no competitor with ID = {id} in the table!");
             }
             else
             {
-                coachesBusiness.DeleteCoachById(id);
+                competitorsBusiness.DeleteCompetitorById(id);
             }
         }
     }

@@ -34,15 +34,15 @@ namespace Olympiad__project_code.Presentation
             }
 
         }
-        public void GetSportById()
+        public void GetTownById()
         {
-            Console.WriteLine("Enter Sport Id to fetch:");
+            Console.WriteLine("Enter Town Id to fetch:");
             int id = int.Parse(Console.ReadLine());
-            Sports sport = sportsBusiness.GetSportById(id);
-            if (sport != null)
+            Towns town = sportsBusiness.GetTownById(id);
+            if (town != null)
             {
                 Console.WriteLine(new string('-', 40));
-                Console.WriteLine($"{sport.Id}     {sport.Name}");
+                Console.WriteLine($"{sport.Id}     {town.Name}");
                 Console.WriteLine(new string('-', 40));
             }
 
@@ -57,18 +57,18 @@ namespace Olympiad__project_code.Presentation
         }
         //Metod v country business GetCountryByName
 
-        public void Update()
+        public void UpdateTown()
         {
             Console.Write("Enter Id:");
             int id = int.Parse(Console.ReadLine());
-            Towns town = townsBusiness.Get(id);
+            Towns town = townsBusiness.GetTownById(id);
 
-            if (sport != null)
+            if (town != null)
             {
                 Console.Write("Enter new name:");
                 town.Name = Console.ReadLine();
 
-                townsBusiness.Update(town);
+                townsBusiness.UpdateTown(town);
             }
             else
             {
@@ -80,7 +80,7 @@ namespace Olympiad__project_code.Presentation
         {
             Console.Write("Enter id:");
             int id = int.Parse(Console.ReadLine());
-            townsBusiness.Delete(id);
+            townsBusiness.DeleteTownById(id);
         }
     }
 }
