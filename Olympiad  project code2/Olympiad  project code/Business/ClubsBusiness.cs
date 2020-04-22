@@ -26,6 +26,13 @@ namespace Olympiad__project_code.Business
             }
         }
 
+        public Clubs GetClubByName(string name)
+        {
+            using (olympicGamesDBContext = new OlympicGamesDBContext())
+            {
+                return olympicGamesDBContext.Clubs.Find(name);//?
+            }
+        }
         public void AddClub(Clubs club)
         {
             using (olympicGamesDBContext = new OlympicGamesDBContext())

@@ -25,5 +25,13 @@ namespace Olympiad__project_code.Business_layer
             }
         }
 
+        public Sports GetSportByName(string name)
+        {
+            using (olympicGamesDBContext = new OlympicGamesDBContext())
+            {
+                return olympicGamesDBContext.Sports.Find(name);//?
+            }
+        }
+
     }
 }

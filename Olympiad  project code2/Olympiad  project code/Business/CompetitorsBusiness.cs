@@ -27,6 +27,14 @@ namespace Olympiad__project_code.Business
             }             
         }
 
+        public Competitors GetCompetitorByName(string name)
+        {
+            using (olympicGamesDBContext = new OlympicGamesDBContext())
+            {
+                return olympicGamesDBContext.Competitors.Find(name);//?
+            }
+        }
+
         public void AddCompetitors(Competitors competitors)
         {
             using (olympicGamesDBContext = new OlympicGamesDBContext())

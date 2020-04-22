@@ -24,6 +24,14 @@ namespace Olympiad__project_code.Business_layer
             }
         }
 
+        public Towns GetTownByName(string name)
+        {
+            using (olympicGamesDBContext = new OlympicGamesDBContext())
+            {
+                return olympicGamesDBContext.Towns.Find(name);//?
+            }
+        }
+
         public void AddTown(Towns town)
         {
 

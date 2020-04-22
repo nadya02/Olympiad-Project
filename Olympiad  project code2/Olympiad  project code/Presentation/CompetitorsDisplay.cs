@@ -90,19 +90,23 @@ namespace Olympiad__project_code.Presentation
             var competitor = new Competitors();
             Console.WriteLine("Enter Competitor Full Name: ");
             competitor.FullName = Console.ReadLine();
-            Console.WriteLine("Enter Competitor Birth Date: ");//направи метод в SportBusiness -> GetSportByName
+            Console.WriteLine("Enter Competitor Birth Date: ");
             competitor.BirthDate = Console.ReadLine();
             Console.WriteLine("Enter Competitor Age: ");
             competitor.Age = int.Parse(Console.ReadLine());
             Console.WriteLine("Enter Competitor Gender: ");
             competitor.Gender = Console.ReadLine();
             Console.WriteLine("Enter Competitor Town Name: ");
-            competitor.TownId = int.Parse(Console.ReadLine());
+
+            competitor.TownId = int.Parse(Console.ReadLine());//проверка дали има такъв град ако няма да се създаде???
             Console.WriteLine("Enter Competitor Club Name: ");
+
             competitor.ClubId = int.Parse(Console.ReadLine());
             Console.WriteLine("Enter Competitor Coach Name: ");
+
             competitor.CoachId = int.Parse(Console.ReadLine());
             Console.WriteLine("Enter Competitor Sport Name: ");
+
             competitor.SportId = int.Parse(Console.ReadLine());
             competitorsBusiness.AddCompetitors(competitor); 
         }
@@ -128,14 +132,28 @@ namespace Olympiad__project_code.Presentation
                 competitor.Gender = Console.ReadLine();
                 Console.WriteLine("Enter Competitor Weight: ");
                 competitor.Weight = Console.ReadLine();
-                Console.WriteLine("Enter Competitor Town Id: ");
-                competitor.TownId = int.Parse(Console.ReadLine());
+
+                Console.WriteLine("Enter Competitor Town Name: ");
+                string townName = Console.ReadLine();
+                var town = townsBusiness.GetTownByName(townName);
+                competitor.TownId = town.Id;
+
                 Console.WriteLine("Enter Competitor Club Id: ");
-                competitor.ClubId = int.Parse(Console.ReadLine());
+                string clubName = Console.ReadLine();
+                var club = clubsBusiness.GetClubByName(clubName);
+                competitor.ClubId = club.Id;
+
                 Console.WriteLine("Enter Competitor Coach Id: ");
-                competitor.CoachId = int.Parse(Console.ReadLine());
-                Console.WriteLine("Enter SportID: ");//направи метод в SportBusiness -> GetSportByName
-                competitor.SportId = int.Parse(Console.ReadLine());
+                string coachName = Console.ReadLine();
+                var coach = coachesBusiness.GetCoachByName(coachName);
+                competitor.CoachId = coach.Id;
+
+
+                Console.WriteLine("Enter Sport Name: ");
+                string sportName = Console.ReadLine();
+                var sport = sportsBusiness.GetSportByName(sportName);
+                competitor.SportId = sport.Id;
+
                 competitorsBusiness.UpdateCompetitor(competitor);
             }
         }

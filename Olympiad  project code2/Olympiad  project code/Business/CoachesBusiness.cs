@@ -26,6 +26,13 @@ namespace Olympiad__project_code.Business
                 return olympicGamesDBContext.Coaches.Find(id);
             }
         }
+        public Coaches GetCoachByName(string name)
+        {
+            using (olympicGamesDBContext = new OlympicGamesDBContext())
+            {
+                return olympicGamesDBContext.Coaches.Find(name);//?
+            }
+        }
 
         public void AddCoach(Coaches coach)
         {
