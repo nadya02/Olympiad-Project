@@ -12,6 +12,10 @@ namespace Olympiad__project_code.Presentation
         private static CoachesDisplay countriesDisplay = new CoachesDisplay();
         private static CompetitorsDisplay countriesDisplay = new CompetitorsDisplay();
         private static ClubsDisplay countriesDisplay = new ClubsDisplay();
+
+        public static void Input()
+        {
+        }
         
     }
 }
