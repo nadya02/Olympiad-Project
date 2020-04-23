@@ -24,5 +24,12 @@ namespace Olympiad__project_code.Business_layer
                 return olympicGamesDBContext.Countries.Find(id);
             }
         }
+        public Countries GetCountryByName(string name)
+        {
+            using (olympicGamesDBContext = new OlympicGamesDBContext())
+            {
+                return olympicGamesDBContext.Countries.Find(name);//?
+            }
+        }
     }
 }
