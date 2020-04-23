@@ -67,17 +67,7 @@ namespace Olympiad__project_code.Presentation
             var sport = sportsBusiness.GetSportById(competitor.SportId);
             if (competitor == null)
             {
-                Console.WriteLine(new string('-', 40));
-                Console.WriteLine($"ID: {competitor.Id}");
-                Console.WriteLine($"Full Name: {competitor.FullName}");
-                Console.WriteLine($"Birth Date: {competitor.BirthDate}");
-                Console.WriteLine($"Age: {competitor.Age}");
-                Console.WriteLine($"Gender: {competitor.Gender}");
-                Console.WriteLine($"Town Name: {town.Name}");
-                Console.WriteLine($"Club Name: {club.Name}");
-                Console.WriteLine($"Coach Name: {coach.Name}");
-                Console.WriteLine($"Sport Name: {sport.Name}");
-                Console.WriteLine(new string('-', 40));
+                PrintCompetitor(competitor, town, club, coach, sport);
             }
             else
             {
@@ -85,6 +75,39 @@ namespace Olympiad__project_code.Presentation
             }
         }
 
+        public void GetCompetitorByName()
+        {
+            Console.WriteLine("Enter Competitor Name to fetch: ");
+            string name = Console.ReadLine();
+            var competitor = competitorsBusiness.GetCompetitorByName(name);
+            var town = townsBusiness.GetTownById(competitor.TownId);
+            var club = clubsBusiness.GetClubById(competitor.ClubId);
+            var coach = coachesBusiness.GetCoachById(competitor.CoachId);
+            var sport = sportsBusiness.GetSportById(competitor.SportId);
+            if (competitor == null)
+            {
+                PrintCompetitor(competitor, town, club, coach, sport);
+            }
+            else
+            {
+                Console.WriteLine($"There is no competitor with Name = {name} in the table!");
+            }
+        }
+
+        private void PrintCompetitor(Competitors competitor, Towns town, Clubs club, Coaches coach, Sports sport)
+        {
+            Console.WriteLine(new string('-', 40));
+            Console.WriteLine($"ID: {competitor.Id}");
+            Console.WriteLine($"Full Name: {competitor.FullName}");
+            Console.WriteLine($"Birth Date: {competitor.BirthDate}");
+            Console.WriteLine($"Age: {competitor.Age}");
+            Console.WriteLine($"Gender: {competitor.Gender}");
+            Console.WriteLine($"Town Name: {town.Name}");
+            Console.WriteLine($"Club Name: {club.Name}");
+            Console.WriteLine($"Coach Name: {coach.Name}");
+            Console.WriteLine($"Sport Name: {sport.Name}");
+            Console.WriteLine(new string('-', 40));
+        }
         public void AddCompetitor()
         {
             var competitor = new Competitors();

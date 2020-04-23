@@ -1,4 +1,5 @@
-﻿using Olympiad__project_code.Models;
+﻿using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
+using Olympiad__project_code.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -14,20 +15,20 @@ namespace Olympiad__project_code.Presentation
         private static CompetitorsDisplay competitorsDisplay = new CompetitorsDisplay();
         private static ClubsDisplay clubsDisplay = new ClubsDisplay();
 
-        private static int operation = -1;
+        private static int numberTable = -1;
         public static void Input()
         {           
             do
             {
                 ShowMenu();
-                operation = int.Parse(Console.ReadLine());
-                switch (operation)
+                numberTable = int.Parse(Console.ReadLine());
+                switch (numberTable)
                 {
                     case 1:
-                        ListOnlyAvailableOpperations(operation);
+                        ListOnlyAvailableOpperations();
                         break;
                     case 2:
-                        ListOnlyAvailableOpperations(operation);
+                        ListOnlyAvailableOpperations();
                         break;
                     case 3:
                         ListAllOpperations();
@@ -41,11 +42,13 @@ namespace Olympiad__project_code.Presentation
                     case 6:
                         ListAllOpperations();
                         break;
+                    case 0://???????
+                        break;
                     default:
                         break;
                 }
                 Console.WriteLine("Press any key to clear the screen..."); Console.ReadKey(); Console.Clear();
-            } while (operation != 7);
+            } while (numberTable != 7);
         }
         private static void ShowMenu()
         {
@@ -77,7 +80,7 @@ namespace Olympiad__project_code.Presentation
             switch (operation2)
             {
                 case 1:
-                    GetAllEntries(operation);
+                    GetAllEntries(numberTable);
                     break;
                 case 2:
                     GetEntryById();
@@ -94,17 +97,37 @@ namespace Olympiad__project_code.Presentation
                 case 6:
                     DeleteEntry();
                     break;
+                case 0://?????????
+                    break;
                 default:
                     break;
             }
         }
 
-        private static void ListOnlyAvailableOpperations(int numberTable)
+        private static void ListOnlyAvailableOpperations()
         {
             Console.WriteLine("1. List all entries");
             Console.WriteLine("2. Show entry by Id");
             Console.WriteLine("3. Delete entry by ID");
             Console.WriteLine("0. Return");
+
+            int operation = int.Parse(Console.ReadLine());//?
+            switch (operation)
+            {
+                case 1:
+                    GetAllEntries(Display.numberTable);
+                    break;
+                case 2:
+                    GetEntryById();
+                    break;
+                case 3:
+                    DeleteEntry();
+                    break;
+                case 0://??????
+                    break;
+                default:
+                    break;
+            }
         }
         private static void GetAllEntries(int numberTable)
         {
@@ -146,33 +169,95 @@ namespace Olympiad__project_code.Presentation
         }
         private static void AddNewEntry()
         {
-            if (operation == 3)
+            if (numberTable == 3)
             {
                 townsDisplay.AddTown();
             }
-            else if (operation == 4)
+            else if (numberTable == 4)
             {
                 competitorsDisplay.AddCompetitor();
             }
-            else if (operation == 5)
+            else if (numberTable == 5)
             {
                 coachesDisplay.AddCoach();
             }
-            else if (operation == 6)
+            else if (numberTable == 6)
             {
                 clubsDisplay.Add();
             }
             Console.Clear();
             ShowMenu();
         }
-        private static void GetEntryById()
-        {
-            throw new NotImplementedException();
-        }
-
         private static void GetEntryByName()
         {
-            throw new NotImplementedException();
+            switch (numberTable)
+            {
+                case 3:
+                    Console.Clear();
+                    townsDisplay.GetTownByName();
+                    ShowMenu();
+                    break;
+                case 4:
+                    Console.Clear();
+                    competitorsDisplay.GetCompetitorByName();
+                    ShowMenu();
+                    break;
+                case 5:
+                    Console.Clear();
+                    coachesDisplay.GetCoachByName();
+                    ShowMenu();
+                    break;
+                case 6:
+                    Console.Clear();
+                    clubsDisplay.GetClubByName();
+                    ShowMenu();
+                    break;
+                case 0://??
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private static void GetEntryById()
+        {
+            switch (numberTable)
+            {
+                case 1:
+                    Console.Clear();
+                    sportsDisplay.GetSportById();
+                    ShowMenu();
+                    break;
+                case 2:
+                    Console.Clear();
+                    countriesDisplay.GetCountryById();
+                    ShowMenu();
+                    break;
+                case 3:
+                    Console.Clear();
+                    townsDisplay.GetTownById();
+                    ShowMenu();
+                    break;
+                case 4:
+                    Console.Clear();
+                    competitorsDisplay.GetCompetitorById();
+                    ShowMenu();
+                    break;
+                case 5:
+                    Console.Clear();
+                    coachesDisplay.GetCoachById();
+                    ShowMenu();
+                    break;
+                case 6:
+                    Console.Clear();
+                    clubsDisplay.GetClubById();
+                    ShowMenu();
+                    break;
+                case 0://??
+                    break;
+                default:
+                    break;
+            }
         }
 
         private static void UpdateEntry()

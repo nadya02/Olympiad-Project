@@ -40,11 +40,22 @@ namespace Olympiad__project_code.Presentation
             var sport = sportsBusiness.GetSportById(coach.SportId);
             if (coach == null)
             {
-                Console.WriteLine(new string('-', 40));
-                Console.WriteLine($"ID: {coach.Id}");
-                Console.WriteLine($"Name: {coach.Name}");
-                Console.WriteLine($"Sport Name: {sport.Name}");
-                Console.WriteLine(new string('-', 40));
+                PrintCoach(coach);
+            }
+            else
+            {
+                Console.WriteLine($"There is no coach with ID = {id} in the table!");
+            }
+        }
+        public void GetCoachByName()
+        {
+            Console.WriteLine("Enter Coach Name to fetch: ");
+            string name = Console.ReadLine();
+            var coach = coachesBusiness.GetCoachByName(name);
+            var sport = sportsBusiness.GetSportById(coach.SportId);
+            if (coach == null)
+            {
+                PrintCoach(coach, sport);
             }
             else
             {
@@ -52,6 +63,14 @@ namespace Olympiad__project_code.Presentation
             }
         }
 
+        private void PrintCoach(Coaches coach,  Sports sport)
+        {
+            Console.WriteLine(new string('-', 40));
+            Console.WriteLine($"ID: {coach.Id}");
+            Console.WriteLine($"Name: {coach.Name}");
+            Console.WriteLine($"Sport Name: {sport.Name}");
+            Console.WriteLine(new string('-', 40));
+        }
         public void AddCoach()
         {
             var coach = new Coaches();

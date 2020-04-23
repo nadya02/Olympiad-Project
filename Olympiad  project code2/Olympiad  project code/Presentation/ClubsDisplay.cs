@@ -31,7 +31,6 @@ namespace Olympiad__project_code.Presentation
             }
         }
 
-
         public void GetClubById()
         {
             Console.WriteLine("Enter Club ID to fetch: ");
@@ -39,11 +38,27 @@ namespace Olympiad__project_code.Presentation
             Clubs club = clubsBusiness.GetClubById(id);
             if(club != null)
             {
-                Console.WriteLine(new string('-', 40));
-                Console.WriteLine($"ID: {club.Id}");
-                Console.WriteLine($"Name: {club.Name}");
-                Console.WriteLine(new string('-', 40));
+                PrintClub(club);
             }
+        }
+
+        public void GetClubByName()
+        {
+            Console.WriteLine("Enter Club Name to fetch: ");
+            string name = Console.ReadLine();
+            Clubs club = clubsBusiness.GetClubByName(name);
+            if (club != null)
+            {
+                PrintClub(club);
+            }
+        }
+
+        private void PrintClub(Clubs club)
+        {
+            Console.WriteLine(new string('-', 40));
+            Console.WriteLine($"ID: {club.Id}");
+            Console.WriteLine($"Name: {club.Name}");
+            Console.WriteLine(new string('-', 40));
         }
 
         public void Add()

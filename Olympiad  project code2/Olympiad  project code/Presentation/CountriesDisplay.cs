@@ -44,7 +44,6 @@ namespace Olympiad__project_code.Presentation
                 Console.WriteLine($"{country.Id}     {country.Name}");
                 Console.WriteLine(new string('-', 40));
             }
-
         }
     }
 }

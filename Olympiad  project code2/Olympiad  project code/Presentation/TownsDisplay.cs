@@ -22,14 +22,14 @@ namespace Olympiad__project_code.Presentation
             }
             else
             {
-                Console.WriteLine("Id  |  Name   |  Country");
+                Console.WriteLine("Id |  Name       |  Country");
                 //????????????????????????????????????
-                Console.WriteLine(new string('-', 30));
+                Console.WriteLine(new string('-', 40));
 
                 foreach (var item in towns)
                 {
                     var country = countriesBusiness.GetCountryById(item.CountryId);
-                    Console.WriteLine($"{item.Id}     {item.Name}     {country.Name}");
+                    Console.WriteLine($"{item.Id}    {item.Name}       {country.Name}");
                 }
             }
         }
@@ -40,11 +40,25 @@ namespace Olympiad__project_code.Presentation
             Towns town = townsBusiness.GetTownById(id);
             if (town != null)
             {
-                Console.WriteLine(new string('-', 40));
-                Console.WriteLine($"{town.Id}     {town.Name}");
-                Console.WriteLine(new string('-', 40));
+                PrintTown(town);
             }
+        }
+        public void GetTownByName()
+        {
+            Console.WriteLine("Enter Town Name to fetch:");
+            string name = Console.ReadLine();
+            Towns town = townsBusiness.GetTownByName(name);
+            if (town != null)
+            {
+                PrintTown(town);
+            }
+        }
 
+        private void PrintTown(Towns town)
+        {
+            Console.WriteLine(new string('-', 40));
+            Console.WriteLine($"{town.Id}     {town.Name}");
+            Console.WriteLine(new string('-', 40));
         }
         public void AddTown()
         {
