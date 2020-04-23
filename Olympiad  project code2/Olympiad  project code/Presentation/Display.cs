@@ -15,8 +15,37 @@ namespace Olympiad__project_code.Presentation
 
         public static void Input()
         {
+            var operation = -1;
+            do
+            {
+                ShowMenu();
+                operation = int.Parse(Console.ReadLine());
+                switch (operation)
+                {
+                    case 1:
+                        ListOnlyAvailableOpperations();
+                        break;
+                    case 2:
+                        ListOnlyAvailableOpperations();
+                        break;
+                    case 3:
+                        ListAllOpperations();
+                        break;
+                    case 4:
+                        ListAllOpperations();
+                        break;
+                    case 5:
+                        ListAllOpperations();
+                        break;
+                    case 6:
+                        ListAllOpperations();
+                    default:
+                        break;
+                }
+                Console.WriteLine("Press any key..."); Console.ReadKey(); Console.Clear();
+            } while (operation != closeOperationId);
         }
-        private void ShowMenuAndTables()
+        private void ShowMenu()
         {
             /* Console.WriteLine(new string('-', 40));
              Console.WriteLine(new string(' ', 18) + "MENU");
@@ -44,6 +73,22 @@ namespace Olympiad__project_code.Presentation
             Console.Write("Enter the number of the choosen table: ");
 
 
+        }
+        private void ListAllOpperations()
+        {
+            Console.WriteLine("1. List all entries");
+            Console.WriteLine("2. Show entry by Id");
+            Console.WriteLine("3. Add new entry");
+            Console.WriteLine("3. Update entry");
+            Console.WriteLine("4. Delete entry by ID");
+            Console.WriteLine("0. Return");
+        }
+        private void ListOnlyAvailableOpperations()
+        {
+            Console.WriteLine("1. List all entries");
+            Console.WriteLine("2. Show entry by Id");
+            Console.WriteLine("3. Delete entry by ID");
+            Console.WriteLine("0. Return");
         }
 
 
