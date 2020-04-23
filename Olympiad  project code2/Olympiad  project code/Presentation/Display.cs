@@ -6,12 +6,12 @@ namespace Olympiad__project_code.Presentation
 {
     class Display
     {
-        private static CountriesDisplay countriesDisplay = new CountriesDisplay();
-        private static TownsDisplay countriesDisplay = new TownsDisplay();
-        private static SportsDisplay countriesDisplay = new SportsDisplay();
-        private static CoachesDisplay countriesDisplay = new CoachesDisplay();
-        private static CompetitorsDisplay countriesDisplay = new CompetitorsDisplay();
-        private static ClubsDisplay countriesDisplay = new ClubsDisplay();
+        private CountriesDisplay countriesDisplay = new CountriesDisplay();
+        private TownsDisplay townsDisplay = new TownsDisplay();
+        private SportsDisplay sportsDisplay = new SportsDisplay();
+        private CoachesDisplay coachesDisplay = new CoachesDisplay();
+        private CompetitorsDisplay competitorsDisplay = new CompetitorsDisplay();
+        private ClubsDisplay clubsDisplay = new ClubsDisplay();
 
         public static void Input()
         {
@@ -39,13 +39,14 @@ namespace Olympiad__project_code.Presentation
                         break;
                     case 6:
                         ListAllOpperations();
+                        break;
                     default:
                         break;
                 }
                 Console.WriteLine("Press any key..."); Console.ReadKey(); Console.Clear();
-            } while (operation != closeOperationId);
+            } while (operation != 7);
         }
-        private void ShowMenu()
+        private static void ShowMenu()
         {
             Console.WriteLine(new string('-', 40));
             Console.WriteLine(new string(' ', 18) + "Olympic Games Rio 2016");
@@ -60,10 +61,8 @@ namespace Olympiad__project_code.Presentation
             Console.WriteLine("0. Exit entry");
 
             Console.Write("Enter the number of the choosen table: ");
-
-
         }
-        private void ListAllOpperations()
+        private static void ListAllOpperations()
         {
             Console.WriteLine("1. List all entries");
             Console.WriteLine("2. Show entry by Id");
@@ -72,14 +71,12 @@ namespace Olympiad__project_code.Presentation
             Console.WriteLine("4. Delete entry by ID");
             Console.WriteLine("0. Return");
         }
-        private void ListOnlyAvailableOpperations()
+        private static void ListOnlyAvailableOpperations()
         {
             Console.WriteLine("1. List all entries");
             Console.WriteLine("2. Show entry by Id");
             Console.WriteLine("3. Delete entry by ID");
             Console.WriteLine("0. Return");
         }
-
-
     }
 }
