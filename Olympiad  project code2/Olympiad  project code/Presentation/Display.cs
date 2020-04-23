@@ -47,17 +47,6 @@ namespace Olympiad__project_code.Presentation
         }
         private void ShowMenu()
         {
-            /* Console.WriteLine(new string('-', 40));
-             Console.WriteLine(new string(' ', 18) + "MENU");
-             Console.WriteLine(new string('-', 40));
-             Console.WriteLine("1. List all entries");
-             Console.WriteLine("2. Show entry by Id");
-            // Console.WriteLine("3. Add new entry");
-             Console.WriteLine("3. Update entry");
-             Console.WriteLine("4. Delete entry by ID");
-             if()
-             Console.WriteLine("0. Exit entry");*/
-
             Console.WriteLine(new string('-', 40));
             Console.WriteLine(new string(' ', 18) + "Olympic Games Rio 2016");
             Console.WriteLine(new string('-', 40));
