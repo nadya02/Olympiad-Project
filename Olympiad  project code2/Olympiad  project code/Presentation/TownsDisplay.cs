@@ -32,7 +32,6 @@ namespace Olympiad__project_code.Presentation
                     Console.WriteLine($"{item.Id}     {item.Name}     {country.Name}");
                 }
             }
-
         }
         public void GetTownById()
         {
@@ -53,9 +52,7 @@ namespace Olympiad__project_code.Presentation
             Console.Write("Enter name");
             town.Name = Console.ReadLine();
             townsBusiness.AddTown(town);
-
         }
-        //Metod v country business GetCountryByName
 
         public void UpdateTown()
         {
