@@ -183,7 +183,7 @@ namespace Olympiad__project_code.Presentation
             }
             else if (numberTable == 6)
             {
-                clubsDisplay.Add();
+                clubsDisplay.AddClub();
             }
             Console.Clear();
             ShowMenu();
@@ -262,12 +262,46 @@ namespace Olympiad__project_code.Presentation
 
         private static void UpdateEntry()
         {
-            throw new NotImplementedException();
+            if (numberTable == 3)
+            {
+                townsDisplay.UpdateTown();
+            }
+            else if (numberTable == 4)
+            {
+                competitorsDisplay.UpdateCompetitor();
+            }
+            else if (numberTable == 5)
+            {
+                coachesDisplay.UpdateCoach();
+            }
+            else if (numberTable == 6)
+            {
+                clubsDisplay.UpdateClub();
+            }
+            Console.Clear();
+            ShowMenu();
         }
 
         private static void DeleteEntry()
         {
-            throw new NotImplementedException();
+            if (numberTable == 3)
+            {
+                townsDisplay.DeleteTownById();
+            }
+            else if (numberTable == 4)
+            {
+                competitorsDisplay.DeleteCompetitorById();
+            }
+            else if (numberTable == 5)
+            {
+                coachesDisplay.DeleteCoachById();
+            }
+            else if (numberTable == 6)
+            {
+                clubsDisplay.DeleteClubById();
+            }
+            Console.Clear();
+            ShowMenu();
         }
     }
 }

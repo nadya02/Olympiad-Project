@@ -61,7 +61,7 @@ namespace Olympiad__project_code.Presentation
             Console.WriteLine(new string('-', 40));
         }
 
-        public void Add()
+        public void AddClub()
         {
             Clubs club = new Clubs();
             Console.Write("Enter Club Name: ");//?
@@ -69,7 +69,7 @@ namespace Olympiad__project_code.Presentation
             clubsBusiness.AddClub(club);
         }
 
-        public void Update()
+        public void UpdateClub()
         {
             Console.WriteLine("Enter Club ID to update: ");
             int id = int.Parse(Console.ReadLine());

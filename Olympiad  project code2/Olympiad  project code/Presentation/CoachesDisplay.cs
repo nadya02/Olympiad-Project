@@ -100,7 +100,7 @@ namespace Olympiad__project_code.Presentation
             }
         }
 
-        public void DeleteClubById()
+        public void DeleteCoachById()
         {
             Console.WriteLine("Enter ID to delete: ");
             int id = int.Parse(Console.ReadLine());
