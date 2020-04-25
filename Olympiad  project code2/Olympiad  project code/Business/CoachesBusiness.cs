@@ -30,7 +30,10 @@ namespace Olympiad__project_code.Business
         {
             using (olympicGamesDBContext = new OlympicGamesDBContext())
             {
-                return olympicGamesDBContext.Coaches.Find(name);//?
+                var coach = olympicGamesDBContext.Coaches
+                    .Where(c => c.Name == name)
+                    .FirstOrDefault();
+                return coach;
             }
         }
 

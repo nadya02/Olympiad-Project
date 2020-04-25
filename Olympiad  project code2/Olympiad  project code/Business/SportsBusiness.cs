@@ -29,7 +29,10 @@ namespace Olympiad__project_code.Business_layer
         {
             using (olympicGamesDBContext = new OlympicGamesDBContext())
             {
-                return olympicGamesDBContext.Sports.Find(name);//?
+                var sport = olympicGamesDBContext.Sports
+                    .Where(c => c.Name == name)
+                    .FirstOrDefault();
+                return sport;
             }
         }
 

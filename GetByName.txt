@@ -1,0 +1,6 @@
+var club = olympicGamesDBContext.Clubs
+                    .Where(c => c.Name == name)
+                    .FirstOrDefault();
+                return club;
+return club;
+(във using на business класовете)

@@ -35,15 +35,32 @@ namespace Olympiad__project_code.Presentation
         }
         public void GetCountryById()
         {
-            Console.WriteLine("Enter Country Id to fetch:");
+            Console.WriteLine("Enter Country Id to fetch: ");
             int id = int.Parse(Console.ReadLine());
             Countries country = countriesBusiness.GetCountryById(id);
             if (country != null)
             {
-                Console.WriteLine(new string('-', 40));
-                Console.WriteLine($"{country.Id}     {country.Name}");
-                Console.WriteLine(new string('-', 40));
+                PrintCountry(country);
             }
+        }
+
+        public void GetCountryByName()
+        {
+            Console.WriteLine("Enter Country Name to fetch: ");
+            string name = Console.ReadLine();
+            Countries country = countriesBusiness.GetCountryByName(name);
+            if (country != null)
+            {
+                PrintCountry(country);
+            }
+        }
+
+        private void PrintCountry(Countries country)
+        {
+            Console.WriteLine(new string('-', 40));
+            Console.WriteLine($"ID: {country.Id}");
+            Console.WriteLine($"Name: {country.Name}");
+            Console.WriteLine(new string('-', 40));
         }
     }
 }

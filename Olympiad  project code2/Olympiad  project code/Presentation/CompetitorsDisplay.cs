@@ -58,14 +58,14 @@ namespace Olympiad__project_code.Presentation
 
         public void GetCompetitorById()
         {
-            Console.WriteLine("Enter Competitor ID to fetch: ");
+            Console.Write("Enter Competitor ID to fetch: ");
             int id = int.Parse(Console.ReadLine());
             var competitor = competitorsBusiness.GetCompetitorById(id);
             var town = townsBusiness.GetTownById(competitor.TownId);
             var club = clubsBusiness.GetClubById(competitor.ClubId);
             var coach = coachesBusiness.GetCoachById(competitor.CoachId);
             var sport = sportsBusiness.GetSportById(competitor.SportId);
-            if (competitor == null)
+            if (competitor != null)
             {
                 PrintCompetitor(competitor, town, club, coach, sport);
             }
@@ -77,14 +77,14 @@ namespace Olympiad__project_code.Presentation
 
         public void GetCompetitorByName()
         {
-            Console.WriteLine("Enter Competitor Name to fetch: ");
+            Console.Write("Enter Competitor Name to fetch: ");
             string name = Console.ReadLine();
             var competitor = competitorsBusiness.GetCompetitorByName(name);
             var town = townsBusiness.GetTownById(competitor.TownId);
             var club = clubsBusiness.GetClubById(competitor.ClubId);
             var coach = coachesBusiness.GetCoachById(competitor.CoachId);
             var sport = sportsBusiness.GetSportById(competitor.SportId);
-            if (competitor == null)
+            if (competitor != null)
             {
                 PrintCompetitor(competitor, town, club, coach, sport);
             }
@@ -111,32 +111,36 @@ namespace Olympiad__project_code.Presentation
         public void AddCompetitor()
         {
             var competitor = new Competitors();
-            Console.WriteLine("Enter Competitor Full Name: ");
+            Console.Write("Enter Competitor Full Name: ");
             competitor.FullName = Console.ReadLine();
-            Console.WriteLine("Enter Competitor Birth Date: ");
+            Console.Write("Enter Competitor Birth Date: ");
             competitor.BirthDate = Console.ReadLine();
-            Console.WriteLine("Enter Competitor Age: ");
+            Console.Write("Enter Competitor Age: ");
             competitor.Age = int.Parse(Console.ReadLine());
-            Console.WriteLine("Enter Competitor Gender: ");
+            Console.Write("Enter Competitor Gender: ");
             competitor.Gender = Console.ReadLine();
-            Console.WriteLine("Enter Competitor Town Name: ");
+            Console.Write("Enter Competitor Town Name: ");
 
             competitor.TownId = int.Parse(Console.ReadLine());//проверка дали има такъв град ако няма да се създаде???
-            Console.WriteLine("Enter Competitor Club Name: ");
+            //string townName = Console.ReadLine();
+           // if(townName)
+            Console.Write("Enter Competitor Club Name: ");
 
             competitor.ClubId = int.Parse(Console.ReadLine());
-            Console.WriteLine("Enter Competitor Coach Name: ");
+            Console.Write("Enter Competitor Coach Name: ");
 
             competitor.CoachId = int.Parse(Console.ReadLine());
-            Console.WriteLine("Enter Competitor Sport Name: ");
+            Console.Write("Enter Competitor Sport Name: ");
 
             competitor.SportId = int.Parse(Console.ReadLine());
-            competitorsBusiness.AddCompetitors(competitor); 
+            competitorsBusiness.AddCompetitors(competitor);
+
+            Console.WriteLine($"New competitor added to Competitors table!");
         }
 
         public void UpdateCompetitor()
         {
-            Console.WriteLine("Enter ID to update: ");
+            Console.Write("Enter ID to update: ");
             int id = int.Parse(Console.ReadLine());
             Competitors competitor = competitorsBusiness.GetCompetitorById(id);
             if (competitor == null)
@@ -145,47 +149,48 @@ namespace Olympiad__project_code.Presentation
             }
             else
             {
-                Console.WriteLine("Enter Competitor Name: ");
+                Console.Write("Enter Competitor Name: ");
                 competitor.FullName = Console.ReadLine();
-                Console.WriteLine("Enter Competitor Birth Date: ");
+                Console.Write("Enter Competitor Birth Date: ");
                 competitor.BirthDate = Console.ReadLine();
-                Console.WriteLine("Enter Competitor Age: ");
+                Console.Write("Enter Competitor Age: ");
                 competitor.Age = int.Parse(Console.ReadLine());
-                Console.WriteLine("Enter Competitor Gender: ");
+                Console.Write("Enter Competitor Gender: ");
                 competitor.Gender = Console.ReadLine();
-                Console.WriteLine("Enter Competitor Weight: ");
+                Console.Write("Enter Competitor Weight: ");
                 competitor.Weight = Console.ReadLine();
 
-                Console.WriteLine("Enter Competitor Town Name: ");
+                Console.Write("Enter Competitor Town Name: ");
                 string townName = Console.ReadLine();
                 var town = townsBusiness.GetTownByName(townName);
                 competitor.TownId = town.Id;
 
-                Console.WriteLine("Enter Competitor Club Id: ");
+                Console.Write("Enter Competitor Club Id: ");
                 string clubName = Console.ReadLine();
                 var club = clubsBusiness.GetClubByName(clubName);
                 competitor.ClubId = club.Id;
 
-                Console.WriteLine("Enter Competitor Coach Id: ");
+                Console.Write("Enter Competitor Coach Id: ");
                 string coachName = Console.ReadLine();
                 var coach = coachesBusiness.GetCoachByName(coachName);
                 competitor.CoachId = coach.Id;
 
 
-                Console.WriteLine("Enter Sport Name: ");
+                Console.Write("Enter Sport Name: ");
                 string sportName = Console.ReadLine();
                 var sport = sportsBusiness.GetSportByName(sportName);
                 competitor.SportId = sport.Id;
 
                 competitorsBusiness.UpdateCompetitor(competitor);
+
+                Console.WriteLine("Competitor successfully updated!");
             }
         }
 
         public void DeleteCompetitorById()
         {
-            Console.WriteLine("Enter ID to delete: ");
-            int id = int.Parse(Console.ReadLine());
-            Competitors competitor = competitorsBusiness.GetCompetitorById(id);
+            Console.Write("Enter ID to delete: ");
+            int id = int.Parse(Console.ReadLine());           
             if (competitorsBusiness.GetCompetitorById(id) == null)
             {
                 Console.WriteLine($"There is no competitor with ID = {id} in the table!");
@@ -193,6 +198,7 @@ namespace Olympiad__project_code.Presentation
             else
             {
                 competitorsBusiness.DeleteCompetitorById(id);
+                Console.WriteLine("Done!");
             }
         }
     }

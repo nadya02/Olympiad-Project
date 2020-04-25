@@ -17,7 +17,7 @@ namespace Olympiad__project_code.Presentation
 
             if (sports.Count == 0)
             {
-                Console.WriteLine("There are no sports in the table. ");
+                Console.WriteLine("There are no sports in the table!");
             }
             else
             {
@@ -25,26 +25,40 @@ namespace Olympiad__project_code.Presentation
                 //????????????????????????????????????
                 Console.WriteLine(new string('-', 30));
 
-                foreach (var item in sports)
+                foreach (var sport in sports)
                 {
-                    Console.WriteLine(item.Id);
-                    Console.WriteLine(item.Name);
+                    Console.WriteLine($"{sport.Id}     {sport.Name}");
                 }
             }
 
         }
         public void GetSportById()
         {
-            Console.WriteLine("Enter Sport Id to fetch:");
+            Console.Write("Enter Sport Id to fetch: ");
             int id = int.Parse(Console.ReadLine());
             Sports sport = sportsBusiness.GetSportById(id);
             if (sport != null)
             {
-                Console.WriteLine(new string('-', 40));
-                Console.WriteLine($"{sport.Id}     {sport.Name}");
-                Console.WriteLine(new string('-', 40));
+                PrintSport(sport);
             }
+        }
+        public void GetSportByName()
+        {
+            Console.Write("Enter Sport Name to fetch: ");
+            string name = Console.ReadLine();
+            Sports sport = sportsBusiness.GetSportByName(name);
+            if (sport != null)
+            {
+                PrintSport(sport);
+            }
+        }
 
+        private void PrintSport(Sports sport)
+        {
+            Console.WriteLine(new string('-', 40));
+            Console.WriteLine($"ID: {sport.Id}");
+            Console.WriteLine($"Name: {sport.Name}");
+            Console.WriteLine(new string('-', 40));
         }
     }
 }

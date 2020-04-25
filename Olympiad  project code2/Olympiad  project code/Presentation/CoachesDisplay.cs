@@ -34,13 +34,13 @@ namespace Olympiad__project_code.Presentation
 
         public void GetCoachById()
         {
-            Console.WriteLine("Enter Coach ID to fetch: ");
+            Console.Write("Enter Coach ID to fetch: ");
             int id = int.Parse(Console.ReadLine());
             var coach = coachesBusiness.GetCoachById(id);
             var sport = sportsBusiness.GetSportById(coach.SportId);
-            if (coach == null)
+            if (coach != null)
             {
-                PrintCoach(coach);
+                PrintCoach(coach, sport);
             }
             else
             {
@@ -49,17 +49,13 @@ namespace Olympiad__project_code.Presentation
         }
         public void GetCoachByName()
         {
-            Console.WriteLine("Enter Coach Name to fetch: ");
+            Console.Write("Enter Coach Name to fetch: ");
             string name = Console.ReadLine();
             var coach = coachesBusiness.GetCoachByName(name);
             var sport = sportsBusiness.GetSportById(coach.SportId);
-            if (coach == null)
+            if (coach != null)
             {
                 PrintCoach(coach, sport);
-            }
-            else
-            {
-                Console.WriteLine($"There is no coach with ID = {id} in the table!");
             }
         }
 
@@ -74,16 +70,18 @@ namespace Olympiad__project_code.Presentation
         public void AddCoach()
         {
             var coach = new Coaches();
-            Console.WriteLine("Enter Coach Name: ");
+            Console.Write("Enter Coach Name: ");
             coach.Name = Console.ReadLine();
-            Console.WriteLine("Enter SportID: ");//направи метод в SportBusiness -> GetSportByName
-            coach.SportId = int.Parse(Console.ReadLine());
+            Console.Write("Enter Sport Name: ");
+            string sportName = Console.ReadLine();
+            coach.SportId = sportsBusiness.GetSportByName(sportName).Id;
             coachesBusiness.AddCoach(coach);
+            Console.WriteLine($"New coach added to Coaches table!");
         }
 
         public void UpdateCoach()
         {
-            Console.WriteLine("Enter ID to update: ");
+            Console.Write("Enter ID to update: ");
             int id = int.Parse(Console.ReadLine());
             Coaches coach = coachesBusiness.GetCoachById(id);
             if(coach == null)
@@ -94,17 +92,19 @@ namespace Olympiad__project_code.Presentation
             {
                 Console.WriteLine("Enter Coach Name: ");
                 coach.Name = Console.ReadLine();
-                Console.WriteLine("Enter SportID: ");//направи метод в SportBusiness -> GetSportByName
-                coach.SportId = int.Parse(Console.ReadLine());
+                Console.Write("Enter Sport Name: ");
+                string sportName = Console.ReadLine();
+                coach.SportId = sportsBusiness.GetSportByName(sportName).Id;
                 coachesBusiness.UpdateCoach(coach);
+
+                Console.WriteLine("Coach successfully updated!");
             }
         }
 
         public void DeleteCoachById()
         {
-            Console.WriteLine("Enter ID to delete: ");
+            Console.Write("Enter ID to delete: ");
             int id = int.Parse(Console.ReadLine());
-            Coaches coach = coachesBusiness.GetCoachById(id);
             if (coachesBusiness.GetCoachById(id) == null)
             {
                 Console.WriteLine($"There is no club with ID = {id} in the table!");
@@ -112,6 +112,7 @@ namespace Olympiad__project_code.Presentation
             else
             {
                 coachesBusiness.DeleteCoachById(id);
+                Console.WriteLine("Done!");
             }
         }
     }

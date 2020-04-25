@@ -10,7 +10,6 @@ namespace Olympiad__project_code.Presentation
     {
         private TownsBusiness townsBusiness = new TownsBusiness();
         private CountriesBusiness countriesBusiness = new CountriesBusiness();
-        private SportsBusiness sportsBusiness = new SportsBusiness();
         public void GetAllTowns()
         {
             Console.WriteLine("Towns: ");
@@ -18,7 +17,7 @@ namespace Olympiad__project_code.Presentation
 
             if (towns.Count == 0)
             {
-                Console.WriteLine("There are no towns in the table. ");
+                Console.WriteLine("There are no towns in the table!");
             }
             else
             {
@@ -35,7 +34,7 @@ namespace Olympiad__project_code.Presentation
         }
         public void GetTownById()
         {
-            Console.WriteLine("Enter Town Id to fetch:");
+            Console.WriteLine("Enter Town Id to fetch: ");
             int id = int.Parse(Console.ReadLine());
             Towns town = townsBusiness.GetTownById(id);
             if (town != null)
@@ -45,7 +44,7 @@ namespace Olympiad__project_code.Presentation
         }
         public void GetTownByName()
         {
-            Console.WriteLine("Enter Town Name to fetch:");
+            Console.WriteLine("Enter Town Name to fetch: ");
             string name = Console.ReadLine();
             Towns town = townsBusiness.GetTownByName(name);
             if (town != null)
@@ -57,41 +56,57 @@ namespace Olympiad__project_code.Presentation
         private void PrintTown(Towns town)
         {
             Console.WriteLine(new string('-', 40));
-            Console.WriteLine($"{town.Id}     {town.Name}");
+            Console.WriteLine($"ID: {town.Id}");
+            Console.WriteLine($"Name: {town.Name}");
             Console.WriteLine(new string('-', 40));
         }
         public void AddTown()
         {
             Towns town = new Towns();
-            Console.Write("Enter name");
+            Console.Write("Enter name: ");
             town.Name = Console.ReadLine();
+            Console.Write("Enter Country Name: ");
+            string countryName = Console.ReadLine();
+            town.CountryId = countriesBusiness.GetCountryByName(countryName).Id;
             townsBusiness.AddTown(town);
+
+            Console.WriteLine($"New town added to Towns table!");
         }
 
         public void UpdateTown()
         {
-            Console.Write("Enter Id:");
+            Console.Write("Enter Id: ");
             int id = int.Parse(Console.ReadLine());
             Towns town = townsBusiness.GetTownById(id);
 
             if (town != null)
             {
-                Console.Write("Enter new name:");
-                town.Name = Console.ReadLine();
+                Console.Write("Enter new name: ");
+                town.Name = Console.ReadLine();//??? да пита и за държавата
 
                 townsBusiness.UpdateTown(town);
             }
             else
             {
-                Console.WriteLine("Town not found");
+                Console.WriteLine("Town not found!");
             }
+
+            Console.WriteLine("Town successfully updated!");
         }
 
         public void DeleteTownById()
         {
-            Console.Write("Enter id:");
+            Console.Write("Enter id: ");
             int id = int.Parse(Console.ReadLine());
-            townsBusiness.DeleteTownById(id);
+            if (townsBusiness.GetTownById(id) == null)
+            {
+                Console.WriteLine($"There is no town with ID = {id} in the table!");
+            }
+            else
+            {
+                townsBusiness.DeleteTownById(id);
+                Console.WriteLine("Done!");
+            }
         }
     }
 }

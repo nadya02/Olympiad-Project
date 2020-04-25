@@ -42,12 +42,9 @@ namespace Olympiad__project_code.Presentation
                     case 6:
                         ListAllOpperations();
                         break;
-                    case 0://???????
-                        break;
                     default:
                         break;
                 }
-                Console.WriteLine("Press any key to clear the screen..."); Console.ReadKey(); Console.Clear();
             } while (numberTable != 7);
         }
         private static void ShowMenu()
@@ -68,6 +65,8 @@ namespace Olympiad__project_code.Presentation
         }
         private static void ListAllOpperations()
         {
+            Console.Clear();
+            Console.WriteLine($"Number of chosen table: {numberTable}");//проверка и да се изведе името на таблицата
             Console.WriteLine("1. List all entries");
             Console.WriteLine("2. Show entry by Id");
             Console.WriteLine("3. Show entry by  Name");
@@ -76,7 +75,10 @@ namespace Olympiad__project_code.Presentation
             Console.WriteLine("6. Delete entry by ID");
             Console.WriteLine("0. Return");
 
-            int operation2 = int.Parse(Console.ReadLine());//?
+            Console.WriteLine();
+            Console.Write("Enter the number of the operation: ");
+
+            int operation2 = int.Parse(Console.ReadLine());
             switch (operation2)
             {
                 case 1:
@@ -97,8 +99,6 @@ namespace Olympiad__project_code.Presentation
                 case 6:
                     DeleteEntry();
                     break;
-                case 0://?????????
-                    break;
                 default:
                     break;
             }
@@ -106,12 +106,16 @@ namespace Olympiad__project_code.Presentation
 
         private static void ListOnlyAvailableOpperations()
         {
+            Console.Clear();
+            Console.WriteLine($"Number of chosen table: {numberTable}");//проверка и да се изведе името на таблицата
             Console.WriteLine("1. List all entries");
             Console.WriteLine("2. Show entry by Id");
-            Console.WriteLine("3. Delete entry by ID");
+            Console.WriteLine("3. Show entry by Name");
             Console.WriteLine("0. Return");
+            Console.WriteLine();
+            Console.Write("Enter the number of the operation: ");
 
-            int operation = int.Parse(Console.ReadLine());//?
+            int operation = int.Parse(Console.ReadLine());
             switch (operation)
             {
                 case 1:
@@ -121,9 +125,7 @@ namespace Olympiad__project_code.Presentation
                     GetEntryById();
                     break;
                 case 3:
-                    DeleteEntry();
-                    break;
-                case 0://??????
+                    GetEntryByName();
                     break;
                 default:
                     break;
@@ -131,44 +133,36 @@ namespace Olympiad__project_code.Presentation
         }
         private static void GetAllEntries(int numberTable)
         {
+            Console.Clear();
             switch (numberTable)
             {
                 case 1:
-                    Console.Clear();
                     sportsDisplay.GetAllSports();
-                    ShowMenu();
                     break;
                 case 2:
-                    Console.Clear();
                     countriesDisplay.GetAllCountries();
-                    ShowMenu();
                     break;
                 case 3:
-                    Console.Clear();
                     townsDisplay.GetAllTowns();
-                    ShowMenu();
                     break;
                 case 4:
-                    Console.Clear();
                     competitorsDisplay.GetAllCompetitors();
-                    ShowMenu();
                     break;
                 case 5:
-                    Console.Clear();
                     coachesDisplay.GetAllCoaches();
-                    ShowMenu();
                     break;
                 case 6:
-                    Console.Clear();
                     clubsDisplay.GetAllClubs();
-                    ShowMenu();
                     break;
                 default:
                     break;
             }
+            Console.WriteLine();
+            Console.WriteLine("Press any key to clear the screen..."); Console.ReadKey(); Console.Clear();
         }
         private static void AddNewEntry()
         {
+            Console.Clear();
             if (numberTable == 3)
             {
                 townsDisplay.AddTown();
@@ -185,83 +179,72 @@ namespace Olympiad__project_code.Presentation
             {
                 clubsDisplay.AddClub();
             }
-            Console.Clear();
-            ShowMenu();
+            Console.WriteLine();
+            Console.WriteLine("Press any key to clear the screen..."); Console.ReadKey(); Console.Clear();
         }
         private static void GetEntryByName()
         {
+            Console.Clear();
             switch (numberTable)
             {
+                case 1:                   
+                    sportsDisplay.GetSportByName();
+                    break;
+                case 2:
+                    countriesDisplay.GetCountryByName();
+                    break;
                 case 3:
-                    Console.Clear();
                     townsDisplay.GetTownByName();
-                    ShowMenu();
                     break;
                 case 4:
-                    Console.Clear();
                     competitorsDisplay.GetCompetitorByName();
-                    ShowMenu();
                     break;
                 case 5:
-                    Console.Clear();
                     coachesDisplay.GetCoachByName();
-                    ShowMenu();
                     break;
                 case 6:
-                    Console.Clear();
-                    clubsDisplay.GetClubByName();
-                    ShowMenu();
-                    break;
-                case 0://??
+                    clubsDisplay.GetClubByName();                
                     break;
                 default:
                     break;
             }
+            Console.WriteLine();
+            Console.WriteLine("Press any key to clear the screen..."); Console.ReadKey(); Console.Clear();
         }
 
         private static void GetEntryById()
         {
+            Console.Clear();
             switch (numberTable)
             {
-                case 1:
-                    Console.Clear();
+                case 1:                   
                     sportsDisplay.GetSportById();
-                    ShowMenu();
                     break;
                 case 2:
-                    Console.Clear();
                     countriesDisplay.GetCountryById();
-                    ShowMenu();
                     break;
                 case 3:
-                    Console.Clear();
                     townsDisplay.GetTownById();
-                    ShowMenu();
                     break;
                 case 4:
-                    Console.Clear();
                     competitorsDisplay.GetCompetitorById();
-                    ShowMenu();
                     break;
                 case 5:
-                    Console.Clear();
                     coachesDisplay.GetCoachById();
-                    ShowMenu();
                     break;
                 case 6:
-                    Console.Clear();
-                    clubsDisplay.GetClubById();
-                    ShowMenu();
-                    break;
-                case 0://??
+                    clubsDisplay.GetClubById();                    
                     break;
                 default:
                     break;
             }
+            Console.WriteLine();
+            Console.WriteLine("Press any key to clear the screen..."); Console.ReadKey(); Console.Clear();
         }
 
         private static void UpdateEntry()
         {
+            Console.Clear();
             if (numberTable == 3)
             {
                 townsDisplay.UpdateTown();
@@ -278,12 +261,13 @@ namespace Olympiad__project_code.Presentation
             {
                 clubsDisplay.UpdateClub();
             }
-            Console.Clear();
-            ShowMenu();
+            Console.WriteLine();
+            Console.WriteLine("Press any key to clear the screen..."); Console.ReadKey(); Console.Clear();
         }
 
         private static void DeleteEntry()
         {
+            Console.Clear();
             if (numberTable == 3)
             {
                 townsDisplay.DeleteTownById();
@@ -300,8 +284,8 @@ namespace Olympiad__project_code.Presentation
             {
                 clubsDisplay.DeleteClubById();
             }
-            Console.Clear();
-            ShowMenu();
+            Console.WriteLine();
+            Console.WriteLine("Press any key to clear the screen..."); Console.ReadKey(); Console.Clear();
         }
     }
 }

@@ -33,7 +33,7 @@ namespace Olympiad__project_code.Presentation
 
         public void GetClubById()
         {
-            Console.WriteLine("Enter Club ID to fetch: ");
+            Console.Write("Enter Club ID to fetch: ");
             int id = int.Parse(Console.ReadLine());
             Clubs club = clubsBusiness.GetClubById(id);
             if(club != null)
@@ -44,7 +44,7 @@ namespace Olympiad__project_code.Presentation
 
         public void GetClubByName()
         {
-            Console.WriteLine("Enter Club Name to fetch: ");
+            Console.Write("Enter Club Name to fetch: ");
             string name = Console.ReadLine();
             Clubs club = clubsBusiness.GetClubByName(name);
             if (club != null)
@@ -64,14 +64,16 @@ namespace Olympiad__project_code.Presentation
         public void AddClub()
         {
             Clubs club = new Clubs();
-            Console.Write("Enter Club Name: ");//?
+            Console.Write("Enter Club Name: ");
             club.Name = Console.ReadLine();
             clubsBusiness.AddClub(club);
+
+            Console.WriteLine($"New club added to Clubs table!");
         }
 
         public void UpdateClub()
         {
-            Console.WriteLine("Enter Club ID to update: ");
+            Console.Write("Enter Club ID to update: ");
             int id = int.Parse(Console.ReadLine());
             Clubs club = clubsBusiness.GetClubById(id);
             if(club == null)
@@ -82,21 +84,23 @@ namespace Olympiad__project_code.Presentation
             {
                 Console.WriteLine("Enter Club Name: ");
                 club.Name = Console.ReadLine();
-                clubsBusiness.UpdateClub(club); 
+                clubsBusiness.UpdateClub(club);
+
+                Console.WriteLine("Club successfully updated!");
             }
         }
 
         public void DeleteClubById()
         {
-            Console.WriteLine("Enter Club Id to delete: ");
-            int id = int.Parse(Console.ReadLine());
-            clubsBusiness.DeleteClubById(id);
-            if(clubsBusiness.GetClubById(id) == null)//?
+            Console.Write("Enter Club Id to delete: ");
+            int id = int.Parse(Console.ReadLine());            
+            if(clubsBusiness.GetClubById(id) == null)
             {
                 Console.WriteLine($"There is no club with ID = {id} in the table!");
             }
             else
             {
+                clubsBusiness.DeleteClubById(id);
                 Console.WriteLine("Done!");
             }
         }

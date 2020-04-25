@@ -30,7 +30,10 @@ namespace Olympiad__project_code.Business
         {
             using (olympicGamesDBContext = new OlympicGamesDBContext())
             {
-                return olympicGamesDBContext.Clubs.Find(name);//?
+                var club = olympicGamesDBContext.Clubs
+                    .Where(c => c.Name == name)
+                    .FirstOrDefault();
+                return club;
             }
         }
         public void AddClub(Clubs club)
