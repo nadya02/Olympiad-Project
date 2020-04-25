@@ -18,7 +18,7 @@ namespace Olympiad__project_code.Business
             }
         }
 
-        public Clubs GetClubById(int id)
+        public Clubs GetClubById(int? id)
         {
             using (olympicGamesDBContext = new OlympicGamesDBContext())
             {

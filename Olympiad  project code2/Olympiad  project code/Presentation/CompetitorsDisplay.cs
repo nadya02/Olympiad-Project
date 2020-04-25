@@ -39,19 +39,28 @@ namespace Olympiad__project_code.Presentation
                 foreach (var competitor in competitors)
                 {
                     var town = townsBusiness.GetTownById(competitor.TownId);
-                    var club = clubsBusiness.GetClubById(competitor.ClubId);
-                    var coach = coachesBusiness.GetCoachById(competitor.CoachId);
+                    string clubName = "";
+                    if(competitor.ClubId != null)
+                    {
+                        clubName = clubsBusiness.GetClubById(competitor.ClubId).Name;
+                    }
+                    string coachName = "";
+                    if (competitor.CoachId != null)
+                    {
+                        coachName = coachesBusiness.GetCoachById(competitor.CoachId).Name;
+                    }
                     var sport = sportsBusiness.GetSportById(competitor.SportId);
-                    Console.WriteLine($"{competitor.Id}" + new string(' ', 5)
+                    string output = $"{competitor.Id}" + new string(' ', 5 - competitor.Id.ToString().Length)//!!!!!!!!!!
                         + $"{competitor.FullName}" + new string(' ', 30)
                         + $"{competitor.BirthDate}" + new string(' ', 30)
                         + $"{competitor.Age}" + new string(' ', 5)
                         + $"{competitor.Gender}" + new string(' ', 10)
                         + $"{competitor.Weight}" + new string(' ', 10)
                         + $"{town.Name}" + new string(' ', 20)
-                        + $"{club.Name}" + new string(' ', 30)
-                        + $"{coach.Name}" + new string(' ', 30)
-                        + $"{sport.Name}" + new string(' ', 20));
+                        + clubName + new string(' ', 30)
+                        + coachName + new string(' ', 30)
+                        + $"{sport.Name}" + new string(' ', 20);
+                    Console.WriteLine(output);
                 }
             }
         }

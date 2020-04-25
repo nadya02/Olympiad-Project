@@ -41,6 +41,10 @@ namespace Olympiad__project_code.Presentation
             {
                 PrintTown(town);
             }
+            else//????
+            {
+
+            }
         }
         public void GetTownByName()
         {

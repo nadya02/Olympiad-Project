@@ -12,8 +12,8 @@ namespace Olympiad__project_code.Models
         public string Gender { get; set; }
         public string Weight { get; set; }
         public int TownId { get; set; }
-        public int ClubId { get; set; }
-        public int CoachId { get; set; }
+        public int? ClubId { get; set; }
+        public int? CoachId { get; set; }
         public int SportId { get; set; }
 
         public virtual Clubs Club { get; set; }

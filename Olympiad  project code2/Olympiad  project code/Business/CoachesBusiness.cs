@@ -19,7 +19,7 @@ namespace Olympiad__project_code.Business
             }
         }
 
-        public Coaches GetCoachById(int id)
+        public Coaches GetCoachById(int? id)
         {
             using (olympicGamesDBContext = new OlympicGamesDBContext())
             {
