@@ -45,7 +45,7 @@ create table Competitors
 	TownId int , foreign key(TownId) references Towns(id),
 	ClubId int, foreign key(ClubId) references Clubs(id),
 	CoachId int, foreign key(CoachId) references Coaches(id),	
-	SportId int, foreign key(SportId) references Sports(id),
+	SportId int, foreign key(SportId) references Sports(id)
 );
 GO
 INSERT INTO Sports
