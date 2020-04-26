@@ -4,6 +4,7 @@ using Olympiad__project_code.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Xml;
 
 namespace Olympiad__project_code.Presentation
 {
@@ -25,22 +26,22 @@ namespace Olympiad__project_code.Presentation
             }
             else
             {
-                Console.WriteLine("Id" + new string(' ', 5)
-                    + "FullName" + new string(' ', 30)
-                    + "Birth Date" + new string(' ', 30)
-                    + "Age" + new string(' ', 5)
-                    + "Gender" + new string(' ', 10)
-                    + "Weight" + new string(' ', 10)
-                    + "Town Name" + new string(' ', 20)
-                    + "Club Name" + new string(' ', 30)
-                    + "CoachId" + new string(' ', 30)
-                    + "SportId" + new string(' ', 20));
-                Console.WriteLine(new string('-', 100));
+                Console.WriteLine(new string(' ', 2) + "Id" + new string(' ', 2)//6
+                    + new string(' ', 13) + "FullName" + new string(' ', 13)//34
+                    + new string(' ', 5) + "BirthDate" + new string(' ', 5)//19
+                    + new string(' ', 2) + "Age" + new string(' ',2)//8
+                    + new string(' ', 2) + "Gender" + new string(' ', 2)//10
+                    + new string(' ', 2) + "Weight" + new string(' ', 2)//10
+                    + new string(' ', 10) + "TownName" + new string(' ', 10)//28
+                    + new string(' ', 18) + "ClubName" + new string(' ', 18)//44
+                    + new string(' ', 10) + "CoachName" + new string(' ', 10)//29
+                    + new string(' ', 6) + "SportName" + new string(' ', 6));//21
+                Console.WriteLine(new string('-', 210));
                 foreach (var competitor in competitors)
                 {
                     var town = townsBusiness.GetTownById(competitor.TownId);
                     string clubName = "";
-                    if(competitor.ClubId != null)
+                    if (competitor.ClubId != null)
                     {
                         clubName = clubsBusiness.GetClubById(competitor.ClubId).Name;
                     }
@@ -49,21 +50,39 @@ namespace Olympiad__project_code.Presentation
                     {
                         coachName = coachesBusiness.GetCoachById(competitor.CoachId).Name;
                     }
+                   //string coachAndClubName = GetClubAndCoachNames(competitor);                   
                     var sport = sportsBusiness.GetSportById(competitor.SportId);
-                    string output = $"{competitor.Id}" + new string(' ', 5 - competitor.Id.ToString().Length)//!!!!!!!!!!
-                        + $"{competitor.FullName}" + new string(' ', 30)
-                        + $"{competitor.BirthDate}" + new string(' ', 30)
-                        + $"{competitor.Age}" + new string(' ', 5)
-                        + $"{competitor.Gender}" + new string(' ', 10)
-                        + $"{competitor.Weight}" + new string(' ', 10)
-                        + $"{town.Name}" + new string(' ', 20)
-                        + clubName + new string(' ', 30)
-                        + coachName + new string(' ', 30)
-                        + $"{sport.Name}" + new string(' ', 20);
-                    Console.WriteLine(output);
+                    string output = $"{competitor.Id}" + new string(' ', 6 - competitor.Id.ToString().Length)
+                        + $"{competitor.FullName}" + new string(' ', 34 - competitor.FullName.Length)
+                        + $"{competitor.BirthDate}" + new string(' ', 19 - competitor.BirthDate.Length)
+                        + new string(' ', 2) + $"{competitor.Age}" + new string(' ', 2)
+                        + new string(' ', 3) + $"{competitor.Gender}" + new string(' ', 8 - competitor.Gender.Length)
+                        + new string(' ', 3) + $"{competitor.Weight}" + new string(' ', 9 - competitor.Weight.Length)
+                        + $"{town.Name}" + new string(' ', 28 - town.Name.Length)
+                        + $"{clubName}" + new string(' ', 44 - clubName.Length)
+
+                        + $"{coachName}" + new string(' ', 29 - coachName.Length)
+                        + $"{sport.Name}" + new string(' ', 21 - sport.Name.Length);
+                    Console.WriteLine(output); 
                 }
+                Console.WriteLine(new string('-', 210));
             }
         }
+
+        /*private string GetClubAndCoachNames(Competitors competitor)
+        {
+            string clubName = "";
+            if (competitor.ClubId != null)
+            {
+                clubName = clubsBusiness.GetClubById(competitor.ClubId).Name;
+            }
+            string coachName = "";
+            if (competitor.CoachId != null)
+            {
+                coachName = coachesBusiness.GetCoachById(competitor.CoachId).Name;
+            }
+            return clubName + coachName;
+        }*/
 
         public void GetCompetitorById()
         {
