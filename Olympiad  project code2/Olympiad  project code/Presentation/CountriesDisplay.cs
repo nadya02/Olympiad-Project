@@ -22,13 +22,12 @@ namespace Olympiad__project_code.Presentation
             }
             else
             {
-                Console.WriteLine(new string(' ', 2) + "Id" + new string(' ', 2)
-                  + new string(' ', 5) + "CountyName"); 
+                Console.WriteLine("Id" + new string(' ', 4) + "CountyName"); 
                 Console.WriteLine(new string('-', 35));
-                foreach (var county in countries)
+                foreach (var country in countries)
                 {
-                    string output = $"{county.Id}" + new string(' ', 11 - county.Id.ToString().Length)
-                        + $"{county.Name}" + new string(' ', 34 - county.Name.Length);
+                    string output = $"{country.Id}" + new string(' ', 6 - country.Id.ToString().Length)
+                        + $"{country.Name}" + new string(' ', 34 - country.Name.Length);
                     Console.WriteLine(output);
                 }
                 Console.WriteLine(new string('-', 35));
@@ -44,6 +43,10 @@ namespace Olympiad__project_code.Presentation
             {
                 PrintCountry(country);
             }
+            else
+            {
+                Console.WriteLine($"There is no country with id = {id} in the table!");
+            }
         }
 
         public void GetCountryByName()
@@ -54,6 +57,10 @@ namespace Olympiad__project_code.Presentation
             if (country != null)
             {
                 PrintCountry(country);
+            }
+            else
+            {
+                Console.WriteLine($"There is no counrty with name = {name} in the table!");
             }
         }
 

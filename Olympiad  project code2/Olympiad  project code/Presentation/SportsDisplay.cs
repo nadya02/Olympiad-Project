@@ -21,14 +21,17 @@ namespace Olympiad__project_code.Presentation
             }
             else
             {
-                Console.WriteLine("Id  |  Name");
-                //????????????????????????????????????
-                Console.WriteLine(new string('-', 30));
+                Console.WriteLine("Id" + new string(' ', 6) + "Name");               
+                Console.WriteLine(new string('-', 27));
 
                 foreach (var sport in sports)
                 {
-                    Console.WriteLine($"{sport.Id}     {sport.Name}");
+                    string output = $"{sport.Id}" + new string(' ', 6 - sport.Id.ToString().Length)
+                        + $"{sport.Name}" + new string(' ', 21 - sport.Name.Length);
+                    Console.WriteLine(output);
                 }
+
+                Console.WriteLine(new string('-', 27));
             }
 
         }
@@ -41,6 +44,10 @@ namespace Olympiad__project_code.Presentation
             {
                 PrintSport(sport);
             }
+            else
+            {
+                Console.WriteLine($"There is no sport with id = {id} in the table!");
+            }
         }
         public void GetSportByName()
         {
@@ -50,6 +57,10 @@ namespace Olympiad__project_code.Presentation
             if (sport != null)
             {
                 PrintSport(sport);
+            }
+            else
+            {
+                Console.WriteLine($"There is no sport with name = {name} in the table!");
             }
         }
 

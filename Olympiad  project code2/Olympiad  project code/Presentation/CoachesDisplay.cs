@@ -22,13 +22,17 @@ namespace Olympiad__project_code.Presentation
             }
             else
             {
-                Console.WriteLine("Id" + new string(' ', 5) + "Name" + new string(' ', 20) + "Sport Name");
-                Console.WriteLine(new string('-', 30));
+                Console.WriteLine("Id" + new string(' ', 4) + "Name" + new string(' ', 25) + "Sport Name");
+                Console.WriteLine(new string('-', 56));
                 foreach (var coach in coaches)
                 {
                     var sport = sportsBusiness.GetSportById(coach.SportId);
-                    Console.WriteLine($"{coach.Id}" + new string(' ', 5) + $"{coach.Name}" + new string(' ', 20) + $"{sport.Name}");
+                    string output = $"{coach.Id}" + new string(' ', 6 - coach.Id.ToString().Length)
+                        + $"{coach.Name}" + new string(' ', 29 - coach.Name.Length)
+                        + $"{sport.Name}" +  new string(' ', 21 - sport.Name.Length);
+                    Console.WriteLine(output);
                 }
+                Console.WriteLine(new string('-', 56));
             }
         }
 
@@ -57,6 +61,10 @@ namespace Olympiad__project_code.Presentation
             {
                 PrintCoach(coach, sport);
             }
+            else
+            {
+                Console.WriteLine($"There is no coach with name = {name} in the table!");
+            }
         }
 
         private void PrintCoach(Coaches coach,  Sports sport)
@@ -76,7 +84,8 @@ namespace Olympiad__project_code.Presentation
             string sportName = Console.ReadLine();
             coach.SportId = sportsBusiness.GetSportByName(sportName).Id;
             coachesBusiness.AddCoach(coach);
-            Console.WriteLine($"New coach added to Coaches table!");
+
+            Console.WriteLine($"New coach successfully added!");
         }
 
         public void UpdateCoach()

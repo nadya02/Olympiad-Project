@@ -60,7 +60,6 @@ namespace Olympiad__project_code.Presentation
                         + new string(' ', 3) + $"{competitor.Weight}" + new string(' ', 9 - competitor.Weight.Length)
                         + $"{town.Name}" + new string(' ', 28 - town.Name.Length)
                         + $"{clubName}" + new string(' ', 44 - clubName.Length)
-
                         + $"{coachName}" + new string(' ', 29 - coachName.Length)
                         + $"{sport.Name}" + new string(' ', 21 - sport.Name.Length);
                     Console.WriteLine(output); 
@@ -163,7 +162,7 @@ namespace Olympiad__project_code.Presentation
             competitor.SportId = int.Parse(Console.ReadLine());
             competitorsBusiness.AddCompetitors(competitor);
 
-            Console.WriteLine($"New competitor added to Competitors table!");
+            Console.WriteLine($"New competitor successfully added!");
         }
 
         public void UpdateCompetitor()

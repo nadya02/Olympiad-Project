@@ -15,23 +15,22 @@ namespace Olympiad__project_code.Presentation
         {
             Console.WriteLine("Clubs:");
             List<Clubs> clubs = clubsBusiness.GetAllClubs();
-            //!!!!!!!!!!!!!!!!!!!!!!
             if(clubs.Count == 0)
             {
                 Console.WriteLine("There are no clubs in the table!");
             }
             else
             {
-                Console.WriteLine(new string(' ', 2) + "Id" + new string(' ', 2)
-                  + new string(' ', 5) + "ClubName");
-                Console.WriteLine(new string('-', 35));
+                Console.WriteLine("Id" + new string(' ', 4)//6
+                  + "ClubName" + new string(' ', 36));
+                Console.WriteLine(new string('-', 50));
                 foreach (var club in clubs)
                 {
-                    string output = $"{club.Id}" + new string(' ', 11 - club.Id.ToString().Length)
-                        + $"{club.Name}" + new string(' ', 34 - club.Name.Length);
+                    string output = $"{club.Id}" + new string(' ', 6 - club.Id.ToString().Length)
+                        + $"{club.Name}" + new string(' ', 44 - club.Name.Length);
                     Console.WriteLine(output);
                 }
-                Console.WriteLine(new string('-', 35));
+                Console.WriteLine(new string('-', 50));
             }
         }
 
@@ -44,6 +43,10 @@ namespace Olympiad__project_code.Presentation
             {
                 PrintClub(club);
             }
+            else
+            {
+                Console.WriteLine($"There is no club with ID = {id} in the table!");
+            }
         }
 
         public void GetClubByName()
@@ -54,6 +57,10 @@ namespace Olympiad__project_code.Presentation
             if (club != null)
             {
                 PrintClub(club);
+            }
+            else
+            {
+                Console.WriteLine($"There is no club with name = {name} in the table!");
             }
         }
 
@@ -72,7 +79,7 @@ namespace Olympiad__project_code.Presentation
             club.Name = Console.ReadLine();
             clubsBusiness.AddClub(club);
 
-            Console.WriteLine($"New club added to Clubs table!");
+            Console.WriteLine($"New club successfully added!");
         }
 
         public void UpdateClub()
