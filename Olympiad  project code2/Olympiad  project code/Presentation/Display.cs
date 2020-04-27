@@ -22,6 +22,7 @@ namespace Olympiad__project_code.Presentation
             {
                 ShowMenu();
                 numberTable = int.Parse(Console.ReadLine());
+                //must add try catch for invalid input
                 switch (numberTable)
                 {
                     case 1:
