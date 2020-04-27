@@ -22,8 +22,8 @@ namespace Olympiad__project_code.Presentation
             }
             else
             {
-                Console.WriteLine(new string(' ', 2) + "Id" + new string(' ', 2)//6
-                  + new string(' ', 5) + "CountyName"); //+ new string(' ', 13)); ;//34
+                Console.WriteLine(new string(' ', 2) + "Id" + new string(' ', 2)
+                  + new string(' ', 5) + "CountyName"); 
                 Console.WriteLine(new string('-', 35));
                 foreach (var county in countries)
                 {
