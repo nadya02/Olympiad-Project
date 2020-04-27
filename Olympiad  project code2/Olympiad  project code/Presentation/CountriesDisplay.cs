@@ -9,6 +9,7 @@ namespace Olympiad__project_code.Presentation
     class CountriesDisplay
     {
         private CountriesBusiness countriesBusiness = new CountriesBusiness();
+        private TownsBusiness towns = new TownsBusiness();
 
         public void GetAllCountries()
         {
@@ -21,18 +22,19 @@ namespace Olympiad__project_code.Presentation
             }
             else
             {
-                Console.WriteLine("Id  |  Name  ");
-                //????????????????????????????????????
-                Console.WriteLine(new string('-', 30));
-
-                foreach (var item in countries)
+                Console.WriteLine(new string(' ', 2) + "Id" + new string(' ', 2)//6
+                  + new string(' ', 5) + "CountyName"); //+ new string(' ', 13)); ;//34
+                Console.WriteLine(new string('-', 35));
+                foreach (var county in countries)
                 {
-                    Console.WriteLine(item.Id);
-                    Console.WriteLine(item.Name);
+                    string output = $"{county.Id}" + new string(' ', 11 - county.Id.ToString().Length)
+                        + $"{county.Name}" + new string(' ', 34 - county.Name.Length);
+                    Console.WriteLine(output);
                 }
-            }
-
+                Console.WriteLine(new string('-', 35));
+            }  
         }
+      
         public void GetCountryById()
         {
             Console.WriteLine("Enter Country Id to fetch: ");
