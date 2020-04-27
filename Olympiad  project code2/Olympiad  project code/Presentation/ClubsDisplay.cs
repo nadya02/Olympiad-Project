@@ -15,19 +15,23 @@ namespace Olympiad__project_code.Presentation
         {
             Console.WriteLine("Clubs:");
             List<Clubs> clubs = clubsBusiness.GetAllClubs();
-
+            //!!!!!!!!!!!!!!!!!!!!!!
             if(clubs.Count == 0)
             {
                 Console.WriteLine("There are no clubs in the table!");
             }
             else
             {
-                Console.WriteLine("Id  |  Name");
-                Console.WriteLine(new string('-', 30));//?
+                Console.WriteLine(new string(' ', 2) + "Id" + new string(' ', 2)
+                  + new string(' ', 5) + "ClubName");
+                Console.WriteLine(new string('-', 35));
                 foreach (var club in clubs)
                 {
-                    Console.WriteLine($"{club.Id}     {club.Name}");//?
+                    string output = $"{club.Id}" + new string(' ', 11 - club.Id.ToString().Length)
+                        + $"{club.Name}" + new string(' ', 34 - club.Name.Length);
+                    Console.WriteLine(output);
                 }
+                Console.WriteLine(new string('-', 35));
             }
         }
 
