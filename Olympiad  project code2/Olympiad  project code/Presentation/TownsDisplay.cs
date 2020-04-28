@@ -7,7 +7,7 @@ using Olympiad__project_code.Models;
 
 namespace Olympiad__project_code.Presentation
 {
-    class TownsDisplay
+    public class TownsDisplay
     {
         private TownsBusiness townsBusiness = new TownsBusiness();
         private CountriesBusiness countriesBusiness = new CountriesBusiness();

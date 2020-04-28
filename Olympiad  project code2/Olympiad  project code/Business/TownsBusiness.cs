@@ -6,9 +6,18 @@ using System.Text;
 
 namespace Olympiad__project_code.Business_layer
 {
-    class TownsBusiness
+    public class TownsBusiness
     {
         private OlympicGamesDBContext olympicGamesDBContext;
+
+        public TownsBusiness(OlympicGamesDBContext context)
+        {
+            this.olympicGamesDBContext = context;
+        }
+        public TownsBusiness()
+        {
+
+        }
         public List<Towns> GetAllTowns()
         {
             using (olympicGamesDBContext = new OlympicGamesDBContext())
