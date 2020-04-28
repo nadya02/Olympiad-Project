@@ -12,7 +12,7 @@ namespace NUnitTestProject
     {
         private TownsBusiness townsBusiness = new TownsBusiness();
         [TestCase]
-        public void GetsTownsFromDatabase()
+        public void GetsAllTownsFromDatabase()
         {
             var data = new List<Towns>()
             {
