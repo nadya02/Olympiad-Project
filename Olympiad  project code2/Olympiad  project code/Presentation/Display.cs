@@ -17,13 +17,36 @@ namespace Olympiad__project_code.Presentation
         private static CompetitorsDisplay competitorsDisplay = new CompetitorsDisplay(context);
         private static ClubsDisplay clubsDisplay = new ClubsDisplay(context);
 
+        public static void wait(double x)
+        {
+            DateTime t = DateTime.Now;
+            DateTime tf = DateTime.Now.AddSeconds(x);
+
+            while (t < tf)
+            {
+                t = DateTime.Now;
+            }
+        }
+
         private static int numberTable = -1;
         public static void Input()
         {           
             do
             {
                 ShowMenu();
-                numberTable = int.Parse(Console.ReadLine());
+                try
+                {
+                    numberTable = int.Parse(Console.ReadLine());
+                }
+                catch
+                {
+                    Console.WriteLine("Invalid command");
+                    wait(2);//IN SECONDS
+
+                    Console.Clear();
+                    continue;
+                }
+                
                 //must add try catch for invalid input
                 switch (numberTable)
                 {

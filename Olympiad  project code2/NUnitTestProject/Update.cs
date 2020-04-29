@@ -16,7 +16,7 @@ namespace NUnitTestProject
         public void TestUpdateTowns()
         {
             var options = new DbContextOptionsBuilder<OlympicGamesDBContext>()
-                            .UseInMemoryDatabase(databaseName: "TestDB")
+                            .UseInMemoryDatabase(databaseName: "TestUpdateTownsDB")
                             .Options;
 
             var data = new List<Towns>()
@@ -41,7 +41,7 @@ namespace NUnitTestProject
         public void TestUpdateClubs()
         {
             var options = new DbContextOptionsBuilder<OlympicGamesDBContext>()
-                .UseInMemoryDatabase(databaseName: "TestDB")
+                .UseInMemoryDatabase(databaseName: "TestUpdateClubsDB")
                 .Options;
 
             var data = new List<Clubs>()
@@ -68,7 +68,7 @@ namespace NUnitTestProject
         {
            
                 var options = new DbContextOptionsBuilder<OlympicGamesDBContext>()
-                    .UseInMemoryDatabase(databaseName: "TestDB")
+                    .UseInMemoryDatabase(databaseName: "TestUpdateCoachesDB")
                     .Options;
 
                 var data = new List<Coaches>()
@@ -96,7 +96,7 @@ namespace NUnitTestProject
         public void TestUpdateCompetitors()
         {
             var options = new DbContextOptionsBuilder<OlympicGamesDBContext>()
-                   .UseInMemoryDatabase(databaseName: "TestDB")
+                   .UseInMemoryDatabase(databaseName: "TestUpdateCompetitorsDB")
                    .Options;
 
             var data = new List<Competitors>()

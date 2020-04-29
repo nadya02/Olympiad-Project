@@ -7,6 +7,10 @@ using Olympiad__project_code.Business_layer;
 using Moq;
 using Olympiad__project_code.Business;
 
+//стоянката е най готиният
+//йоанко е мизерник
+//ТОДО - да си измия ръцете 
+
 namespace NUnitTestProject
 {
     public class Getting
@@ -121,9 +125,9 @@ namespace NUnitTestProject
             using (OlympicGamesDBContext context = new OlympicGamesDBContext(options))
             {
                 SportsBusiness business = new SportsBusiness(context);
-                business.AddSport(new Sports { Id = 1, Name = "Sport1" });
-                business.AddSport(new Sports { Id = 2, Name = "Sport2" });
-                business.AddSport(new Sports { Id = 3, Name = "Sport3" });
+                context.Sports.Add(new Sports { Id = 1, Name = "Sport1" });
+                context.Sports.Add(new Sports { Id = 2, Name = "Sport2" });
+                context.Sports.Add(new Sports { Id = 3, Name = "Sport3" });
 
                 Sports c = business.GetSportById(1);
                 Assert.AreEqual(1, c.Id);
@@ -148,7 +152,7 @@ namespace NUnitTestProject
             using (OlympicGamesDBContext context = new OlympicGamesDBContext(options))
             {
                 SportsBusiness business = new SportsBusiness(context);
-                data.ToList().ForEach(t => business.AddSport(t));
+                data.ToList().ForEach(t => context.Sports.Add(t));
 
                 Sports t = business.GetSportByName("Sport1");
                 Assert.AreEqual("Sport1", t.Name);
@@ -297,7 +301,7 @@ namespace NUnitTestProject
         public void GetClubByName()
         {
             var options = new DbContextOptionsBuilder<OlympicGamesDBContext>()
-                          .UseInMemoryDatabase(databaseName: "TestDB")
+                          .UseInMemoryDatabase(databaseName: "GetClubByNameDB")
                           .Options;
 
             var data = new List<Clubs>()
@@ -392,7 +396,7 @@ namespace NUnitTestProject
             using (OlympicGamesDBContext context = new OlympicGamesDBContext(options))
             {
                 CountriesBusiness business = new CountriesBusiness(context);
-                data.ToList().ForEach(t => business.AddCountry(t));
+                data.ToList().ForEach(t => context.Countries.Add(t));
 
                 Countries t = business.GetCountryByName("Country1");
                 Assert.AreEqual("Country1", t.Name);
