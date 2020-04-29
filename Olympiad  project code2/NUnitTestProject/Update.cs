@@ -48,10 +48,14 @@ namespace NUnitTestProject
 
             service.UpdateTown(t);
             Assert.AreEqual("NewTown", t.Name);
-        } 
+        }
         [TestCase]
         public void TestUpdateClubs()
         {
+            var options = new DbContextOptionsBuilder<OlympicGamesDBContext>()
+                .UseInMemoryDatabase(databaseName: "TestDB")
+                .Options;
+
             var data = new List<Clubs>()
                 {
                     new Clubs { Id =  1,Name = "Club1"},
@@ -59,23 +63,16 @@ namespace NUnitTestProject
                     new Clubs { Id = 3,Name = "Club3"},
                 }.AsQueryable();
 
-            var mockSet = new Mock<DbSet<Clubs>>();
-            mockSet.As<IQueryable<Clubs>>().Setup(m => m.Provider).Returns(data.Provider);
-            mockSet.As<IQueryable<Clubs>>().Setup(m => m.Expression).Returns(data.Expression);
-            mockSet.As<IQueryable<Clubs>>().Setup(m => m.ElementType).Returns(data.ElementType);
-            mockSet.As<IQueryable<Clubs>>().Setup(m => m.GetEnumerator()).Returns(data.GetEnumerator());
+            using (OlympicGamesDBContext context = new OlympicGamesDBContext(options))
+            {
+                ClubsBusiness business = new ClubsBusiness(context);
+                data.ToList().ForEach(c => business.AddClub(c));
 
-            var mockContext = new Mock<OlympicGamesDBContext>();
-            mockContext.Setup(c => c.Clubs).Returns(mockSet.Object);
+                Clubs c = business.GetClubById(2); c.Name = "Club22";
+                business.UpdateClub(c);
 
-            var service = new ClubsBusiness(mockContext.Object); // service = контролер
-            data.ToList().ForEach(p => service.AddClub(p));
-
-            Clubs t = service.GetClubById(1);
-            t.Name = "NewClub";
-
-            service.UpdateClub(t);
-            Assert.AreEqual("NewClub", t.Name);
+                Assert.AreEqual("Club22", business.GetClubById(2).Name);
+            }
         }
         
         [TestCase]
