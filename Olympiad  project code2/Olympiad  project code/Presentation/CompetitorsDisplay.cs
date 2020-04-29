@@ -19,6 +19,7 @@ namespace Olympiad__project_code.Presentation
         private TownsDisplay townsDisplay = new TownsDisplay();
         private ClubsDisplay clubsDisplay = new ClubsDisplay();
         private CoachesDisplay coachesDisplay = new CoachesDisplay();
+        //Ъм тука имам въпорс
 
         public CompetitorsDisplay(OlympicGamesDBContext context)
         {
