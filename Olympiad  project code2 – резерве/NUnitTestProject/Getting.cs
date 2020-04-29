@@ -4,7 +4,6 @@ using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Olympiad__project_code.Models;
 using Olympiad__project_code.Business_layer;
-using Moq;
 using Olympiad__project_code.Business;
 
 
@@ -77,7 +76,7 @@ namespace NUnitTestProject
                 Assert.AreEqual("Competitor1", c.FullName);
             }
         }
-        //!!!!!!!!!!!!!!!!!!
+
         [TestCase]
         public void GetsAllSportsFromDatabase()
         {
@@ -96,6 +95,7 @@ namespace NUnitTestProject
             {
                 SportsBusiness business = new SportsBusiness(context);
                 data.ToList().ForEach(t => context.Sports.Add(t));
+                context.SaveChanges();
 
                 Assert.AreEqual(data.ToList(), business.GetAllSports());
             }
@@ -122,8 +122,6 @@ namespace NUnitTestProject
         }
 
         [TestCase]
-        //Ќе може да се адват спортове
-        //!!!!!!!!!!!!!!!!!!!!!!!!!!
         public void GetSportByName()
         {
             var options = new DbContextOptionsBuilder<OlympicGamesDBContext>()
@@ -141,6 +139,7 @@ namespace NUnitTestProject
             {
                 SportsBusiness business = new SportsBusiness(context);
                 data.ToList().ForEach(t => context.Sports.Add(t));
+                context.SaveChanges();
 
                 Sports t = business.GetSportByName("Sport1");
                 Assert.AreEqual("Sport1", t.Name);
@@ -278,8 +277,8 @@ namespace NUnitTestProject
                 Assert.AreEqual("Club1", c.Name);
             }
         }  
+        
         [TestCase]
-        //!!!!!!!!!!!!!!!!!!!!!!!
         public void GetsAllCountriesFromDatabase()
         {
             var options = new DbContextOptionsBuilder<OlympicGamesDBContext>()
@@ -297,6 +296,7 @@ namespace NUnitTestProject
             {
                 CountriesBusiness business = new CountriesBusiness(context);
                 data.ToList().ForEach(t => context.Countries.Add(t));
+                context.SaveChanges();
 
                 Assert.AreEqual(data.ToList(), business.GetAllCountries());
             }
@@ -328,7 +328,6 @@ namespace NUnitTestProject
         }
 
         [TestCase]
-        //преди н€маше грешка!!!!!!!!!!!
         public void GetCountryByName()
         {
             var options = new DbContextOptionsBuilder<OlympicGamesDBContext>()
@@ -346,12 +345,14 @@ namespace NUnitTestProject
             {
                 CountriesBusiness business = new CountriesBusiness(context);
                 data.ToList().ForEach(t => context.Countries.Add(t));
+                context.SaveChanges();
 
                 Countries t = business.GetCountryByName("Country1");
                 Assert.AreEqual("Country1", t.Name);
             }
         }
-      [TestCase]
+
+        [TestCase]
         public void GetsAllTownsFromDatabase()
         {
             var options = new DbContextOptionsBuilder<OlympicGamesDBContext>()
