@@ -8,10 +8,9 @@ using Moq;
 
 namespace NUnitTestProject
 {
-    class Adding
+    
+    class Update
     {
-        private TownsBusiness townsBusiness = new TownsBusiness();
-
         [TestCase]
         public void TestUpdate()
         {
@@ -34,10 +33,13 @@ namespace NUnitTestProject
             var service = new TownsBusiness(mockContext.Object); // service = контролер
             data.ToList().ForEach(p => service.AddTown(p));
 
-            Assert.AreEqual(data.ToList(), service.GetAllTowns());
+            Towns t = service.GetTownById(1);
+            t.Name = "Yoanko";
+
+            service.UpdateTown(t);
+            Assert.AreEqual("Yoanko", t.Name);
         }
 
-
-
+     
     }
 }

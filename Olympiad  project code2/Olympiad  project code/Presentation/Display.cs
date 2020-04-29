@@ -8,12 +8,30 @@ namespace Olympiad__project_code.Presentation
 {
     class Display
     {
+        private static OlympicGamesDBContext context = new OlympicGamesDBContext();
+
         private static CountriesDisplay countriesDisplay = new CountriesDisplay();
-        private static TownsDisplay townsDisplay = new TownsDisplay();
+        private static TownsDisplay townsDisplay = new TownsDisplay(context);
         private static SportsDisplay sportsDisplay = new SportsDisplay();
         private static CoachesDisplay coachesDisplay = new CoachesDisplay();
-        private static CompetitorsDisplay competitorsDisplay = new CompetitorsDisplay();
+        private static CompetitorsDisplay competitorsDisplay = new CompetitorsDisplay(context);
         private static ClubsDisplay clubsDisplay = new ClubsDisplay();
+
+        ~Display()
+        {
+            context.Dispose();
+        }
+
+        public static void wait(double x)
+        {
+            DateTime t = DateTime.Now;
+            DateTime tf = DateTime.Now.AddSeconds(x);
+
+            while (t < tf)
+            {
+                t = DateTime.Now;
+            }
+        }
 
         private static int numberTable = -1;
         public static void Input()
@@ -21,7 +39,22 @@ namespace Olympiad__project_code.Presentation
             do
             {
                 ShowMenu();
-                numberTable = int.Parse(Console.ReadLine());
+
+                try
+                {
+                    numberTable = int.Parse(Console.ReadLine());
+                }
+                catch
+                {
+                    Console.WriteLine("Invalid command");
+                    Console.WriteLine("Try again");
+                    
+                    wait(1);//IN SECONDS
+                    Console.Clear();
+
+                    continue;
+                }
+                
                 //must add try catch for invalid input
                 switch (numberTable)
                 {
@@ -44,7 +77,8 @@ namespace Olympiad__project_code.Presentation
                         ListAllOpperations();
                         break;
                     default:
-                        break;
+                        Console.WriteLine("Invalid command!");
+                        continue;
                 }
             } while (numberTable != 7);
         }

@@ -9,8 +9,15 @@ namespace Olympiad__project_code.Presentation
 {
     public class TownsDisplay
     {
-        private TownsBusiness townsBusiness = new TownsBusiness();
+        private TownsBusiness townsBusiness;
         private CountriesBusiness countriesBusiness = new CountriesBusiness();
+
+        public TownsDisplay(OlympicGamesDBContext context)
+        {
+            townsBusiness = new TownsBusiness(context);
+        }
+
+        
         public void GetAllTowns()
         {
             Console.WriteLine("Towns: ");
