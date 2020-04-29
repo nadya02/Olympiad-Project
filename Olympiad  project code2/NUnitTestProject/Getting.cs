@@ -7,9 +7,6 @@ using Olympiad__project_code.Business_layer;
 using Moq;
 using Olympiad__project_code.Business;
 
-//стоянката е най готиният
-//йоанко е мизерник
-//ТОДО - да си измия ръцете 
 
 namespace NUnitTestProject
 {
