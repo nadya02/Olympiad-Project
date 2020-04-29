@@ -23,6 +23,10 @@ namespace NUnitTestProject
         [TestCase]
         public void GetsAllCompetitorsFromDatabase()
         {
+            var options = new DbContextOptionsBuilder<OlympicGamesDBContext>()
+                .UseInMemoryDatabase(databaseName: "TestDB")
+                .Options;
+
             var data = new List<Competitors>()
             {
                 new Competitors { Id =  1,FullName = "Competitor1"},
@@ -30,27 +34,14 @@ namespace NUnitTestProject
                 new Competitors { Id = 3,FullName = "Competitor3"},
             }.AsQueryable();
 
-            var mockSet = new Mock<DbSet<Competitors>>();
-            mockSet.As<IQueryable<Competitors>>().Setup(m => m.Provider).Returns(data.Provider);
-            mockSet.As<IQueryable<Competitors>>().Setup(m => m.Expression).Returns(data.Expression);
-            mockSet.As<IQueryable<Competitors>>().Setup(m => m.ElementType).Returns(data.ElementType);
-            mockSet.As<IQueryable<Competitors>>().Setup(m => m.GetEnumerator()).Returns(data.GetEnumerator());
+            using(OlympicGamesDBContext context = new OlympicGamesDBContext(options))
+            {
+                CompetitorsBusiness business = new CompetitorsBusiness(context);
+                data.ToList().ForEach(c => business.AddCompetitors(c));
 
-            var mockContext = new Mock<OlympicGamesDBContext>();
-            mockContext.Setup(c => c.Competitors).Returns(mockSet.Object);
-
-            var service = new CompetitorsBusiness(mockContext.Object );
-            data.ToList().ForEach(p => service.AddCompetitors(p));
-
-            var expectedCount = 3; //брой продукти в data
-            var result = service.GetAllCompetitors();
-            var actualCount = result.Count;
-            Assert.AreEqual(expectedCount, actualCount);
-            Assert.AreEqual("Competitor1", result[0].FullName);//дали първият е Competitor1
-
-     
+                Assert.AreEqual(data.ToList(), business.GetAllCompetitors());
+            }
         }
-
 
         [TestCase]
         public void GetCompetitorById()
@@ -74,6 +65,10 @@ namespace NUnitTestProject
         [TestCase]
         public void GetCompetitorByName()
         {
+            var options = new DbContextOptionsBuilder<OlympicGamesDBContext>()
+                .UseInMemoryDatabase(databaseName: "TestDB")
+                .Options;
+
             var data = new List<Competitors>()
             {
                 new Competitors { Id =  1,FullName = "Competitor1"},
@@ -81,21 +76,15 @@ namespace NUnitTestProject
                 new Competitors { Id = 3,FullName = "Competitor3"},
             }.AsQueryable();
 
-            var mockSet = new Mock<DbSet<Competitors>>();
-            mockSet.As<IQueryable<Competitors>>().Setup(m => m.Provider).Returns(data.Provider);
-            mockSet.As<IQueryable<Competitors>>().Setup(m => m.Expression).Returns(data.Expression);
-            mockSet.As<IQueryable<Competitors>>().Setup(m => m.ElementType).Returns(data.ElementType);
-            mockSet.As<IQueryable<Competitors>>().Setup(m => m.GetEnumerator()).Returns(data.GetEnumerator());
+            using (OlympicGamesDBContext context = new OlympicGamesDBContext(options))
+            {
+                CompetitorsBusiness business = new CompetitorsBusiness(context);
+                data.ToList().ForEach(c => business.AddCompetitors(c));
 
-            var mockContext = new Mock<OlympicGamesDBContext>();
-            mockContext.Setup(c => c.Competitors).Returns(mockSet.Object);
-
-            var service = new CompetitorsBusiness(mockContext.Object);
-            data.ToList().ForEach(p => service.AddCompetitors(p));
-
-            var product = service.GetCompetitorByName("Competitor1");
-            Assert.AreEqual("Competitor1", product.FullName);
-        }        
+                Competitors c = business.GetCompetitorByName("Competitor1");
+                Assert.AreEqual("Competitor1", c.FullName);
+            }
+        }
         
         [TestCase]
         public void GetsAllSportsFromDatabase()

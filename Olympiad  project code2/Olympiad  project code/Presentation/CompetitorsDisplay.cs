@@ -12,9 +12,9 @@ namespace Olympiad__project_code.Presentation
     class CompetitorsDisplay
     {
         private CoachesBusiness coachesBusiness;
-        private SportsBusiness sportsBusiness = new SportsBusiness();
+        private SportsBusiness sportsBusiness;
         private ClubsBusiness clubsBusiness;
-        private TownsBusiness townsBusiness = new TownsBusiness();
+        private TownsBusiness townsBusiness;
         private TownsDisplay townsDisplay;
         private ClubsDisplay clubsDisplay;
         private CompetitorsBusiness competitorsBusiness;
@@ -26,6 +26,8 @@ namespace Olympiad__project_code.Presentation
             competitorsBusiness = new CompetitorsBusiness(context);
             coachesBusiness = new CoachesBusiness(context);
             clubsBusiness = new ClubsBusiness(context);
+            townsBusiness = new TownsBusiness(context);
+            sportsBusiness = new SportsBusiness(context);
 
             townsDisplay = new TownsDisplay(context);
             clubsDisplay = new ClubsDisplay(context);

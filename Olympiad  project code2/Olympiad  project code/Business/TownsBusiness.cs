@@ -14,10 +14,7 @@ namespace Olympiad__project_code.Business_layer
         {
             this.olympicGamesDBContext = context;
         }
-        public TownsBusiness()
-        {
 
-        }
         public List<Towns> GetAllTowns()
         {
             //using (olympicGamesDBContext = new OlympicGamesDBContext())
