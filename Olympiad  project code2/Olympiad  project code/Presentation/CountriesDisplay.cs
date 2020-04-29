@@ -11,6 +11,12 @@ namespace Olympiad__project_code.Presentation
         private CountriesBusiness countriesBusiness = new CountriesBusiness();
         private TownsBusiness towns = new TownsBusiness();
 
+        public CountriesDisplay(OlympicGamesDBContext context)
+        {
+            countriesBusiness = new CountriesBusiness(context);
+        }
+
+
         public void GetAllCountries()
         {
             Console.WriteLine("Countries: ");
