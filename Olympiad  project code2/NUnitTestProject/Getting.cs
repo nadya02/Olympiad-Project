@@ -16,7 +16,7 @@ namespace NUnitTestProject
         public void GetsAllCompetitorsFromDatabase()
         {
             var options = new DbContextOptionsBuilder<OlympicGamesDBContext>()
-                .UseInMemoryDatabase(databaseName: "TestDB")
+                .UseInMemoryDatabase(databaseName: "GetsAllCompetitorsFromDatabaseDB")
                 .Options;
 
             var data = new List<Competitors>()
@@ -39,15 +39,15 @@ namespace NUnitTestProject
         public void GetCompetitorById()
         {
             var options = new DbContextOptionsBuilder<OlympicGamesDBContext>()
-                .UseInMemoryDatabase(databaseName: "TestDB")
+                .UseInMemoryDatabase(databaseName: "GetCompetitorByIdDB")
                 .Options;
 
             using (OlympicGamesDBContext context = new OlympicGamesDBContext(options))
             {
                 CompetitorsBusiness business = new CompetitorsBusiness(context);
-                business.AddCompetitors(new Competitors { Id = 1, FullName = "Yoanko" });
-                business.AddCompetitors(new Competitors { Id = 2, FullName = "Nadeto" });
-                business.AddCompetitors(new Competitors { Id = 3, FullName = "Gosheto" });
+                business.AddCompetitors(new Competitors { Id = 1, FullName = "Competitor1" });
+                business.AddCompetitors(new Competitors { Id = 2, FullName = "Competitor2" });
+                business.AddCompetitors(new Competitors { Id = 3, FullName = "Competitor3" });
 
                 Competitors c = business.GetCompetitorById(1);
                 Assert.AreEqual(1, c.Id);
@@ -58,7 +58,7 @@ namespace NUnitTestProject
         public void GetCompetitorByName()
         {
             var options = new DbContextOptionsBuilder<OlympicGamesDBContext>()
-                .UseInMemoryDatabase(databaseName: "TestDB")
+                .UseInMemoryDatabase(databaseName: "GetCompetitorByNameDB")
                 .Options;
 
             var data = new List<Competitors>()
@@ -81,8 +81,6 @@ namespace NUnitTestProject
         [TestCase]
         public void GetsAllSportsFromDatabase()
         {
-
-
             var data = new List<Sports>()
             {
                 new Sports { Id =  1,Name = "Sport1"},
