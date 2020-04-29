@@ -11,6 +11,12 @@ namespace Olympiad__project_code.Presentation
     class ClubsDisplay
     {
         private ClubsBusiness clubsBusiness = new ClubsBusiness();
+
+        public ClubsDisplay(OlympicGamesDBContext context)
+        {
+            clubsBusiness = new ClubsBusiness(context);
+        }
+
         public void GetAllClubs()
         {
             Console.WriteLine("Clubs:");
