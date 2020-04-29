@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Olympiad__project_code.Models;
 using Olympiad__project_code.Business_layer;
 using Moq;
+using Olympiad__project_code.Business;
 
 namespace NUnitTestProject
 {
@@ -58,32 +59,32 @@ namespace NUnitTestProject
 
         } public void DeleteCompetitor()
         {
-            var data = new List<Towns>()
+            var data = new List<Competitors>()
             {
-                new Towns { Id =  1,Name = "Town1"},
-                new Towns { Id = 2, Name = "Town2"},
-                new Towns { Id = 3,Name = "Town3"},
+                new Competitors { Id =  1,FullName = "Competitor1"},
+                new Competitors { Id = 2, FullName = "Competitor2"},
+                new Competitors { Id = 3,FullName = "Competitor3"},
             }.AsQueryable();
 
-            var mockSet = new Mock<DbSet<Towns>>();
-            mockSet.As<IQueryable<Towns>>().Setup(m => m.Provider).Returns(data.Provider);
-            mockSet.As<IQueryable<Towns>>().Setup(m => m.Expression).Returns(data.Expression);
-            mockSet.As<IQueryable<Towns>>().Setup(m => m.ElementType).Returns(data.ElementType);
-            mockSet.As<IQueryable<Towns>>().Setup(m => m.GetEnumerator()).Returns(data.GetEnumerator());
+            var mockSet = new Mock<DbSet<Competitors>>();
+            mockSet.As<IQueryable<Competitors>>().Setup(m => m.Provider).Returns(data.Provider);
+            mockSet.As<IQueryable<Competitors>>().Setup(m => m.Expression).Returns(data.Expression);
+            mockSet.As<IQueryable<Competitors>>().Setup(m => m.ElementType).Returns(data.ElementType);
+            mockSet.As<IQueryable<Competitors>>().Setup(m => m.GetEnumerator()).Returns(data.GetEnumerator());
 
             var mockContext = new Mock<OlympicGamesDBContext>();
-            mockContext.Setup(c => c.Towns).Returns(mockSet.Object);
+            mockContext.Setup(c => c.Competitors).Returns(mockSet.Object);
 
-            var service = new TownsBusiness(mockContext.Object);
-            data.ToList().ForEach(p => service.AddTown(p));
-            service.DeleteTownById(2);
+            var service = new CompetitorsBusiness(mockContext.Object);
+            data.ToList().ForEach(p => service.AddCompetitors(p));
+            service.DeleteCompetitorById(2);
 
             var expectedCount = 2; //брой продукти в data
-            var result = service.GetAllTowns();
+            var result = service.GetAllCompetitors();
             var actualCount = result.Count;
             
             /*
-            foreach(Towns t in mockContext.Object.Towns.ToList())
+            foreach(Competitors t in mockContext.Object.Competitors.ToList())
             {
                 TestContext.WriteLine(t.Id);
             }
@@ -92,33 +93,33 @@ namespace NUnitTestProject
 
             //не бачка, понеже както казах фреймуърка е ебан
             Assert.AreEqual(expectedCount, actualCount);
-            Assert.AreEqual("Town1", result[0].Name);//дали първият е Town1
+            Assert.AreEqual("Competitor1", result[0].FullName);//дали първият е Competitor1
 
 
         } public void DeleteCoach()
         {
-            var data = new List<Towns>()
+            var data = new List<Coaches>()
             {
-                new Towns { Id =  1,Name = "Town1"},
-                new Towns { Id = 2, Name = "Town2"},
-                new Towns { Id = 3,Name = "Town3"},
+                new Coaches { Id =  1,Name = "Coach1"},
+                new Coaches { Id = 2, Name = "Coach2"},
+                new Coaches { Id = 3,Name = "Coach3"},
             }.AsQueryable();
 
-            var mockSet = new Mock<DbSet<Towns>>();
-            mockSet.As<IQueryable<Towns>>().Setup(m => m.Provider).Returns(data.Provider);
-            mockSet.As<IQueryable<Towns>>().Setup(m => m.Expression).Returns(data.Expression);
-            mockSet.As<IQueryable<Towns>>().Setup(m => m.ElementType).Returns(data.ElementType);
-            mockSet.As<IQueryable<Towns>>().Setup(m => m.GetEnumerator()).Returns(data.GetEnumerator());
+            var mockSet = new Mock<DbSet<Coaches>>();
+            mockSet.As<IQueryable<Coaches>>().Setup(m => m.Provider).Returns(data.Provider);
+            mockSet.As<IQueryable<Coaches>>().Setup(m => m.Expression).Returns(data.Expression);
+            mockSet.As<IQueryable<Coaches>>().Setup(m => m.ElementType).Returns(data.ElementType);
+            mockSet.As<IQueryable<Coaches>>().Setup(m => m.GetEnumerator()).Returns(data.GetEnumerator());
 
             var mockContext = new Mock<OlympicGamesDBContext>();
-            mockContext.Setup(c => c.Towns).Returns(mockSet.Object);
+            mockContext.Setup(c => c.Coaches).Returns(mockSet.Object);
 
-            var service = new TownsBusiness(mockContext.Object);
-            data.ToList().ForEach(p => service.AddTown(p));
-            service.DeleteTownById(2);
+            var service = new CoachesBusiness(mockContext.Object);
+            data.ToList().ForEach(p => service.AddCoaches(p));
+            service.DeleteCoachById(2);
 
             var expectedCount = 2; //брой продукти в data
-            var result = service.GetAllTowns();
+            var result = service.GetAllCoaches();
             var actualCount = result.Count;
             
             /*
