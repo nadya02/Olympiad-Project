@@ -20,6 +20,12 @@ namespace Olympiad__project_code.Presentation
         private ClubsDisplay clubsDisplay = new ClubsDisplay();
         private CoachesDisplay coachesDisplay = new CoachesDisplay();
 
+        public CompetitorsDisplay(OlympicGamesDBContext context)
+        {
+            competitorsBusiness = new CompetitorsBusiness(context);
+        }
+
+
         public void GetAllCompetitors()
         {
             Console.WriteLine("Competitors: ");
