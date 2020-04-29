@@ -322,7 +322,7 @@ namespace NUnitTestProject
                 data.ToList().ForEach(c => business.AddClub(c));
 
                 Clubs c = business.GetClubByName("Club1");
-                Assert.AreEqual("Club1", c.FullName);
+                Assert.AreEqual("Club1", c.Name);
             }
         }  
         [TestCase]
