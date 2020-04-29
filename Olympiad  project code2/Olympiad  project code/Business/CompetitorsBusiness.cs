@@ -7,14 +7,9 @@ using System.Text;
 
 namespace Olympiad__project_code.Business
 {
-    public class CompetitorsBusiness
+    class CompetitorsBusiness
     {
         private OlympicGamesDBContext olympicGamesDBContext;
-
-        public CompetitorsBusiness(OlympicGamesDBContext context)
-        {
-            this.olympicGamesDBContext = context;
-        }
 
         public List<Competitors> GetAllCompetitors()
         {
@@ -67,15 +62,15 @@ namespace Olympiad__project_code.Business
 
         public void DeleteCompetitorById(int id)
         {
-            //using (olympicGamesDBContext = new OlympicGamesDBContext())
-            //{
+            using (olympicGamesDBContext = new OlympicGamesDBContext())
+            {
                 var item = olympicGamesDBContext.Competitors.Find(id);
                 if (item != null)
                 {
                     olympicGamesDBContext.Remove(item);
                     olympicGamesDBContext.SaveChanges();
                 }
-            //}       
+            }       
         }
     }
 }

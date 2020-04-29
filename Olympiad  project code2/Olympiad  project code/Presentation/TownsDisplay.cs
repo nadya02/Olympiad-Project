@@ -9,15 +9,8 @@ namespace Olympiad__project_code.Presentation
 {
     public class TownsDisplay
     {
-        private TownsBusiness townsBusiness;
+        private TownsBusiness townsBusiness = new TownsBusiness();
         private CountriesBusiness countriesBusiness = new CountriesBusiness();
-
-        public TownsDisplay(OlympicGamesDBContext context)
-        {
-            townsBusiness = new TownsBusiness(context);
-        }
-
-        
         public void GetAllTowns()
         {
             Console.WriteLine("Towns: ");
@@ -72,14 +65,6 @@ namespace Olympiad__project_code.Presentation
                 Console.WriteLine($"There is no town with Name = {name} in the table!");
             }
         }
-
-        private void PrintTown(Towns town)
-        {
-            Console.WriteLine(new string('-', 40));
-            Console.WriteLine($"ID: {town.Id}");
-            Console.WriteLine($"Name: {town.Name}");
-            Console.WriteLine(new string('-', 40));
-        }
         public void AddTown()
         {
             Towns town = new Towns();
@@ -102,8 +87,9 @@ namespace Olympiad__project_code.Presentation
             if (town != null)
             {
                 Console.Write("Enter new name: ");
-                town.Name = Console.ReadLine();//??? да пита и за държавата
-
+                town.Name = Console.ReadLine();
+                Console.Write("Enter country name: ");
+                town.CountryId = countriesBusiness.GetCountryByName(Console.ReadLine()).Id;
                 townsBusiness.UpdateTown(town);
             }
             else
@@ -127,6 +113,13 @@ namespace Olympiad__project_code.Presentation
                 townsBusiness.DeleteTownById(id);
                 Console.WriteLine("Done!");
             }
+        }
+        private void PrintTown(Towns town)
+        {
+            Console.WriteLine(new string('-', 40));
+            Console.WriteLine($"ID: {town.Id}");
+            Console.WriteLine($"Name: {town.Name}");
+            Console.WriteLine(new string('-', 40));
         }
     }
 }
