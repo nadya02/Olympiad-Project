@@ -11,14 +11,27 @@ namespace Olympiad__project_code.Presentation
 {
     class CompetitorsDisplay
     {
+        
+
         private CoachesBusiness coachesBusiness = new CoachesBusiness();
         private SportsBusiness sportsBusiness = new SportsBusiness();
         private ClubsBusiness clubsBusiness = new ClubsBusiness();
+<<<<<<< HEAD
         private TownsBusiness townsBusiness = new TownsBusiness();
         private CompetitorsBusiness competitorsBusiness = new CompetitorsBusiness();
         private TownsDisplay townsDisplay = new TownsDisplay();
         private ClubsDisplay clubsDisplay = new ClubsDisplay();
         private CoachesDisplay coachesDisplay = new CoachesDisplay();
+=======
+        private TownsBusiness townsBusiness;
+        private CompetitorsBusiness competitorsBusiness;
+
+        public CompetitorsDisplay(OlympicGamesDBContext context)
+        {
+            competitorsBusiness = new CompetitorsBusiness(context);
+            townsBusiness = new TownsBusiness(context);
+        }
+>>>>>>> c224e87c7dbeb0af73bbd8327d495c13e1bf6e40
 
         public void GetAllCompetitors()
         {
