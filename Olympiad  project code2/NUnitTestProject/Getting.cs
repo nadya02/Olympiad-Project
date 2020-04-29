@@ -21,30 +21,30 @@ namespace NUnitTestProject
         [TestCase]
         public void GetsAllCompetitorsFromDatabase()
         {
-            var data = new List<Towns>()
+            var data = new List<Competitors>()
             {
-                new Towns { Id =  1,Name = "Town1"},
-                new Towns { Id = 2, Name = "Town2"},
-                new Towns { Id = 3,Name = "Town3"},
+                new Competitors { Id =  1,FullName = "Competitor1"},
+                new Competitors { Id = 2, FullName = "Competitor2"},
+                new Competitors { Id = 3,FullName = "Competitor3"},
             }.AsQueryable();
 
-            var mockSet = new Mock<DbSet<Towns>>();
-            mockSet.As<IQueryable<Towns>>().Setup(m => m.Provider).Returns(data.Provider);
-            mockSet.As<IQueryable<Towns>>().Setup(m => m.Expression).Returns(data.Expression);
-            mockSet.As<IQueryable<Towns>>().Setup(m => m.ElementType).Returns(data.ElementType);
-            mockSet.As<IQueryable<Towns>>().Setup(m => m.GetEnumerator()).Returns(data.GetEnumerator());
+            var mockSet = new Mock<DbSet<Competitors>>();
+            mockSet.As<IQueryable<Competitors>>().Setup(m => m.Provider).Returns(data.Provider);
+            mockSet.As<IQueryable<Competitors>>().Setup(m => m.Expression).Returns(data.Expression);
+            mockSet.As<IQueryable<Competitors>>().Setup(m => m.ElementType).Returns(data.ElementType);
+            mockSet.As<IQueryable<Competitors>>().Setup(m => m.GetEnumerator()).Returns(data.GetEnumerator());
 
             var mockContext = new Mock<OlympicGamesDBContext>();
-            mockContext.Setup(c => c.Towns).Returns(mockSet.Object);
+            mockContext.Setup(c => c.Competitors).Returns(mockSet.Object);
 
-            var service = new TownsBusiness(mockContext.Object );
-            data.ToList().ForEach(p => service.AddTown(p));
+            var service = new CompetitorsBusiness(mockContext.Object );
+            data.ToList().ForEach(p => service.AddCompetitors(p));
 
             var expectedCount = 3; //брой продукти в data
-            var result = service.GetAllTowns();
+            var result = service.GetAllCompetitors();
             var actualCount = result.Count;
             Assert.AreEqual(expectedCount, actualCount);
-            Assert.AreEqual("Town1", result[0].Name);//дали първият е Town1
+            Assert.AreEqual("Competitor1", result[0].FullName);//дали първият е Competitor1
 
      
         }
@@ -53,59 +53,59 @@ namespace NUnitTestProject
         [TestCase]
         public void GetCompetitorById()
         {
-            var data = new List<Towns>()
+            var data = new List<Competitors>()
             {
-                new Towns { Id =  1,Name = "Town1"},
-                new Towns { Id = 2, Name = "Town2"},
-                new Towns { Id = 3,Name = "Town3"},
+                new Competitors { Id =  1,FullName = "Competitor1"},
+                new Competitors { Id = 2, FullName = "Competitor2"},
+                new Competitors { Id = 3,FullName = "Competitor3"},
             }.AsQueryable();
 
-            var mockSet = new Mock<DbSet<Towns>>();
-            mockSet.As<IQueryable<Towns>>().Setup(m => m.Provider).Returns(data.Provider);
-            mockSet.As<IQueryable<Towns>>().Setup(m => m.Expression).Returns(data.Expression);
-            mockSet.As<IQueryable<Towns>>().Setup(m => m.ElementType).Returns(data.ElementType);
-            mockSet.As<IQueryable<Towns>>().Setup(m => m.GetEnumerator()).Returns(data.GetEnumerator());
+            var mockSet = new Mock<DbSet<Competitors>>();
+            mockSet.As<IQueryable<Competitors>>().Setup(m => m.Provider).Returns(data.Provider);
+            mockSet.As<IQueryable<Competitors>>().Setup(m => m.Expression).Returns(data.Expression);
+            mockSet.As<IQueryable<Competitors>>().Setup(m => m.ElementType).Returns(data.ElementType);
+            mockSet.As<IQueryable<Competitors>>().Setup(m => m.GetEnumerator()).Returns(data.GetEnumerator());
 
             var mockContext = new Mock<OlympicGamesDBContext>();
-            mockContext.Setup(c => c.Towns).Returns(mockSet.Object);
+            mockContext.Setup(c => c.Competitors).Returns(mockSet.Object);
 
-            var service = new TownsBusiness(mockContext.Object); // service = контролер
-            data.ToList().ForEach(p => service.AddTown(p));
+            var service = new CompetitorsBusiness(mockContext.Object);
+            data.ToList().ForEach(p => service.AddCompetitors(p));
 
-            var product = service.GetTownById(1);
+            var product = service.GetCompetitorById(1);
             Assert.AreEqual(1, product.Id);
         }
 
         [TestCase]
         public void GetCompetitorByName()
         {
-            var data = new List<Towns>()
+            var data = new List<Competitors>()
             {
-                new Towns { Id =  1,Name = "Town1"},
-                new Towns { Id = 2, Name = "Town2"},
-                new Towns { Id = 3,Name = "Town3"},
+                new Competitors { Id =  1,FullName = "Competitor1"},
+                new Competitors { Id = 2, FullName = "Competitor2"},
+                new Competitors { Id = 3,FullName = "Competitor3"},
             }.AsQueryable();
 
-            var mockSet = new Mock<DbSet<Towns>>();
-            mockSet.As<IQueryable<Towns>>().Setup(m => m.Provider).Returns(data.Provider);
-            mockSet.As<IQueryable<Towns>>().Setup(m => m.Expression).Returns(data.Expression);
-            mockSet.As<IQueryable<Towns>>().Setup(m => m.ElementType).Returns(data.ElementType);
-            mockSet.As<IQueryable<Towns>>().Setup(m => m.GetEnumerator()).Returns(data.GetEnumerator());
+            var mockSet = new Mock<DbSet<Competitors>>();
+            mockSet.As<IQueryable<Competitors>>().Setup(m => m.Provider).Returns(data.Provider);
+            mockSet.As<IQueryable<Competitors>>().Setup(m => m.Expression).Returns(data.Expression);
+            mockSet.As<IQueryable<Competitors>>().Setup(m => m.ElementType).Returns(data.ElementType);
+            mockSet.As<IQueryable<Competitors>>().Setup(m => m.GetEnumerator()).Returns(data.GetEnumerator());
 
             var mockContext = new Mock<OlympicGamesDBContext>();
-            mockContext.Setup(c => c.Towns).Returns(mockSet.Object);
+            mockContext.Setup(c => c.Competitors).Returns(mockSet.Object);
 
-            var service = new TownsBusiness(mockContext.Object); // service = контролер
-            data.ToList().ForEach(p => service.AddTown(p));
+            var service = new CompetitorsBusiness(mockContext.Object);
+            data.ToList().ForEach(p => service.AddCompetitors(p));
 
-            var product = service.GetTownByName("Town1");
-            Assert.AreEqual("Town1", product.Name);
+            var product = service.GetCompetitorByName("Competitor1");
+            Assert.AreEqual("Competitor1", product.FullName);
         }        [TestCase]
         public void GetsAllSportsFromDatabase()
         {
             var data = new List<Towns>()
             {
-                new Towns { Id =  1,Name = "Town1"},
+                new Towns { Id =  1,Name = ""},
                 new Towns { Id = 2, Name = "Town2"},
                 new Towns { Id = 3,Name = "Town3"},
             }.AsQueryable();
