@@ -9,6 +9,11 @@ namespace Olympiad__project_code.Presentation
     class SportsDisplay
     {
         private SportsBusiness sportsBusiness = new SportsBusiness();
+        public SportsDisplay(OlympicGamesDBContext context)
+        {
+            sportsBusiness = new SportsBusiness(context);
+        }
+
 
         public void GetAllSports()
         {
