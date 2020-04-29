@@ -52,14 +52,14 @@ namespace Olympiad__project_code.Presentation
                 }
                 catch
                 {
-                    Console.WriteLine("Invalid command");
-                    wait(2);//IN SECONDS
+                    Console.WriteLine("Invalid command!");
+                    Console.WriteLine("Try again...");
+                    wait(4);//IN SECONDS
 
                     Console.Clear();
                     continue;
                 }
                 
-                //must add try catch for invalid input
                 switch (numberTable)
                 {
                     case 1:
@@ -126,7 +126,20 @@ namespace Olympiad__project_code.Presentation
             Console.WriteLine();
             Console.Write("Enter the number of the operation: ");
 
-            int operation2 = int.Parse(Console.ReadLine());
+            int operation2 = -1; // = int.Parse(Console.ReadLine());
+            try
+            {
+                operation2 = int.Parse(Console.ReadLine());
+            }
+            catch
+            {
+                Console.WriteLine("Invalid command");
+                Console.WriteLine("Try again...");
+                wait(4);//IN SECONDS
+
+                Console.Clear();
+               // continue;
+            }
             switch (operation2)
             {
                 case 1:
@@ -170,7 +183,20 @@ namespace Olympiad__project_code.Presentation
             Console.WriteLine();
             Console.Write("Enter the number of the operation: ");
 
-            int operation = int.Parse(Console.ReadLine());
+            int operation = -1;// int.Parse(Console.ReadLine());
+            try
+            {
+                operation = int.Parse(Console.ReadLine());
+            }
+            catch
+            {
+                Console.WriteLine("Invalid command");
+                Console.WriteLine("Try again...");
+                wait(4);//IN SECONDS
+
+                Console.Clear();
+                // continue;
+            }
             switch (operation)
             {
                 case 1:
