@@ -62,7 +62,9 @@ namespace NUnitTestProject
             Assert.AreEqual("Town1", result[0].Name);//дали първият е Town1
 
 
-        } public void DeleteCompetitor()
+        }
+        [TestCase]
+        public void DeleteCompetitor()
         {
             var data = new List<Competitors>()
             {
@@ -101,7 +103,10 @@ namespace NUnitTestProject
             Assert.AreEqual("Competitor1", result[0].FullName);//дали първият е Competitor1
 
 
-        } public void DeleteCoach()
+        }
+        [TestCase]
+        
+        public void DeleteCoach()
         {
             var data = new List<Coaches>()
             {
@@ -140,7 +145,9 @@ namespace NUnitTestProject
             Assert.AreEqual("Coach1", result[0].Name);//дали първият е Club1
 
 
-        }public void DeleteClub()
+        }
+        [TestCase]
+        public void DeleteClub()
         {
             var data = new List<Clubs>()
             {
