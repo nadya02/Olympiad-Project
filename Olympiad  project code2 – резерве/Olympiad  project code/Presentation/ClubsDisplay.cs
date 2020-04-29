@@ -8,14 +8,31 @@ using System.Text;
 
 namespace Olympiad__project_code.Presentation
 {
+    /// <summary>
+    /// Тhe <c>ClubsDisplay</c> class in Presentation.
+    /// This is the layer which is directly connected to ClubsBusiness.
+    /// </summary>
+    /// <remarks>
+    /// This class receive information from the user.
+    /// Then it is passed to ClubsBusiness.
+    /// </remarks>
     class ClubsDisplay
     {
         private ClubsBusiness clubsBusiness;
 
+        /// <summary>
+        /// Makes the connection between Clubs's display and business layer. 
+        /// </summary>
+        /// <param name="context"></param>
         public ClubsDisplay(OlympicGamesDBContext context)
         {
             clubsBusiness = new ClubsBusiness(context);
         }
+
+        /// <summary>
+        /// "Calls" method "GetAllTowns" from ClubsBusiness.
+        /// Then it shows all clubs in table Clubs.
+        /// </summary>
 
         public void GetAllClubs()
         {
@@ -40,6 +57,10 @@ namespace Olympiad__project_code.Presentation
             }
         }
 
+        /// <summary>
+        /// After the user has inputed id, the program "Calls" method "GetClubById" from ClubsBusiness.
+        /// Shows the Club who has this id. 
+        /// </summary>
         public void GetClubById()
         {
             Console.Write("Enter Club ID to fetch: ");
@@ -55,6 +76,10 @@ namespace Olympiad__project_code.Presentation
             }
         }
 
+        /// <summary>
+        /// After the user has inputed idname the program "Calls" method "GetClubById" from ClubsBusiness.
+        /// Shows the Club who has this name. 
+        /// </summary>
         public void GetClubByName()
         {
             Console.Write("Enter Club Name to fetch: ");
@@ -78,6 +103,10 @@ namespace Olympiad__project_code.Presentation
             Console.WriteLine(new string('-', 40));
         }
 
+        /// <summary>
+        /// Makes the user to input data about the club.
+        /// Passes the information to ClubsBusiness, using the method "AddClub"
+        /// </summary>
         public void AddClub()
         {
             Clubs club = new Clubs();
@@ -88,6 +117,11 @@ namespace Olympiad__project_code.Presentation
             Console.WriteLine($"New club successfully added!");
         }
 
+        /// <summary>
+        /// Finds the club wished to be updated.
+        /// Makes the user to enter the new information.
+        /// Then passes it to ClubsBusiness, using the method "UpdateClub".
+        /// </summary>
         public void UpdateClub()
         {
             Console.Write("Enter Club ID to update: ");
@@ -107,6 +141,10 @@ namespace Olympiad__project_code.Presentation
             }
         }
 
+        /// <summary>
+        /// Finds the club wished to be deleted.
+        /// Passes the information to ClubsBusiness, using the method "DeleteClubById".
+        /// </summary>
         public void DeleteClubById()
         {
             Console.Write("Enter Club Id to delete: ");

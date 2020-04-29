@@ -18,64 +18,46 @@ namespace Olympiad__project_code.Business
 
         public List<Competitors> GetAllCompetitors()
         {
-         //   using (olympicGamesDBContext = new OlympicGamesDBContext())
-         //   {
-                return olympicGamesDBContext.Competitors.ToList();
-         //   }         
+            return olympicGamesDBContext.Competitors.ToList();
         }
 
         public Competitors GetCompetitorById(int id)
         {
-          //  using (olympicGamesDBContext = new OlympicGamesDBContext())
-          //  {
-                return olympicGamesDBContext.Competitors.Find(id);
-          //  }             
+            return olympicGamesDBContext.Competitors.Find(id);
         }
 
         public Competitors GetCompetitorByName(string name)
         {
-         //   using (olympicGamesDBContext = new OlympicGamesDBContext())
-         //   {
-                var competitor = olympicGamesDBContext.Competitors
+            var competitor = olympicGamesDBContext.Competitors
                     .Where(c => c.FullName == name)
                     .FirstOrDefault();
-                return competitor;
-          //  }
+            return competitor;
         }
 
         public void AddCompetitors(Competitors competitors)
         {
-       //     using (olympicGamesDBContext = new OlympicGamesDBContext())
-       //     {
-                olympicGamesDBContext.Competitors.Add(competitors);
-                olympicGamesDBContext.SaveChanges();
-        //    }        
+            olympicGamesDBContext.Competitors.Add(competitors);
+            olympicGamesDBContext.SaveChanges();
         }
 
         public void UpdateCompetitor(Competitors competitor)
         {
-      //      using (olympicGamesDBContext = new OlympicGamesDBContext())
-      //      {
-                var item = olympicGamesDBContext.Competitors.Find(competitor.Id);
-                if (item != null)
-                {
-                    olympicGamesDBContext.Entry(item).CurrentValues.SetValues(competitor);
-                    olympicGamesDBContext.SaveChanges();
-                }
-       //     }           
+            var item = olympicGamesDBContext.Competitors.Find(competitor.Id);
+            if (item != null)
+            {
+                olympicGamesDBContext.Entry(item).CurrentValues.SetValues(competitor);
+                olympicGamesDBContext.SaveChanges();
+            }
         }
 
         public void DeleteCompetitorById(int id)
         {
-       //     using (olympicGamesDBContext = new OlympicGamesDBContext())
-       //     {
-                var item = olympicGamesDBContext.Competitors.Find(id);
-                if (item != null)
-                {
-                    olympicGamesDBContext.Remove(item);
-                    olympicGamesDBContext.SaveChanges();
-                }
-            }       
-        //}
+            var item = olympicGamesDBContext.Competitors.Find(id);
+            if (item != null)
+            {
+                olympicGamesDBContext.Remove(item);
+                olympicGamesDBContext.SaveChanges();
+            }
+        }       
     }
 }

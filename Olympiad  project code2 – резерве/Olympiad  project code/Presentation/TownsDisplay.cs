@@ -7,18 +7,33 @@ using Olympiad__project_code.Models;
 
 namespace Olympiad__project_code.Presentation
 {
+    /// <summary>
+    /// Тhe <c>TownsDisplay</c> class in Presentation.
+    /// This is the layer which is directly connected to TownsBusiness.
+    /// </summary>
+    /// <remarks>
+    /// This class receive information from the user.
+    /// Then it is passed to TownsBusiness.
+    /// </remarks>
     public class TownsDisplay
     {
         private TownsBusiness townsBusiness;
         private CountriesBusiness countriesBusiness;
 
+        /// <summary>
+        /// Makes the connection between Towns's display and business layer. 
+        /// </summary>
+        /// <param name="context"></param>
         public TownsDisplay(OlympicGamesDBContext context)
         {
             townsBusiness = new TownsBusiness(context);
             countriesBusiness = new CountriesBusiness(context);
         }
 
-        
+        /// <summary>
+        /// "Calls" method "GetAllTowns" from TownsBusiness.
+        /// Then it shows all towns in table Towns.
+        /// </summary>
         public void GetAllTowns()
         {
             Console.WriteLine("Towns: ");
@@ -45,6 +60,11 @@ namespace Olympiad__project_code.Presentation
                 Console.WriteLine(new string('-', 68));
             }
         }
+
+        /// <summary>
+        /// After the user has inputed id, the program "Calls" method "GetTownById" from TownsBusiness.
+        /// Shows the Town who has this id. 
+        /// </summary>
         public void GetTownById()
         {
             Console.WriteLine("Enter Town Id to fetch: ");
@@ -59,6 +79,11 @@ namespace Olympiad__project_code.Presentation
                 Console.WriteLine($"There is no town with id = {id} in the table!");
             }
         }
+
+        /// <summary>
+        /// After the user has inputed name, the program "Calls" method "GetTownByName" from TownsBusiness.
+        /// Shows the Town who has this name. 
+        /// </summary>
         public void GetTownByName()
         {
             Console.WriteLine("Enter Town Name to fetch: ");
@@ -81,6 +106,11 @@ namespace Olympiad__project_code.Presentation
             Console.WriteLine($"Name: {town.Name}");
             Console.WriteLine(new string('-', 40));
         }
+
+        /// <summary>
+        /// Makes the user to input data about the town.
+        /// Passes the information to TownsBusiness, using the method "AddTown"
+        /// </summary>
         public void AddTown()
         {
             Towns town = new Towns();
@@ -94,6 +124,11 @@ namespace Olympiad__project_code.Presentation
             Console.WriteLine($"New town successfully added!");
         }
 
+        /// <summary>
+        /// Finds the town wished to be updated.
+        /// Makes the user to enter the new information.
+        /// Then passes it to TownsBusiness, using the method "UpdateTown".
+        /// </summary>
         public void UpdateTown()
         {
             Console.Write("Enter Id: ");
@@ -103,7 +138,9 @@ namespace Olympiad__project_code.Presentation
             if (town != null)
             {
                 Console.Write("Enter new name: ");
-                town.Name = Console.ReadLine();//??? да пита и за държавата
+                town.Name = Console.ReadLine();
+                Console.Write("Enter country name: ");
+                town.CountryId = countriesBusiness.GetCountryByName(Console.ReadLine()).Id;
 
                 townsBusiness.UpdateTown(town);
             }
@@ -115,6 +152,10 @@ namespace Olympiad__project_code.Presentation
             Console.WriteLine("Town successfully updated!");
         }
 
+        /// <summary>
+        /// Finds the town wished to be deleted.
+        /// Passes the information to TownsBusiness, using the method "DeleteTownById".
+        /// </summary>
         public void DeleteTownById()
         {
             Console.Write("Enter id: ");

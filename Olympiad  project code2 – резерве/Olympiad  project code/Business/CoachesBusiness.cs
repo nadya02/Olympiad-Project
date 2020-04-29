@@ -18,63 +18,45 @@ namespace Olympiad__project_code.Business
 
         public List<Coaches> GetAllCoaches()
         {
-           // using (olympicGamesDBContext = new OlympicGamesDBContext())
-            //{
-                return olympicGamesDBContext.Coaches.ToList();
-           // }
+            return olympicGamesDBContext.Coaches.ToList();
         }
 
         public Coaches GetCoachById(int? id)
         {
-          //  using (olympicGamesDBContext = new OlympicGamesDBContext())
-           // {
-                return olympicGamesDBContext.Coaches.Find(id);
-           // }
+            return olympicGamesDBContext.Coaches.Find(id);
         }
         public Coaches GetCoachByName(string name)
         {
-           // using (olympicGamesDBContext = new OlympicGamesDBContext())
-           // {
-                var coach = olympicGamesDBContext.Coaches
+            var coach = olympicGamesDBContext.Coaches
                     .Where(c => c.Name == name)
                     .FirstOrDefault();
-                return coach;
-           // }
+            return coach;
         }
 
         public void AddCoach(Coaches coach)
         {
-          //  using (olympicGamesDBContext = new OlympicGamesDBContext())
-           // {
-                olympicGamesDBContext.Coaches.Add(coach);
-                olympicGamesDBContext.SaveChanges();
-           // }
+            olympicGamesDBContext.Coaches.Add(coach);
+            olympicGamesDBContext.SaveChanges();
         }
 
         public void UpdateCoach(Coaches coach)
         {
-         //   using(olympicGamesDBContext = new OlympicGamesDBContext())
-         //   {
-                var item = olympicGamesDBContext.Coaches.Find(coach.Id);
-                if (item != null)
-                {
-                    olympicGamesDBContext.Entry(item).CurrentValues.SetValues(coach);
-                    olympicGamesDBContext.SaveChanges();
-                }
-        //    }
+            var item = olympicGamesDBContext.Coaches.Find(coach.Id);
+            if (item != null)
+            {
+                olympicGamesDBContext.Entry(item).CurrentValues.SetValues(coach);
+                olympicGamesDBContext.SaveChanges();
+            }
         }
 
         public void DeleteCoachById(int id)
         {
-       //     using (olympicGamesDBContext = new OlympicGamesDBContext())
-          //  {
-                var item = olympicGamesDBContext.Coaches.Find(id);
-                if(item != null)
-                {
-                    olympicGamesDBContext.Remove(item);
-                    olympicGamesDBContext.SaveChanges();
-                }
-          //  }
+            var item = olympicGamesDBContext.Coaches.Find(id);
+            if (item != null)
+            {
+                olympicGamesDBContext.Remove(item);
+                olympicGamesDBContext.SaveChanges();
+            }
         }
     }
 

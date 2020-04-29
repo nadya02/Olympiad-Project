@@ -1,9 +1,13 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <RootNamespace>Olympiad__project_code</RootNamespace>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>D:\Nadya\It-kariera\modul 7\Olympiad Project\Olympiad  project code2 – резерве\Olympiad  project code\Olympiad  project code.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

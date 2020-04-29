@@ -9,6 +9,14 @@ using System.Xml;
 
 namespace Olympiad__project_code.Presentation
 {
+    /// <summary>
+    /// Тhe <c>CompetitorsDisplay</c> class in Presentation.
+    /// This is the layer which is directly connected to CompetitorsBusiness.
+    /// </summary>
+    /// <remarks>
+    /// This class receive information from the user.
+    /// Then it is passed to CompetitorsBusiness.
+    /// </remarks>
     class CompetitorsDisplay
     {
         private CoachesBusiness coachesBusiness;
@@ -21,6 +29,10 @@ namespace Olympiad__project_code.Presentation
         private CoachesDisplay coachesDisplay;
         //Ъм тука имам въпорс - i az
 
+        /// <summary>
+        /// Makes the connection between Competitors's display and business layer. 
+        /// </summary>
+        /// <param name="context"></param>
         public CompetitorsDisplay(OlympicGamesDBContext context)
         {
             competitorsBusiness = new CompetitorsBusiness(context);
@@ -34,7 +46,10 @@ namespace Olympiad__project_code.Presentation
             coachesDisplay = new CoachesDisplay(context);
         }
 
-
+        /// <summary>
+        /// "Calls" method "GetAllCompetitors" from CompetitorsBusiness.
+        /// Then it shows all competitors in table Competitors.
+        /// </summary>
         public void GetAllCompetitors()
         {
             Console.WriteLine("Competitors: ");
@@ -78,6 +93,10 @@ namespace Olympiad__project_code.Presentation
             }
         }
 
+        /// <summary>
+        /// After the user has inputed id, the program "Calls" method "GetCompetitorById" from CompetitorsBusiness.
+        /// Shows the Competitor who has this id. 
+        /// </summary>
         public void GetCompetitorById()
         {
             Console.Write("Enter Competitor ID to fetch: ");
@@ -97,6 +116,10 @@ namespace Olympiad__project_code.Presentation
             }
         }
 
+        /// <summary>
+        /// After the user has inputed name, the program "Calls" method "GetCompetitorByName" from CompetitorsBusiness.
+        /// Shows the Competitor who has this name. 
+        /// </summary>
         public void GetCompetitorByName()
         {
             Console.Write("Enter Competitor Name to fetch: ");
@@ -115,6 +138,11 @@ namespace Olympiad__project_code.Presentation
                 Console.WriteLine($"There is no competitor with Name = {name} in the table!");
             }
         }
+
+        /// <summary>
+        /// "Calls" method "CreateCompetitor".
+        /// Passes the information to CompetitorsBusiness, using the method "AddCompetitors"
+        /// </summary>
         public void AddCompetitor()
         {
             Competitors competitors = new Competitors();
@@ -123,6 +151,11 @@ namespace Olympiad__project_code.Presentation
             Console.WriteLine($"New competitor successfully added!");
         }
 
+        /// <summary>
+        /// Finds the competitor wished to be updated.
+        /// "Calls" method "CreateCompetitor".
+        /// Then passes it to CompetitorsBusiness, using the method "UpdateCompetitor".
+        /// </summary>
         public void UpdateCompetitor()
         {
             Console.Write("Enter ID to update: ");
@@ -141,6 +174,10 @@ namespace Olympiad__project_code.Presentation
             }
         }
 
+        /// <summary>
+        /// Finds the competitor wished to be deleted.
+        /// Passes the information to CompetitorsBusiness, using the method "DeleteCompetitorById".
+        /// </summary>
         public void DeleteCompetitorById()
         {
             Console.Write("Enter ID to delete: ");

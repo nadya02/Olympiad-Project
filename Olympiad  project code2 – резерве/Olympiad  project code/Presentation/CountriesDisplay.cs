@@ -6,18 +6,33 @@ using System.Text;
 
 namespace Olympiad__project_code.Presentation
 {
+    /// <summary>
+    /// Тhe <c>CountriesDisplay</c> class in Presentation.
+    /// This is the layer which is directly connected to CountriesBusiness.
+    /// </summary>
+    /// <remarks>
+    /// This class receive information from the user.
+    /// Then it is passed to CountriesBusiness.
+    /// </remarks>
     class CountriesDisplay
     {
         private CountriesBusiness countriesBusiness;
         private TownsBusiness towns;
 
+        /// <summary>
+        /// Makes the connection between Countrie's display and business layer. 
+        /// </summary>
+        /// <param name="context"></param>
         public CountriesDisplay(OlympicGamesDBContext context)
         {
             countriesBusiness = new CountriesBusiness(context);
             towns = new TownsBusiness(context);
         }
 
-
+        /// <summary>
+        /// "Calls" method "GetAllCountries" from CountriesBusiness.
+        /// Then it shows all countries in table Countries.
+        /// </summary>
         public void GetAllCountries()
         {
             Console.WriteLine("Countries: ");
@@ -40,7 +55,11 @@ namespace Olympiad__project_code.Presentation
                 Console.WriteLine(new string('-', 35));
             }  
         }
-      
+
+        /// <summary>
+        /// After the user has inputed id, the program "Calls" method "GetCountryById" from CountriesBusiness.
+        /// Shows the Country who has this id. 
+        /// </summary>
         public void GetCountryById()
         {
             Console.WriteLine("Enter Country Id to fetch: ");
@@ -56,6 +75,10 @@ namespace Olympiad__project_code.Presentation
             }
         }
 
+        /// <summary>
+        /// After the user has inputed name, the program "Calls" method "GetCountryByName" from CountriesBusiness.
+        /// Shows the Country who has this name. 
+        /// </summary>
         public void GetCountryByName()
         {
             Console.WriteLine("Enter Country Name to fetch: ");

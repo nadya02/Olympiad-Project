@@ -6,6 +6,14 @@ using System.Text;
 
 namespace Olympiad__project_code.Presentation
 {
+    /// <summary>
+    /// Тhe main <c>Display</c> class in Presentation.
+    /// This is the layer which is directly connected to the user.
+    /// </summary>
+    /// <remarks>
+    /// This class receive information from the user.
+    /// Then it is passed to one of the other displays.
+    /// </remarks>
     class Display
     {
         private static OlympicGamesDBContext context = new OlympicGamesDBContext(); 
@@ -29,6 +37,10 @@ namespace Olympiad__project_code.Presentation
         }
 
         private static int numberTable = -1;
+        /// <summary>
+        /// Receive information from the user.
+        /// According to the input the program will continue with specific method.
+        /// </summary>
         public static void Input()
         {           
             do
@@ -73,6 +85,9 @@ namespace Olympiad__project_code.Presentation
                 }
             } while (numberTable != 7);
         }
+        /// <summary>
+        /// Shows on the screen all the sports included in the Olypmic Games.
+        /// </summary>
         private static void ShowMenu()
         {
             Console.WriteLine(new string('-', 40));
@@ -89,6 +104,13 @@ namespace Olympiad__project_code.Presentation
 
             Console.Write("Enter the number of the choosen table: ");
         }
+
+        /// <summary>
+        /// Shows to the screen all the operations the user can do with the chosen table.
+        /// </summary>
+        /// <remarks>
+        /// According to the user's answer the program "calls" specific method.
+        /// </remarks>
         private static void ListAllOpperations()
         {
             Console.Clear();
@@ -130,6 +152,13 @@ namespace Olympiad__project_code.Presentation
             }
         }
 
+        /// <summary>
+        /// Shows to the screen all the operations the user can do with the chosen table.
+        /// </summary>
+        /// <remarks>
+        /// According to the user's answer the program "calls" specific method.
+        /// The difference here is that there are less operations available.
+        /// </remarks>
         private static void ListOnlyAvailableOpperations()
         {
             Console.Clear();
@@ -157,6 +186,11 @@ namespace Olympiad__project_code.Presentation
                     break;
             }
         }
+
+        /// <summary>
+        /// According to the table the user chose to work with in the begining the information is passed to one of the other displays.
+        /// </summary>
+        /// <param name="numberTable"></param>
         private static void GetAllEntries(int numberTable)
         {
             Console.Clear();
@@ -186,6 +220,11 @@ namespace Olympiad__project_code.Presentation
             Console.WriteLine();
             Console.WriteLine("Press any key to clear the screen..."); Console.ReadKey(); Console.Clear();
         }
+
+        /// <summary>
+        /// According to the table the user chose to work with in the begining the information is passed to one of the other displays.
+        /// </summary>
+        /// <remarks>The method gets all data in the table.</remarks>
         private static void AddNewEntry()
         {
             Console.Clear();
@@ -208,6 +247,11 @@ namespace Olympiad__project_code.Presentation
             Console.WriteLine();
             Console.WriteLine("Press any key to clear the screen..."); Console.ReadKey(); Console.Clear();
         }
+
+        /// <summary>
+        /// According to the table the user chose to work with in the begining the information is passed to one of the other displays.
+        /// </summary>
+        /// <remarks>The method gets data by name.</remarks>
         private static void GetEntryByName()
         {
             Console.Clear();
@@ -238,6 +282,10 @@ namespace Olympiad__project_code.Presentation
             Console.WriteLine("Press any key to clear the screen..."); Console.ReadKey(); Console.Clear();
         }
 
+        /// <summary>
+        /// According to the table the user chose to work with in the begining the information is passed to one of the other displays.
+        /// </summary>
+        /// <remarks>The method gets data by id.</remarks>
         private static void GetEntryById()
         {
             Console.Clear();
@@ -268,6 +316,10 @@ namespace Olympiad__project_code.Presentation
             Console.WriteLine("Press any key to clear the screen..."); Console.ReadKey(); Console.Clear();
         }
 
+        /// <summary>
+        /// According to the table the user chose to work with in the begining the information is passed to one of the other displays.
+        /// </summary>
+        /// <remarks>The method updates data.<remarks>
         private static void UpdateEntry()
         {
             Console.Clear();
@@ -291,6 +343,10 @@ namespace Olympiad__project_code.Presentation
             Console.WriteLine("Press any key to clear the screen..."); Console.ReadKey(); Console.Clear();
         }
 
+        /// <summary>
+        /// According to the table the user chose to work with in the begining the information is passed to one of the other displays.
+        /// </summary>
+        /// <remarks>The method deletes data.</remarks>
         private static void DeleteEntry()
         {
             Console.Clear();

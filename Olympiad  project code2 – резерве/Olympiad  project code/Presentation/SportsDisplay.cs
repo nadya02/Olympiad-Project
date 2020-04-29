@@ -6,15 +6,31 @@ using Olympiad__project_code.Models;
 
 namespace Olympiad__project_code.Presentation
 {
+    /// <summary>
+    /// Тhe <c>SportsDisplay</c> class in Presentation.
+    /// This is the layer which is directly connected to SportsBusiness.
+    /// </summary>
+    /// <remarks>
+    /// This class receive information from the user.
+    /// Then it is passed to SportsBusiness.
+    /// </remarks>
     class SportsDisplay
     {
         private SportsBusiness sportsBusiness;
+
+        /// <summary>
+        /// Makes the connection between Sports's display and business layer. 
+        /// </summary>
+        /// <param name="context"></param>
         public SportsDisplay(OlympicGamesDBContext context)
         {
             sportsBusiness = new SportsBusiness(context);
         }
 
-
+        /// <summary>
+        /// "Calls" method "GetAllSports" from SportsBusiness.
+        /// Then it shows all sports in table Sports.
+        /// </summary>
         public void GetAllSports()
         {
             Console.WriteLine("Sports: ");
@@ -40,6 +56,11 @@ namespace Olympiad__project_code.Presentation
             }
 
         }
+
+        /// <summary>
+        /// After the user has inputed id, the program "Calls" method "GetSportById" from SportsBusiness.
+        /// Shows the Sport who has this id. 
+        /// </summary>
         public void GetSportById()
         {
             Console.Write("Enter Sport Id to fetch: ");
@@ -54,6 +75,11 @@ namespace Olympiad__project_code.Presentation
                 Console.WriteLine($"There is no sport with id = {id} in the table!");
             }
         }
+
+        /// <summary>
+        /// After the user has inputed name, the program "Calls" method "GetSportByName" from SportsBusiness.
+        /// Shows the Sport who has this name. 
+        /// </summary>
         public void GetSportByName()
         {
             Console.Write("Enter Sport Name to fetch: ");
