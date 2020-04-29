@@ -306,23 +306,23 @@ namespace NUnitTestProject
         public void GetClubByName()
         {
             var options = new DbContextOptionsBuilder<OlympicGamesDBContext>()
-                .UseInMemoryDatabase(databaseName: "TestDB")
-                .Options;
+                          .UseInMemoryDatabase(databaseName: "TestDB")
+                          .Options;
 
-            var data = new List<Towns>()
+            var data = new List<Clubs>()
             {
-                new Towns { Id =  1,Name = "Town1"},
-                new Towns { Id = 2, Name = "Town2"},
-                new Towns { Id = 3,Name = "Town3"},
+                new Clubs { Id =  1,Name = "Club1"},
+                new Clubs { Id = 2, Name = "Club2"},
+                new Clubs { Id = 3, Name = "Club3"},
             }.AsQueryable();
 
             using (OlympicGamesDBContext context = new OlympicGamesDBContext(options))
             {
-                TownsBusiness business = new TownsBusiness(context);
-                data.ToList().ForEach(t => business.AddTown(t));
+                ClubsBusiness business = new ClubsBusiness(context);
+                data.ToList().ForEach(c => business.AddClub(c));
 
-                Towns t = business.GetTownByName("Town1");
-                Assert.AreEqual("Town1", t.Name);
+                Clubs c = business.GetClubByName("Club1");
+                Assert.AreEqual("Club1", c.FullName);
             }
         }  
         [TestCase]

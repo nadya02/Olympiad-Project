@@ -19,7 +19,7 @@ namespace NUnitTestProject
         public void DeleteTown()
         {
                var options = new DbContextOptionsBuilder<OlympicGamesDBContext>()
-               .UseInMemoryDatabase(databaseName: "TestDB")
+               .UseInMemoryDatabase(databaseName: "DeleteTownDB")
                .Options;
 
               var data = new List<Towns>()
@@ -52,7 +52,7 @@ namespace NUnitTestProject
                 new Competitors { Id = 3,FullName = "Competitor3"},
             }.AsQueryable();
             var options = new DbContextOptionsBuilder<OlympicGamesDBContext>()
-                         .UseInMemoryDatabase(databaseName: "TestDB")
+                         .UseInMemoryDatabase(databaseName: "DeleteCompetitorDB")
                          .Options;
 
             using (OlympicGamesDBContext context = new OlympicGamesDBContext(options))
@@ -72,7 +72,7 @@ namespace NUnitTestProject
         public void DeleteCoach()
         {
             var options = new DbContextOptionsBuilder<OlympicGamesDBContext>()
-                .UseInMemoryDatabase(databaseName: "TestDB")
+                .UseInMemoryDatabase(databaseName: "DeleteCoachDB")
                 .Options;
 
             var data = new List<Coaches>()
@@ -96,7 +96,7 @@ namespace NUnitTestProject
         public void DeleteClub()
         {
             var options = new DbContextOptionsBuilder<OlympicGamesDBContext>()
-                .UseInMemoryDatabase(databaseName: "TestDB")
+                .UseInMemoryDatabase(databaseName: "DeleteClubDB")
                 .Options;
 
             IQueryable<Clubs> data = new List<Clubs>()
