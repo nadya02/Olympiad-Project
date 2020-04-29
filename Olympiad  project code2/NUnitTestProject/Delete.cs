@@ -123,7 +123,7 @@ namespace NUnitTestProject
             var actualCount = result.Count;
             
             /*
-            foreach(Towns t in mockContext.Object.Towns.ToList())
+            foreach(Coaches t in mockContext.Object.Coaches.ToList())
             {
                 TestContext.WriteLine(t.Id);
             }
@@ -132,12 +132,12 @@ namespace NUnitTestProject
 
             //не бачка, понеже както казах фреймуърка е ебан
             Assert.AreEqual(expectedCount, actualCount);
-            Assert.AreEqual("Town1", result[0].Name);//дали първият е Town1
+            Assert.AreEqual("Coach1", result[0].Name);//дали първият е Club1
 
 
         }public void DeleteClub()
         {
-            var data = new List<Towns>()
+            var data = new List<Clubs>()
             {
                 new Towns { Id =  1,Name = "Town1"},
                 new Towns { Id = 2, Name = "Town2"},
