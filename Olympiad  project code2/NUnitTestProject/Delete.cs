@@ -16,6 +16,11 @@ namespace NUnitTestProject
     public class Delete
     {
         private TownsBusiness townsBusiness = new TownsBusiness();
+        private CompetitorsBusiness competitorsBusiness = new CompetitorsBusiness();
+        private CoachesBusiness coachesBusiness = new TownsBusiness();
+        private SportsBusiness sportsBusiness = new TownsBusiness();
+        private CountriesBusiness countriesBusiness = new TownsBusiness();
+        private ClubsBusiness clubsBusiness = new TownsBusiness();
         
         [TestCase]
         public void DeleteTown()
