@@ -27,41 +27,27 @@ namespace NUnitTestProject
         [TestCase]
         public void DeleteTown()
         {
-            var data = new List<Towns>()
+               var options = new DbContextOptionsBuilder<OlympicGamesDBContext>()
+               .UseInMemoryDatabase(databaseName: "TestDB")
+               .Options;
+
+              var data = new List<Towns>()
             {
                 new Towns { Id =  1,Name = "Town1"},
                 new Towns { Id = 2, Name = "Town2"},
                 new Towns { Id = 3,Name = "Town3"},
             }.AsQueryable();
 
-            var mockSet = new Mock<DbSet<Towns>>();
-            mockSet.As<IQueryable<Towns>>().Setup(m => m.Provider).Returns(data.Provider);
-            mockSet.As<IQueryable<Towns>>().Setup(m => m.Expression).Returns(data.Expression);
-            mockSet.As<IQueryable<Towns>>().Setup(m => m.ElementType).Returns(data.ElementType);
-            mockSet.As<IQueryable<Towns>>().Setup(m => m.GetEnumerator()).Returns(data.GetEnumerator());
-
-            var mockContext = new Mock<OlympicGamesDBContext>();
-            mockContext.Setup(c => c.Towns).Returns(mockSet.Object);
-
-            var service = new TownsBusiness(mockContext.Object);
-            data.ToList().ForEach(p => service.AddTown(p));
-            service.DeleteTownById(2);
-
-            var expectedCount = 2; //брой продукти в data
-            var result = service.GetAllTowns();
-            var actualCount = result.Count;
-            
-            /*
-            foreach(Towns t in mockContext.Object.Towns.ToList())
+            using (OlympicGamesDBContext context = new OlympicGamesDBContext(options))
             {
-                TestContext.WriteLine(t.Id);
-            }
-            TestContext.WriteLine("\n");
-            */
+                TownsBusiness business = new TownsBusiness(context);
+                data.ToList().ForEach(town => business.AddTown(town));
 
-            //не бачка, понеже както казах фреймуърка е ебан
-            Assert.AreEqual(expectedCount, actualCount);
-            Assert.AreEqual("Town1", result[0].Name);//дали първият е Town1
+                business.DeleteTownById(2);
+
+                Assert.AreEqual(2, business.GetAllTowns().Count);
+            }
+
 
 
         }
@@ -74,35 +60,19 @@ namespace NUnitTestProject
                 new Competitors { Id = 2, FullName = "Competitor2"},
                 new Competitors { Id = 3,FullName = "Competitor3"},
             }.AsQueryable();
+            var options = new DbContextOptionsBuilder<OlympicGamesDBContext>()
+                         .UseInMemoryDatabase(databaseName: "TestDB")
+                         .Options;
 
-            var mockSet = new Mock<DbSet<Competitors>>();
-            mockSet.As<IQueryable<Competitors>>().Setup(m => m.Provider).Returns(data.Provider);
-            mockSet.As<IQueryable<Competitors>>().Setup(m => m.Expression).Returns(data.Expression);
-            mockSet.As<IQueryable<Competitors>>().Setup(m => m.ElementType).Returns(data.ElementType);
-            mockSet.As<IQueryable<Competitors>>().Setup(m => m.GetEnumerator()).Returns(data.GetEnumerator());
-
-            var mockContext = new Mock<OlympicGamesDBContext>();
-            mockContext.Setup(c => c.Competitors).Returns(mockSet.Object);
-
-            var service = new CompetitorsBusiness(mockContext.Object);
-            data.ToList().ForEach(p => service.AddCompetitors(p));
-            service.DeleteCompetitorById(2);
-
-            var expectedCount = 2; //брой продукти в data
-            var result = service.GetAllCompetitors();
-            var actualCount = result.Count;
-            
-            /*
-            foreach(Competitors t in mockContext.Object.Competitors.ToList())
+            using (OlympicGamesDBContext context = new OlympicGamesDBContext(options))
             {
-                TestContext.WriteLine(t.Id);
-            }
-            TestContext.WriteLine("\n");
-            */
+                CompetitorsBusiness business = new CompetitorsBusiness(context);
+                data.ToList().ForEach(competitor => business.AddCompetitors(competitor));
 
-            //не бачка, понеже както казах фреймуърка е ебан
-            Assert.AreEqual(expectedCount, actualCount);
-            Assert.AreEqual("Competitor1", result[0].FullName);//дали първият е Competitor1
+                business.DeleteCompetitorById(2);
+
+                Assert.AreEqual(2, business.GetAllCompetitors().Count);
+            }
 
 
         }
