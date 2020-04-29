@@ -18,8 +18,9 @@ namespace NUnitTestProject
         private SportsBusiness sportsBusiness = new SportsBusiness();
         private CountriesBusiness countriesBusiness = new CountriesBusiness();
         private ClubsBusiness clubsBusiness = new ClubsBusiness();
+      
         [TestCase]
-        public void TestUpdate()
+        public void TestUpdateTowns()
         {
             var data = new List<Towns>()
                 {
@@ -41,10 +42,96 @@ namespace NUnitTestProject
             data.ToList().ForEach(p => service.AddTown(p));
 
             Towns t = service.GetTownById(1);
-            t.Name = "Yoanko";
+            t.Name = "NewTown";
 
             service.UpdateTown(t);
-            Assert.AreEqual("Yoanko", t.Name);
+            Assert.AreEqual("NewTown", t.Name);
+        } 
+        [TestCase]
+        public void TestUpdateClubs()
+        {
+            var data = new List<Towns>()
+                {
+                    new Towns { Id =  1,Name = "Town1"},
+                    new Towns { Id = 2, Name = "Town2"},
+                    new Towns { Id = 3,Name = "Town3"},
+                }.AsQueryable();
+
+            var mockSet = new Mock<DbSet<Towns>>();
+            mockSet.As<IQueryable<Towns>>().Setup(m => m.Provider).Returns(data.Provider);
+            mockSet.As<IQueryable<Towns>>().Setup(m => m.Expression).Returns(data.Expression);
+            mockSet.As<IQueryable<Towns>>().Setup(m => m.ElementType).Returns(data.ElementType);
+            mockSet.As<IQueryable<Towns>>().Setup(m => m.GetEnumerator()).Returns(data.GetEnumerator());
+
+            var mockContext = new Mock<OlympicGamesDBContext>();
+            mockContext.Setup(c => c.Towns).Returns(mockSet.Object);
+
+            var service = new TownsBusiness(mockContext.Object); // service = контролер
+            data.ToList().ForEach(p => service.AddTown(p));
+
+            Towns t = service.GetTownById(1);
+            t.Name = "NewTown";
+
+            service.UpdateTown(t);
+            Assert.AreEqual("NewTown", t.Name);
+        }
+        
+        [TestCase]
+        public void TestUpdateCoaches()
+        {
+            var data = new List<Towns>()
+                {
+                    new Towns { Id =  1,Name = "Town1"},
+                    new Towns { Id = 2, Name = "Town2"},
+                    new Towns { Id = 3,Name = "Town3"},
+                }.AsQueryable();
+
+            var mockSet = new Mock<DbSet<Towns>>();
+            mockSet.As<IQueryable<Towns>>().Setup(m => m.Provider).Returns(data.Provider);
+            mockSet.As<IQueryable<Towns>>().Setup(m => m.Expression).Returns(data.Expression);
+            mockSet.As<IQueryable<Towns>>().Setup(m => m.ElementType).Returns(data.ElementType);
+            mockSet.As<IQueryable<Towns>>().Setup(m => m.GetEnumerator()).Returns(data.GetEnumerator());
+
+            var mockContext = new Mock<OlympicGamesDBContext>();
+            mockContext.Setup(c => c.Towns).Returns(mockSet.Object);
+
+            var service = new TownsBusiness(mockContext.Object); // service = контролер
+            data.ToList().ForEach(p => service.AddTown(p));
+
+            Towns t = service.GetTownById(1);
+            t.Name = "NewTown";
+
+            service.UpdateTown(t);
+            Assert.AreEqual("NewTown", t.Name);
+        }
+        
+        [TestCase]
+        public void TestUpdateCompetitors()
+        {
+            var data = new List<Towns>()
+                {
+                    new Towns { Id =  1,Name = "Town1"},
+                    new Towns { Id = 2, Name = "Town2"},
+                    new Towns { Id = 3,Name = "Town3"},
+                }.AsQueryable();
+
+            var mockSet = new Mock<DbSet<Towns>>();
+            mockSet.As<IQueryable<Towns>>().Setup(m => m.Provider).Returns(data.Provider);
+            mockSet.As<IQueryable<Towns>>().Setup(m => m.Expression).Returns(data.Expression);
+            mockSet.As<IQueryable<Towns>>().Setup(m => m.ElementType).Returns(data.ElementType);
+            mockSet.As<IQueryable<Towns>>().Setup(m => m.GetEnumerator()).Returns(data.GetEnumerator());
+
+            var mockContext = new Mock<OlympicGamesDBContext>();
+            mockContext.Setup(c => c.Towns).Returns(mockSet.Object);
+
+            var service = new TownsBusiness(mockContext.Object); // service = контролер
+            data.ToList().ForEach(p => service.AddTown(p));
+
+            Towns t = service.GetTownById(1);
+            t.Name = "NewTown";
+
+            service.UpdateTown(t);
+            Assert.AreEqual("NewTown", t.Name);
         }
 
      
