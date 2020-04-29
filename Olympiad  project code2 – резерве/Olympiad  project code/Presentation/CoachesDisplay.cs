@@ -9,11 +9,12 @@ namespace Olympiad__project_code.Presentation
 {
     class CoachesDisplay
     {
-        private CoachesBusiness coachesBusiness = new CoachesBusiness();
-        private SportsBusiness sportsBusiness = new SportsBusiness();
+        private CoachesBusiness coachesBusiness;
+        private SportsBusiness sportsBusiness ;
         public CoachesDisplay(OlympicGamesDBContext context)
         {
             coachesBusiness = new CoachesBusiness(context);
+            sportsBusiness = new SportsBusiness(context);
         }
 
 

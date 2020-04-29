@@ -14,10 +14,6 @@ namespace Olympiad__project_code.Business
         {
             this.olympicGamesDBContext = context;
         }
-        public CoachesBusiness()
-        {
-
-        }
 
 
         public List<Coaches> GetAllCoaches()

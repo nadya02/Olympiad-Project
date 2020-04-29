@@ -14,10 +14,6 @@ namespace Olympiad__project_code.Business_layer
         {
             this.olympicGamesDBContext = context;
         }
-        public SportsBusiness()
-        {
-
-        }
 
         public List<Sports> GetAllSports()
         {

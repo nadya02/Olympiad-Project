@@ -10,11 +10,12 @@ namespace Olympiad__project_code.Presentation
     public class TownsDisplay
     {
         private TownsBusiness townsBusiness;
-        private CountriesBusiness countriesBusiness = new CountriesBusiness();
+        private CountriesBusiness countriesBusiness;
 
         public TownsDisplay(OlympicGamesDBContext context)
         {
             townsBusiness = new TownsBusiness(context);
+            countriesBusiness = new CountriesBusiness(context);
         }
 
         
