@@ -11,6 +11,11 @@ namespace Olympiad__project_code.Presentation
     {
         private CoachesBusiness coachesBusiness = new CoachesBusiness();
         private SportsBusiness sportsBusiness = new SportsBusiness();
+        public CoachesDisplay(OlympicGamesDBContext context)
+        {
+            coachesBusiness = new CoachesBusiness(context);
+        }
+
 
         public void GetAllCoaches()
         {
