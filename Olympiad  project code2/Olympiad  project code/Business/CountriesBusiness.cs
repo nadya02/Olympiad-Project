@@ -10,6 +10,15 @@ namespace Olympiad__project_code.Business_layer
     {
         private OlympicGamesDBContext olympicGamesDBContext;
 
+        public CountriesBusiness(OlympicGamesDBContext context)
+        {
+            this.olympicGamesDBContext = context;
+        }
+        public CountriesBusiness()
+        {
+
+        }
+
         public List<Countries> GetAllCountries()
         {
             using (olympicGamesDBContext = new OlympicGamesDBContext())
