@@ -10,6 +10,15 @@ namespace Olympiad__project_code.Business
     {
         private OlympicGamesDBContext olympicGamesDBContext;
 
+        public ClubsBusiness(OlympicGamesDBContext context)
+        {
+            this.olympicGamesDBContext = context;
+        }
+        public ClubsBusiness()
+        {
+
+        }
+
         public List<Clubs> GetAllClubs()
         {
             using (olympicGamesDBContext = new OlympicGamesDBContext())
