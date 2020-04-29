@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Olympiad__project_code.Business_layer
 {
-    class CountriesBusiness
+    public class CountriesBusiness
     {
         private OlympicGamesDBContext olympicGamesDBContext;
 

@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Olympiad__project_code.Business
 {
-    class CompetitorsBusiness
+    public class CompetitorsBusiness
     {
         private OlympicGamesDBContext olympicGamesDBContext;
 
