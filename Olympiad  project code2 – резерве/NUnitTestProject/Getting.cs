@@ -11,14 +11,12 @@ namespace NUnitTestProject
 {
     public class Getting
     {
-        /*
         private TownsBusiness townsBusiness = new TownsBusiness();
         private CompetitorsBusiness competitorsBusiness = new CompetitorsBusiness();
         private CoachesBusiness coachesBusiness = new CoachesBusiness();
         private SportsBusiness sportsBusiness = new SportsBusiness();
         private CountriesBusiness countriesBusiness = new CountriesBusiness();
         private ClubsBusiness clubsBusiness = new ClubsBusiness();
-        */
 
         [TestCase]
         public void GetsAllCompetitorsFromDatabase()
@@ -55,20 +53,27 @@ namespace NUnitTestProject
         [TestCase]
         public void GetCompetitorById()
         {
-            var options = new DbContextOptionsBuilder<OlympicGamesDBContext>()
-                .UseInMemoryDatabase(databaseName: "TestDB")
-                .Options;
-
-            using (OlympicGamesDBContext context = new OlympicGamesDBContext(options))
+            var data = new List<Competitors>()
             {
-                CompetitorsBusiness business = new CompetitorsBusiness(context);
-                business.AddCompetitors(new Competitors { Id = 1, FullName = "Yoanko" });
-                business.AddCompetitors(new Competitors { Id = 2, FullName = "Nadeto" });
-                business.AddCompetitors(new Competitors { Id = 3, FullName = "Gosheto" });
+                new Competitors { Id =  1,FullName = "Competitor1"},
+                new Competitors { Id = 2, FullName = "Competitor2"},
+                new Competitors { Id = 3,FullName = "Competitor3"},
+            }.AsQueryable();
 
-                Competitors c = business.GetCompetitorById(1);
-                Assert.AreEqual(1, c.Id);
-            }
+            var mockSet = new Mock<DbSet<Competitors>>();
+            mockSet.As<IQueryable<Competitors>>().Setup(m => m.Provider).Returns(data.Provider);
+            mockSet.As<IQueryable<Competitors>>().Setup(m => m.Expression).Returns(data.Expression);
+            mockSet.As<IQueryable<Competitors>>().Setup(m => m.ElementType).Returns(data.ElementType);
+            mockSet.As<IQueryable<Competitors>>().Setup(m => m.GetEnumerator()).Returns(data.GetEnumerator());
+
+            var mockContext = new Mock<OlympicGamesDBContext>();
+            mockContext.Setup(c => c.Competitors).Returns(mockSet.Object);
+
+            var service = new CompetitorsBusiness(mockContext.Object);
+            data.ToList().ForEach(p => service.AddCompetitors(p));
+
+            var product = service.GetCompetitorById(1);
+            Assert.AreEqual(1, product.Id);
         }
 
         [TestCase]
@@ -95,9 +100,7 @@ namespace NUnitTestProject
 
             var product = service.GetCompetitorByName("Competitor1");
             Assert.AreEqual("Competitor1", product.FullName);
-        }        
-        
-        [TestCase]
+        }        [TestCase]
         public void GetsAllSportsFromDatabase()
         {
 
@@ -324,10 +327,6 @@ namespace NUnitTestProject
         [TestCase]
         public void GetClubByName()
         {
-            var options = new DbContextOptionsBuilder<OlympicGamesDBContext>()
-                .UseInMemoryDatabase(databaseName: "TestDB")
-                .Options;
-
             var data = new List<Towns>()
             {
                 new Towns { Id =  1,Name = "Town1"},
@@ -335,14 +334,20 @@ namespace NUnitTestProject
                 new Towns { Id = 3,Name = "Town3"},
             }.AsQueryable();
 
-            using (OlympicGamesDBContext context = new OlympicGamesDBContext(options))
-            {
-                TownsBusiness business = new TownsBusiness(context);
-                data.ToList().ForEach(t => business.AddTown(t));
+            var mockSet = new Mock<DbSet<Towns>>();
+            mockSet.As<IQueryable<Towns>>().Setup(m => m.Provider).Returns(data.Provider);
+            mockSet.As<IQueryable<Towns>>().Setup(m => m.Expression).Returns(data.Expression);
+            mockSet.As<IQueryable<Towns>>().Setup(m => m.ElementType).Returns(data.ElementType);
+            mockSet.As<IQueryable<Towns>>().Setup(m => m.GetEnumerator()).Returns(data.GetEnumerator());
 
-                Towns t = business.GetTownByName("Town1");
-                Assert.AreEqual("Town1", t.Name);
-            }
+            var mockContext = new Mock<OlympicGamesDBContext>();
+            mockContext.Setup(c => c.Towns).Returns(mockSet.Object);
+
+            var service = new TownsBusiness(mockContext.Object); // service = контролер
+            data.ToList().ForEach(p => service.AddTown(p));
+
+            var product = service.GetTownByName("Town1");
+            Assert.AreEqual("Town1", product.Name);
         }  
         [TestCase]
         public void GetsAllCountriesFromDatabase()

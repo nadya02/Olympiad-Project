@@ -10,7 +10,7 @@ namespace Olympiad__project_code.Presentation
 {
     class ClubsDisplay
     {
-        private ClubsBusiness clubsBusiness;
+        private ClubsBusiness clubsBusiness = new ClubsBusiness();
 
         public ClubsDisplay(OlympicGamesDBContext context)
         {

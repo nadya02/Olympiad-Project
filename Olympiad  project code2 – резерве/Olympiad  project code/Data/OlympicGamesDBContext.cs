@@ -26,8 +26,7 @@ namespace Olympiad__project_code.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                //optionsBuilder.UseSqlServer("Server = .\\SQLEXPRESS; Database= OlympicGamesDB; Integrated Security=True;");
-                optionsBuilder.UseSqlServer("Server = .\\SQLEXPRESS; Database= TestDB; Integrated Security=True;");
+                optionsBuilder.UseSqlServer("Server = .\\SQLEXPRESS; Database= OlympicGamesDB; Integrated Security=True;");
             }
         }
 

@@ -15,6 +15,10 @@ namespace Olympiad__project_code.Business
         {
             this.olympicGamesDBContext = context;
         }
+        public CompetitorsBusiness()
+        {
+
+        }
 
         public List<Competitors> GetAllCompetitors()
         {

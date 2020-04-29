@@ -15,15 +15,13 @@ namespace NUnitTestProject
 
     public class Delete
     {
-        /*
         private TownsBusiness townsBusiness = new TownsBusiness();
         private CompetitorsBusiness competitorsBusiness = new CompetitorsBusiness();
         private CoachesBusiness coachesBusiness = new CoachesBusiness();
         private SportsBusiness sportsBusiness = new SportsBusiness();
         private CountriesBusiness countriesBusiness = new CountriesBusiness();
         private ClubsBusiness clubsBusiness = new ClubsBusiness();
-        */
-
+        
         [TestCase]
         public void DeleteTown()
         {
@@ -106,14 +104,10 @@ namespace NUnitTestProject
 
 
         }
-
         [TestCase]
+        
         public void DeleteCoach()
         {
-            var options = new DbContextOptionsBuilder<OlympicGamesDBContext>()
-                .UseInMemoryDatabase(databaseName: "TestDB")
-                .Options;
-
             var data = new List<Coaches>()
             {
                 new Coaches { Id =  1,Name = "Coach1"},
@@ -121,40 +115,75 @@ namespace NUnitTestProject
                 new Coaches { Id = 3,Name = "Coach3"},
             }.AsQueryable();
 
-            //да не забравяш options
-            using (OlympicGamesDBContext context = new OlympicGamesDBContext(options))
-            {
-                CoachesBusiness business = new CoachesBusiness(context);
-                data.ToList().ForEach(c => business.AddCoach(c));
+            var mockSet = new Mock<DbSet<Coaches>>();
+            mockSet.As<IQueryable<Coaches>>().Setup(m => m.Provider).Returns(data.Provider);
+            mockSet.As<IQueryable<Coaches>>().Setup(m => m.Expression).Returns(data.Expression);
+            mockSet.As<IQueryable<Coaches>>().Setup(m => m.ElementType).Returns(data.ElementType);
+            mockSet.As<IQueryable<Coaches>>().Setup(m => m.GetEnumerator()).Returns(data.GetEnumerator());
 
-                business.DeleteCoachById(2);
-                Assert.AreEqual(2, business.GetAllCoaches().Count);
+            var mockContext = new Mock<OlympicGamesDBContext>();
+            mockContext.Setup(c => c.Coaches).Returns(mockSet.Object);
+
+            var service = new CoachesBusiness(mockContext.Object);
+            data.ToList().ForEach(p => service.AddCoach(p));
+            service.DeleteCoachById(2);
+
+            var expectedCount = 2; //брой продукти в data
+            var result = service.GetAllCoaches();
+            var actualCount = result.Count;
+            
+            /*
+            foreach(Coaches t in mockContext.Object.Coaches.ToList())
+            {
+                TestContext.WriteLine(t.Id);
             }
+            TestContext.WriteLine("\n");
+            */
+
+            //не бачка, понеже както казах фреймуърка е ебан
+            Assert.AreEqual(expectedCount, actualCount);
+            Assert.AreEqual("Coach1", result[0].Name);//дали първият е Club1
+
+
         }
         [TestCase]
         public void DeleteClub()
         {
-            var options = new DbContextOptionsBuilder<OlympicGamesDBContext>()
-                .UseInMemoryDatabase(databaseName: "TestDB")
-                .Options;
-
-            IQueryable<Clubs> data = new List<Clubs>()
+            var data = new List<Clubs>()
             {
-                new Clubs { Id = 1 ,Name = "Club1"},
+                new Clubs { Id =  1,Name = "Club1"},
                 new Clubs { Id = 2, Name = "Club2"},
-                new Clubs { Id = 3, Name = "Club3"},
-                new Clubs { Id = 22, Name = "SektantiVegani"},
+                new Clubs { Id = 3,Name = "Club3"},
             }.AsQueryable();
 
-            using(OlympicGamesDBContext context = new OlympicGamesDBContext(options))
+            var mockSet = new Mock<DbSet<Clubs>>();
+            mockSet.As<IQueryable<Clubs>>().Setup(m => m.Provider).Returns(data.Provider);
+            mockSet.As<IQueryable<Clubs>>().Setup(m => m.Expression).Returns(data.Expression);
+            mockSet.As<IQueryable<Clubs>>().Setup(m => m.ElementType).Returns(data.ElementType);
+            mockSet.As<IQueryable<Clubs>>().Setup(m => m.GetEnumerator()).Returns(data.GetEnumerator());
+
+            var mockContext = new Mock<OlympicGamesDBContext>();
+            mockContext.Setup(c => c.Clubs).Returns(mockSet.Object);
+
+            var service = new ClubsBusiness(mockContext.Object);
+            data.ToList().ForEach(p => service.AddClub(p));
+            service.DeleteClubById(2);
+
+            var expectedCount = 2; //брой продукти в data
+            var result = service.GetAllClubs();
+            var actualCount = result.Count;
+            
+            /*
+            foreach(Towns t in mockContext.Object.Clubs.ToList())
             {
-                ClubsBusiness business = new ClubsBusiness(context);
-                data.ToList().ForEach(club1 => business.AddClub(club1));
-
-                business.DeleteClubById(22);
-
-                Assert.AreEqual(3, business.GetAllClubs().Count);
+                TestContext.WriteLine(t.Id);
             }
+            TestContext.WriteLine("\n");
+            */
+
+            //не бачка, понеже както казах фреймуърка е ебан
+            Assert.AreEqual(expectedCount, actualCount);
+            Assert.AreEqual("Club1", result[0].Name);//дали първият е Club1
 
 
         }

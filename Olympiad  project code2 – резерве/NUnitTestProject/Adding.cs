@@ -11,14 +11,12 @@ namespace NUnitTestProject
 {
     class Adding
     {
-        /*
         private TownsBusiness townsBusiness = new TownsBusiness();
         private CompetitorsBusiness competitorsBusiness = new CompetitorsBusiness();
         private CoachesBusiness coachesBusiness = new CoachesBusiness();
         private SportsBusiness sportsBusiness = new SportsBusiness();
         private CountriesBusiness countriesBusiness = new CountriesBusiness();
         private ClubsBusiness clubsBusiness = new ClubsBusiness();
-        */
 
         [TestCase]
         public void TestAddTowns()
