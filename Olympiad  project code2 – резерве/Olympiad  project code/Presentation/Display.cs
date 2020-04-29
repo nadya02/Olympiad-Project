@@ -52,6 +52,7 @@ namespace Olympiad__project_code.Presentation
                 }
                 catch
                 {
+                    Console.WriteLine();
                     Console.WriteLine("Invalid command!");
                     Console.WriteLine("Try again...");
                     wait(4);//IN SECONDS
@@ -133,6 +134,7 @@ namespace Olympiad__project_code.Presentation
             }
             catch
             {
+                Console.WriteLine();
                 Console.WriteLine("Invalid command");
                 Console.WriteLine("Try again...");
                 wait(4);//IN SECONDS
@@ -190,6 +192,7 @@ namespace Olympiad__project_code.Presentation
             }
             catch
             {
+                Console.WriteLine();
                 Console.WriteLine("Invalid command");
                 Console.WriteLine("Try again...");
                 wait(4);//IN SECONDS
