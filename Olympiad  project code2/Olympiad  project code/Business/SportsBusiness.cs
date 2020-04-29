@@ -21,28 +21,28 @@ namespace Olympiad__project_code.Business_layer
 
         public List<Sports> GetAllSports()
         {
-            using (olympicGamesDBContext = new OlympicGamesDBContext())
-            {
+          //  using (olympicGamesDBContext = new OlympicGamesDBContext())
+          //  {
                 return olympicGamesDBContext.Sports.ToList();
-            }
+          //  }
         }
         public Sports GetSportById(int id)
         {
-            using (olympicGamesDBContext = new OlympicGamesDBContext())
-            {
+           // using (olympicGamesDBContext = new OlympicGamesDBContext())
+           // {
                 return olympicGamesDBContext.Sports.Find(id);
-            }
+          //  }
         }
 
         public Sports GetSportByName(string name)
         {
-            using (olympicGamesDBContext = new OlympicGamesDBContext())
-            {
+         //   using (olympicGamesDBContext = new OlympicGamesDBContext())
+         //   {
                 var sport = olympicGamesDBContext.Sports
                     .Where(c => c.Name == name)
                     .FirstOrDefault();
                 return sport;
-            }
+         //   }
         }
 
     }
