@@ -49,7 +49,7 @@ namespace Olympiad__project_code.Presentation
                     Console.WriteLine("Invalid command");
                     Console.WriteLine("Try again");
                     
-                    wait(1);//IN SECONDS
+                    wait(3);//IN SECONDS
                     Console.Clear();
 
                     continue;
