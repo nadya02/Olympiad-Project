@@ -21,7 +21,7 @@ namespace Olympiad__project_code.Presentation
         private ClubsBusiness clubsBusiness;
 
         /// <summary>
-        /// Makes the connection between Clubs's display and business layer. 
+        /// Constructor for ClubsDisplay class.
         /// </summary>
         /// <param name="context"></param>
         public ClubsDisplay(OlympicGamesDBContext context)

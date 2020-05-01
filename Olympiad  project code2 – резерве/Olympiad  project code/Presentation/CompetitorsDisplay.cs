@@ -30,7 +30,7 @@ namespace Olympiad__project_code.Presentation
         //Ъм тука имам въпорс - i az
 
         /// <summary>
-        /// Makes the connection between Competitors's display and business layer. 
+        /// Constructor for CompetitorsDisplay class.
         /// </summary>
         /// <param name="context"></param>
         public CompetitorsDisplay(OlympicGamesDBContext context)

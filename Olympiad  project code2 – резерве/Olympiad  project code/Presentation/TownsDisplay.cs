@@ -21,7 +21,7 @@ namespace Olympiad__project_code.Presentation
         private CountriesBusiness countriesBusiness;
 
         /// <summary>
-        /// Makes the connection between Towns's display and business layer. 
+        /// Constructor for TownsDisplay class.
         /// </summary>
         /// <param name="context"></param>
         public TownsDisplay(OlympicGamesDBContext context)

@@ -19,7 +19,7 @@ namespace Olympiad__project_code.Presentation
         private SportsBusiness sportsBusiness;
 
         /// <summary>
-        /// Makes the connection between Sports's display and business layer. 
+        /// Constructor for SportsDisplay class.
         /// </summary>
         /// <param name="context"></param>
         public SportsDisplay(OlympicGamesDBContext context)

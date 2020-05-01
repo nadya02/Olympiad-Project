@@ -21,7 +21,7 @@ namespace Olympiad__project_code.Presentation
         private SportsBusiness sportsBusiness ;
 
         /// <summary>
-        /// Makes the connection between Coaches's display and business layer. 
+        /// Constructor for CoachesDisplay class.
         /// </summary>
         /// <param name="context"></param>
         public CoachesDisplay(OlympicGamesDBContext context)

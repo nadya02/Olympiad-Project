@@ -219,7 +219,7 @@ namespace Olympiad__project_code.Presentation
         /// <summary>
         /// According to the table the user chose to work with in the begining the information is passed to one of the other displays.
         /// </summary>
-        /// <param name="numberTable"></param>
+        /// <param name="numberTable">The number of the table which the user chose.</param>
         private static void GetAllEntries(int numberTable)
         {
             Console.Clear();
