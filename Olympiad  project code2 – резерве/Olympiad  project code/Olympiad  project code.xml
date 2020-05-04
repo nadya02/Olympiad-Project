@@ -1,0 +1,645 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Olympiad  project code</name>
+    </assembly>
+    <members>
+        <member name="T:Olympiad__project_code.Business.ClubsBusiness">
+            <summary>
+            Тhe <c>ClubsBusiness</c> class is in Business layer.
+            It works as a bridge between the ClubsDisplay class and the database.
+            </summary>
+            <remarks>
+            The results are received in row data in Data Table format.
+            ClubsBusiness converts it into Value Objects.
+            </remarks>
+        </member>
+        <member name="M:Olympiad__project_code.Business.ClubsBusiness.#ctor(Olympiad__project_code.Models.OlympicGamesDBContext)">
+            <summary>
+            Constructor for ClubsBusiness class.
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="M:Olympiad__project_code.Business.ClubsBusiness.GetAllClubs">
+            <summary>
+            Gets all clubs in Clubs table.
+            </summary>
+            <returns>A list of all club's names and ids.</returns>
+        </member>
+        <member name="M:Olympiad__project_code.Business.ClubsBusiness.GetClubById(System.Nullable{System.Int32})">
+            <summary>
+            Finds the club with the id the user has entered.
+            </summary>
+            <param name="id"></param>
+            <returns>The id and the name of the club.</returns>
+        </member>
+        <member name="M:Olympiad__project_code.Business.ClubsBusiness.GetClubByName(System.String)">
+            <summary>
+            Finds the club with the name the user has entered.
+            </summary>
+            <param name="name"></param>
+            <returns>The id and the name of the club.</returns>
+        </member>
+        <member name="M:Olympiad__project_code.Business.ClubsBusiness.AddClub(Olympiad__project_code.Models.Clubs)">
+            <summary>
+            Adds a club in the database.
+            </summary>
+            <param name="club">The club that is being added.</param>
+        </member>
+        <member name="M:Olympiad__project_code.Business.ClubsBusiness.UpdateClub(Olympiad__project_code.Models.Clubs)">
+            <summary>
+            Updates a club in the database.
+            </summary>
+            <param name="club">The club that is being updated.</param>
+        </member>
+        <member name="M:Olympiad__project_code.Business.ClubsBusiness.DeleteClubById(System.Int32)">
+            <summary>
+            Deletes a club from the database by given id.
+            </summary>
+            <param name="id">The id of the club wanted to be deleted.</param>
+        </member>
+        <member name="T:Olympiad__project_code.Business.CoachesBusiness">
+            <summary>
+            Тhe <c>CoachesBusiness</c> class is in Business layer.
+            It works as a bridge between the CoachesDisplay class and the database.
+            </summary>
+            <remarks>
+            The results are received in row data in Data Table format.
+            CoachesBusiness converts it into Value Objects.
+            </remarks>
+        </member>
+        <member name="M:Olympiad__project_code.Business.CoachesBusiness.#ctor(Olympiad__project_code.Models.OlympicGamesDBContext)">
+            <summary>
+            Constructor for CoachesBusiness class.
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="M:Olympiad__project_code.Business.CoachesBusiness.GetAllCoaches">
+            <summary>
+            Gets all coaches in Coaches table.
+            </summary>
+            <returns>A list of all coach's names, ids and sport.</returns>
+        </member>
+        <member name="M:Olympiad__project_code.Business.CoachesBusiness.GetCoachById(System.Nullable{System.Int32})">
+            <summary>
+            Finds the coach with the id the user has entered.
+            </summary>
+            <param name="id"></param>
+            <returns>The id, the name of the coach and the sport they are coaching.</returns>
+        </member>
+        <member name="M:Olympiad__project_code.Business.CoachesBusiness.GetCoachByName(System.String)">
+            <summary>
+            Finds the coach with the name the user has entered.
+            </summary>
+            <param name="name"></param>
+            <returns>The id, the name of the coach and the sport they are coaching.</returns>
+        </member>
+        <member name="M:Olympiad__project_code.Business.CoachesBusiness.AddCoach(Olympiad__project_code.Models.Coaches)">
+            <summary>
+            Adds a coach in the database.
+            </summary>
+            <param name="coach">The coach that is being added.</param>
+        </member>
+        <member name="M:Olympiad__project_code.Business.CoachesBusiness.UpdateCoach(Olympiad__project_code.Models.Coaches)">
+            <summary>
+            Updates a coach in the database.
+            </summary>
+            <param name="coach">The coach that is being updated.</param>
+        </member>
+        <member name="M:Olympiad__project_code.Business.CoachesBusiness.DeleteCoachById(System.Int32)">
+            <summary>
+            Deletes a coach from the database by given id.
+            </summary>
+            <param name="id">The id of the coach wanted to be deleted.</param>
+        </member>
+        <member name="T:Olympiad__project_code.Business.CompetitorsBusiness">
+            <summary>
+            Тhe <c>CompetitorsBusiness</c> class is in Business layer.
+            It works as a bridge between the CompetitorsDisplay class and the database.
+            </summary>
+            <remarks>
+            The results are received in row data in Data Table format.
+            CompetitorsBusiness converts it into Value Objects.
+            </remarks>
+        </member>
+        <member name="M:Olympiad__project_code.Business.CompetitorsBusiness.#ctor(Olympiad__project_code.Models.OlympicGamesDBContext)">
+            <summary>
+            Constructor for CompetitorsBusiness class.
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="M:Olympiad__project_code.Business.CompetitorsBusiness.GetAllCompetitors">
+            <summary>
+            Gets all competitors in Competitors table.
+            </summary>
+            <returns>A list of all competitors and everyting about them.</returns>
+        </member>
+        <member name="M:Olympiad__project_code.Business.CompetitorsBusiness.GetCompetitorById(System.Int32)">
+            <summary>
+            Finds the competitor with the id the user has entered.
+            </summary>
+            <param name="id"></param>
+            <returns>The name of the competitor and everyting about them.</returns>
+        </member>
+        <member name="M:Olympiad__project_code.Business.CompetitorsBusiness.GetCompetitorByName(System.String)">
+            <summary>
+            Finds the competitor with the name the user has entered.
+            </summary>
+            <param name="name"></param>
+            <returns>The name of the competitor and everyting about them..</returns>
+        </member>
+        <member name="M:Olympiad__project_code.Business.CompetitorsBusiness.AddCompetitors(Olympiad__project_code.Models.Competitors)">
+            <summary>
+            Adds a competitor in the database.
+            </summary>
+            <param name="competitors">The competitor that is being added.</param>
+        </member>
+        <member name="M:Olympiad__project_code.Business.CompetitorsBusiness.UpdateCompetitor(Olympiad__project_code.Models.Competitors)">
+            <summary>
+            Updates a competitor in the database.
+            </summary>
+            <param name="competitor">The competitor that is being updated.</param>
+        </member>
+        <member name="M:Olympiad__project_code.Business.CompetitorsBusiness.DeleteCompetitorById(System.Int32)">
+            <summary>
+            Deletes a competitor from the database by given id.
+            </summary>
+            <param name="id">The id of the competitor wanted to be deleted.</param>
+        </member>
+        <member name="T:Olympiad__project_code.Business_layer.CountriesBusiness">
+            <summary>
+            Тhe <c>CountriesBusiness</c> class is in Business layer.
+            It works as a bridge between the CountrieDisplay class and the database.
+            </summary>
+            <remarks>
+            The results are received in row data in Data Table format.
+            CountriesBusiness converts it into Value Objects.
+            </remarks>
+        </member>
+        <member name="M:Olympiad__project_code.Business_layer.CountriesBusiness.#ctor(Olympiad__project_code.Models.OlympicGamesDBContext)">
+            <summary>
+            Constructor for CountriesBusiness class.
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="M:Olympiad__project_code.Business_layer.CountriesBusiness.GetAllCountries">
+            <summary>
+            Gets all countries in Countries table.
+            </summary>
+            <returns>A list of all countries's names and their ids.</returns>
+        </member>
+        <member name="M:Olympiad__project_code.Business_layer.CountriesBusiness.GetCountryById(System.Int32)">
+            <summary>
+            Finds the country with the id the user has entered.
+            </summary>
+            <param name="id"></param>
+            <returns>The id and the name of the country.</returns>
+        </member>
+        <member name="M:Olympiad__project_code.Business_layer.CountriesBusiness.GetCountryByName(System.String)">
+            <summary>
+            Finds the country with the name the user has entered.
+            </summary>
+            <param name="name"></param>
+            <returns>The id and the name of the country.</returns>
+        </member>
+        <member name="T:Olympiad__project_code.Business_layer.SportsBusiness">
+            <summary>
+            Тhe <c>SportsBusiness</c> class is in Business layer.
+            It works as a bridge between the SportsDisplay class and the database.
+            </summary>
+            <remarks>
+            The results are received in row data in Data Table format.
+            SportsBusiness converts it into Value Objects.
+            </remarks>
+        </member>
+        <member name="M:Olympiad__project_code.Business_layer.SportsBusiness.#ctor(Olympiad__project_code.Models.OlympicGamesDBContext)">
+            <summary>
+            Constructor for SportsBusiness class.
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="M:Olympiad__project_code.Business_layer.SportsBusiness.GetAllSports">
+            <summary>
+            Gets all sports in Sports table.
+            </summary>
+            <returns>A list of all sport's names and their ids.</returns>
+        </member>
+        <member name="M:Olympiad__project_code.Business_layer.SportsBusiness.GetSportById(System.Int32)">
+            <summary>
+            Finds the sport with the id the user has entered.
+            </summary>
+            <param name="id"></param>
+            <returns>The id and the name of the sport.</returns>
+        </member>
+        <member name="M:Olympiad__project_code.Business_layer.SportsBusiness.GetSportByName(System.String)">
+            <summary>
+            Finds the sport with the name the user has entered.
+            </summary>
+            <param name="name"></param>
+            <returns>The id and the name of the sport.</returns>
+        </member>
+        <member name="T:Olympiad__project_code.Business_layer.TownsBusiness">
+            <summary>
+            Тhe <c>TownsBusiness</c> class is in Business layer.
+            It works as a bridge between the TownsDisplay class and the database.
+            </summary>
+            <remarks>
+            The results are received in row data in Data Table format.
+            TownsBusiness converts it into Value Objects.
+            </remarks>
+        </member>
+        <member name="M:Olympiad__project_code.Business_layer.TownsBusiness.#ctor(Olympiad__project_code.Models.OlympicGamesDBContext)">
+            <summary>
+            Constructor for TownsBusiness class.
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="M:Olympiad__project_code.Business_layer.TownsBusiness.GetAllTowns">
+            <summary>
+            Gets all towns in Towns table.
+            </summary>
+            <returns>A list of all town's names, ids and countries.</returns>
+        </member>
+        <member name="M:Olympiad__project_code.Business_layer.TownsBusiness.GetTownById(System.Int32)">
+            <summary>
+            Finds the town with the id the user has entered.
+            </summary>
+            <param name="id"></param>
+            <returns>The id, the name of the town and the country it is in.</returns>
+        </member>
+        <member name="M:Olympiad__project_code.Business_layer.TownsBusiness.GetTownByName(System.String)">
+            <summary>
+            Finds the town with the name the user has entered.
+            </summary>
+            <param name="name"></param>
+            <returns>The id, the name of the town and the country it is in.</returns>
+        </member>
+        <member name="M:Olympiad__project_code.Business_layer.TownsBusiness.AddTown(Olympiad__project_code.Models.Towns)">
+            <summary>
+            Adds a town in the database.
+            </summary>
+            <param name="town">The town that is being added.</param>
+        </member>
+        <member name="M:Olympiad__project_code.Business_layer.TownsBusiness.UpdateTown(Olympiad__project_code.Models.Towns)">
+            <summary>
+            Updates a town in the database.
+            </summary>
+            <param name="town">The town that is being updated.</param>
+        </member>
+        <member name="M:Olympiad__project_code.Business_layer.TownsBusiness.DeleteTownById(System.Int32)">
+            <summary>
+            Deletes a town from the database by given id.
+            </summary>
+            <param name="id">The id of the town wanted to be deleted.</param>
+        </member>
+        <member name="T:Olympiad__project_code.Presentation.ClubsDisplay">
+            <summary>
+            Тhe <c>ClubsDisplay</c> class in Presentation.
+            This is the layer which is directly connected to ClubsBusiness.
+            </summary>
+            <remarks>
+            This class receive information from the user.
+            Then it is passed to ClubsBusiness.
+            </remarks>
+        </member>
+        <member name="M:Olympiad__project_code.Presentation.ClubsDisplay.#ctor(Olympiad__project_code.Models.OlympicGamesDBContext)">
+            <summary>
+            Constructor for ClubsDisplay class.
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="M:Olympiad__project_code.Presentation.ClubsDisplay.GetAllClubs">
+            <summary>
+            "Calls" method "GetAllTowns" from ClubsBusiness.
+            Then it shows all clubs in table Clubs.
+            </summary>
+        </member>
+        <member name="M:Olympiad__project_code.Presentation.ClubsDisplay.GetClubById">
+            <summary>
+            After the user has inputed id, the program "Calls" method "GetClubById" from ClubsBusiness.
+            Shows the Club who has this id. 
+            </summary>
+        </member>
+        <member name="M:Olympiad__project_code.Presentation.ClubsDisplay.GetClubByName">
+            <summary>
+            After the user has inputed idname the program "Calls" method "GetClubById" from ClubsBusiness.
+            Shows the Club who has this name. 
+            </summary>
+        </member>
+        <member name="M:Olympiad__project_code.Presentation.ClubsDisplay.AddClub">
+            <summary>
+            Makes the user to input data about the club.
+            Passes the information to ClubsBusiness, using the method "AddClub"
+            </summary>
+        </member>
+        <member name="M:Olympiad__project_code.Presentation.ClubsDisplay.UpdateClub">
+            <summary>
+            Finds the club wished to be updated.
+            Makes the user to enter the new information.
+            Then passes it to ClubsBusiness, using the method "UpdateClub".
+            </summary>
+        </member>
+        <member name="M:Olympiad__project_code.Presentation.ClubsDisplay.DeleteClubById">
+            <summary>
+            Finds the club wished to be deleted.
+            Passes the information to ClubsBusiness, using the method "DeleteClubById".
+            </summary>
+        </member>
+        <member name="T:Olympiad__project_code.Presentation.CoachesDisplay">
+            <summary>
+            Тhe <c>CoachesDisplay</c> class in Presentation.
+            This is the layer which is directly connected to CoachesBusiness.
+            </summary>
+            <remarks>
+            This class receive information from the user.
+            Then it is passed to CoachesBusiness.
+            </remarks>
+        </member>
+        <member name="M:Olympiad__project_code.Presentation.CoachesDisplay.#ctor(Olympiad__project_code.Models.OlympicGamesDBContext)">
+            <summary>
+            Constructor for CoachesDisplay class.
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="M:Olympiad__project_code.Presentation.CoachesDisplay.GetAllCoaches">
+            <summary>
+            "Calls" method "GetAllCoaches" from CoachesBusiness.
+            Then it shows all coaches in table Coaches.
+            </summary>
+        </member>
+        <member name="M:Olympiad__project_code.Presentation.CoachesDisplay.GetCoachById">
+            <summary>
+            After the user has inputed id, the program "Calls" method "GetCoachById" from CoachesBusiness.
+            Shows the Coach who has this id. 
+            </summary>
+        </member>
+        <member name="M:Olympiad__project_code.Presentation.CoachesDisplay.GetCoachByName">
+            <summary>
+            After the user has inputed name, the program "Calls" method "GetCoachById" from CoachesBusiness.
+            Shows the Coach who has this name. 
+            </summary>
+        </member>
+        <member name="M:Olympiad__project_code.Presentation.CoachesDisplay.AddCoach">
+            <summary>
+            Makes the user to input data about the coach.
+            Passes the information to CoachesBusinessiness, using the method "AddCoach"
+            </summary>
+        </member>
+        <member name="M:Olympiad__project_code.Presentation.CoachesDisplay.UpdateCoach">
+            <summary>
+            Finds the coach wished to be updated.
+            Makes the user to enter the new information.
+            Then passes it to CoachesBusinessiness, using the method "UpdateCoach".
+            </summary>
+        </member>
+        <member name="M:Olympiad__project_code.Presentation.CoachesDisplay.DeleteCoachById">
+            <summary>
+            Finds the town wished to be deleted.
+            Passes the information to CoachesBusinessiness, using the method "DeleteCoachById".
+            </summary>
+        </member>
+        <member name="T:Olympiad__project_code.Presentation.CompetitorsDisplay">
+            <summary>
+            Тhe <c>CompetitorsDisplay</c> class in Presentation.
+            This is the layer which is directly connected to CompetitorsBusiness.
+            </summary>
+            <remarks>
+            This class receive information from the user.
+            Then it is passed to CompetitorsBusiness.
+            </remarks>
+        </member>
+        <member name="M:Olympiad__project_code.Presentation.CompetitorsDisplay.#ctor(Olympiad__project_code.Models.OlympicGamesDBContext)">
+            <summary>
+            Constructor for CompetitorsDisplay class.
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="M:Olympiad__project_code.Presentation.CompetitorsDisplay.GetAllCompetitors">
+            <summary>
+            "Calls" method "GetAllCompetitors" from CompetitorsBusiness.
+            Then it shows all competitors in table Competitors.
+            </summary>
+        </member>
+        <member name="M:Olympiad__project_code.Presentation.CompetitorsDisplay.GetCompetitorById">
+            <summary>
+            After the user has inputed id, the program "Calls" method "GetCompetitorById" from CompetitorsBusiness.
+            Shows the Competitor who has this id. 
+            </summary>
+        </member>
+        <member name="M:Olympiad__project_code.Presentation.CompetitorsDisplay.GetCompetitorByName">
+            <summary>
+            After the user has inputed name, the program "Calls" method "GetCompetitorByName" from CompetitorsBusiness.
+            Shows the Competitor who has this name. 
+            </summary>
+        </member>
+        <member name="M:Olympiad__project_code.Presentation.CompetitorsDisplay.AddCompetitor">
+            <summary>
+            "Calls" method "CreateCompetitor".
+            Passes the information to CompetitorsBusiness, using the method "AddCompetitors"
+            </summary>
+        </member>
+        <member name="M:Olympiad__project_code.Presentation.CompetitorsDisplay.UpdateCompetitor">
+            <summary>
+            Finds the competitor wished to be updated.
+            "Calls" method "CreateCompetitor".
+            Then passes it to CompetitorsBusiness, using the method "UpdateCompetitor".
+            </summary>
+        </member>
+        <member name="M:Olympiad__project_code.Presentation.CompetitorsDisplay.DeleteCompetitorById">
+            <summary>
+            Finds the competitor wished to be deleted.
+            Passes the information to CompetitorsBusiness, using the method "DeleteCompetitorById".
+            </summary>
+        </member>
+        <member name="T:Olympiad__project_code.Presentation.CountriesDisplay">
+            <summary>
+            Тhe <c>CountriesDisplay</c> class in Presentation.
+            This is the layer which is directly connected to CountriesBusiness.
+            </summary>
+            <remarks>
+            This class receive information from the user.
+            Then it is passed to CountriesBusiness.
+            </remarks>
+        </member>
+        <member name="M:Olympiad__project_code.Presentation.CountriesDisplay.#ctor(Olympiad__project_code.Models.OlympicGamesDBContext)">
+            <summary>
+            Constructor for CountriesDisplay class. 
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="M:Olympiad__project_code.Presentation.CountriesDisplay.GetAllCountries">
+            <summary>
+            "Calls" method "GetAllCountries" from CountriesBusiness.
+            Then it shows all countries in table Countries.
+            </summary>
+        </member>
+        <member name="M:Olympiad__project_code.Presentation.CountriesDisplay.GetCountryById">
+            <summary>
+            After the user has inputed id, the program "Calls" method "GetCountryById" from CountriesBusiness.
+            Shows the Country who has this id. 
+            </summary>
+        </member>
+        <member name="M:Olympiad__project_code.Presentation.CountriesDisplay.GetCountryByName">
+            <summary>
+            After the user has inputed name, the program "Calls" method "GetCountryByName" from CountriesBusiness.
+            Shows the Country who has this name. 
+            </summary>
+        </member>
+        <member name="T:Olympiad__project_code.Presentation.Display">
+            <summary>
+            Тhe main <c>Display</c> class in Presentation.
+            This is the layer which is directly connected to the user.
+            </summary>
+            <remarks>
+            This class receive information from the user.
+            Then it is passed to one of the other displays.
+            </remarks>
+        </member>
+        <member name="M:Olympiad__project_code.Presentation.Display.Input">
+            <summary>
+            Receive information from the user.
+            According to the input the program will continue with specific method.
+            </summary>
+        </member>
+        <member name="M:Olympiad__project_code.Presentation.Display.ShowMenu">
+            <summary>
+            Shows on the screen all the sports included in the Olypmic Games.
+            </summary>
+        </member>
+        <member name="M:Olympiad__project_code.Presentation.Display.ListAllOpperations">
+            <summary>
+            Shows to the screen all the operations the user can do with the chosen table.
+            </summary>
+            <remarks>
+            According to the user's answer the program "calls" specific method.
+            </remarks>
+        </member>
+        <member name="M:Olympiad__project_code.Presentation.Display.ListOnlyAvailableOpperations">
+            <summary>
+            Shows to the screen all the operations the user can do with the chosen table.
+            </summary>
+            <remarks>
+            According to the user's answer the program "calls" specific method.
+            The difference here is that there are less operations available.
+            </remarks>
+        </member>
+        <member name="M:Olympiad__project_code.Presentation.Display.GetAllEntries(System.Int32)">
+            <summary>
+            According to the table the user chose to work with in the begining the information is passed to one of the other displays.
+            </summary>
+            <param name="numberTable">The number of the table which the user chose.</param>
+        </member>
+        <member name="M:Olympiad__project_code.Presentation.Display.AddNewEntry">
+            <summary>
+            According to the table the user chose to work with in the begining the information is passed to one of the other displays.
+            </summary>
+            <remarks>The method gets all data in the table.</remarks>
+        </member>
+        <member name="M:Olympiad__project_code.Presentation.Display.GetEntryByName">
+            <summary>
+            According to the table the user chose to work with in the begining the information is passed to one of the other displays.
+            </summary>
+            <remarks>The method gets data by name.</remarks>
+        </member>
+        <member name="M:Olympiad__project_code.Presentation.Display.GetEntryById">
+            <summary>
+            According to the table the user chose to work with in the begining the information is passed to one of the other displays.
+            </summary>
+            <remarks>The method gets data by id.</remarks>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Olympiad__project_code.Presentation.Display.UpdateEntry" -->
+        <member name="M:Olympiad__project_code.Presentation.Display.DeleteEntry">
+            <summary>
+            According to the table the user chose to work with in the begining the information is passed to one of the other displays.
+            </summary>
+            <remarks>The method deletes data.</remarks>
+        </member>
+        <member name="T:Olympiad__project_code.Presentation.SportsDisplay">
+            <summary>
+            Тhe <c>SportsDisplay</c> class in Presentation.
+            This is the layer which is directly connected to SportsBusiness.
+            </summary>
+            <remarks>
+            This class receive information from the user.
+            Then it is passed to SportsBusiness.
+            </remarks>
+        </member>
+        <member name="M:Olympiad__project_code.Presentation.SportsDisplay.#ctor(Olympiad__project_code.Models.OlympicGamesDBContext)">
+            <summary>
+            Constructor for SportsDisplay class.
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="M:Olympiad__project_code.Presentation.SportsDisplay.GetAllSports">
+            <summary>
+            "Calls" method "GetAllSports" from SportsBusiness.
+            Then it shows all sports in table Sports.
+            </summary>
+        </member>
+        <member name="M:Olympiad__project_code.Presentation.SportsDisplay.GetSportById">
+            <summary>
+            After the user has inputed id, the program "Calls" method "GetSportById" from SportsBusiness.
+            Shows the Sport who has this id. 
+            </summary>
+        </member>
+        <member name="M:Olympiad__project_code.Presentation.SportsDisplay.GetSportByName">
+            <summary>
+            After the user has inputed name, the program "Calls" method "GetSportByName" from SportsBusiness.
+            Shows the Sport who has this name. 
+            </summary>
+        </member>
+        <member name="T:Olympiad__project_code.Presentation.TownsDisplay">
+            <summary>
+            Тhe <c>TownsDisplay</c> class in Presentation.
+            This is the layer which is directly connected to TownsBusiness.
+            </summary>
+            <remarks>
+            This class receive information from the user.
+            Then it is passed to TownsBusiness.
+            </remarks>
+        </member>
+        <member name="M:Olympiad__project_code.Presentation.TownsDisplay.#ctor(Olympiad__project_code.Models.OlympicGamesDBContext)">
+            <summary>
+            Constructor for TownsDisplay class.
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="M:Olympiad__project_code.Presentation.TownsDisplay.GetAllTowns">
+            <summary>
+            "Calls" method "GetAllTowns" from TownsBusiness.
+            Then it shows all towns in table Towns.
+            </summary>
+        </member>
+        <member name="M:Olympiad__project_code.Presentation.TownsDisplay.GetTownById">
+            <summary>
+            After the user has inputed id, the program "Calls" method "GetTownById" from TownsBusiness.
+            Shows the Town who has this id. 
+            </summary>
+        </member>
+        <member name="M:Olympiad__project_code.Presentation.TownsDisplay.GetTownByName">
+            <summary>
+            After the user has inputed name, the program "Calls" method "GetTownByName" from TownsBusiness.
+            Shows the Town who has this name. 
+            </summary>
+        </member>
+        <member name="M:Olympiad__project_code.Presentation.TownsDisplay.AddTown">
+            <summary>
+            Makes the user to input data about the town.
+            Passes the information to TownsBusiness, using the method "AddTown"
+            </summary>
+        </member>
+        <member name="M:Olympiad__project_code.Presentation.TownsDisplay.UpdateTown">
+            <summary>
+            Finds the town wished to be updated.
+            Makes the user to enter the new information.
+            Then passes it to TownsBusiness, using the method "UpdateTown".
+            </summary>
+        </member>
+        <member name="M:Olympiad__project_code.Presentation.TownsDisplay.DeleteTownById">
+            <summary>
+            Finds the town wished to be deleted.
+            Passes the information to TownsBusiness, using the method "DeleteTownById".
+            </summary>
+        </member>
+    </members>
+</doc>
